@@ -109,7 +109,7 @@ const BugsPage: React.FC<{ title: React.ReactNode; description: React.ReactNode 
             <PageHeader 
                 title={title}
                 subtitle={
-                    <>{description}<br />Don't see your spec's bugs? Report them <SwirlLink href="https://github.com/lolswirl/wait-im-ramping/issues" target="_blank" sx={{ fontSize: FONT.body }}>here</SwirlLink>!</>
+                    <>{description}<br />Don't see your spec's bugs? Report them <SwirlLink href="https://github.com/lolswirl/waitimramping/issues" target="_blank" sx={{ fontSize: FONT.body }}>here</SwirlLink>!</>
                 }
                 marginBottom={3}
             />

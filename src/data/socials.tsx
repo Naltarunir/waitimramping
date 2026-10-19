@@ -37,7 +37,7 @@ export interface SocialLink {
 export const SOCIAL_LINKS = {
     GITHUB: {
         label: "GitHub",
-        href: "https://github.com/lolswirl/wait-im-ramping",
+        href: "https://github.com/lolswirl/waitimramping",
         icon: <GitHubIcon />,
         color: "#ffffff",
     },
