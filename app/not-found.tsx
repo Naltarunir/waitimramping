@@ -67,8 +67,6 @@ const NotFound: React.FC = () => {
                     borderRadius: "8px",
                     objectFit: "cover",
                     border: "1px solid #575757",
-                    transition: "transform 0.3s ease",
-                    "&:hover": { transform: "scale(1.05)" },
                 }}
             />
             <Box>

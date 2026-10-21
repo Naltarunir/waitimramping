@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Container, Typography, Box, Grid, useTheme } from "@mui/material";
+import { Container, Typography, Box, Grid, useTheme, useMediaQuery } from "@mui/material";
 
 import PageHeader from "@components/PageHeader/PageHeader";
 import { T } from "@util/T";
-import { formatDate, getCapsMode } from "@util/stringManipulation";
+import { getCapsMode } from "@util/stringManipulation";
 import RainbowCard from "@components/Buttons/RainbowCard";
 import { GlassTooltip } from "@components/Glass";
 
@@ -14,7 +14,9 @@ import { extractTextFromReactNode } from "@util/extractTextFromReactNode";
 import { FONT } from "@components/Theme/tokens";
 
 const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ tool, isOutdated }) => {
-    const [hovered, setHovered] = useState(false);
+    const [hoverState, setHovered] = useState(false);
+    const noHover = useMediaQuery("(hover: none)");
+    const hovered = hoverState || noHover;
     const descRef = React.useRef<HTMLDivElement>(null);
     const [descHeight, setDescHeight] = React.useState(48);
 
@@ -90,18 +92,6 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                             </Box>
                         </GlassTooltip>
                     )}
-
-                    {/* date badge */}
-                    <Box sx={{
-                        position: "absolute", top: 8, right: 8,
-                        backgroundColor: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)",
-                        color: "rgba(255,255,255,0.8)", px: 1.25, py: 0.4, borderRadius: 1,
-                        fontSize: FONT.micro, fontWeight: 500, letterSpacing: "0.02em",
-                        textTransform: getCapsMode() ? "none" : "lowercase",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                    }}>
-                        {formatDate(tool.createdDate)}
-                    </Box>
 
                     {/* title — shifts up by description height on hover */}
                     <Box sx={{
@@ -212,9 +202,6 @@ const Analysis: React.FC<{ title: string; description: string }> = ({ title, des
 
             <Box sx={{ mb: 1 }}>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
-                    <Typography sx={{ fontSize: FONT.micro, fontWeight: 700, letterSpacing: 0.5, color: "text.disabled" }}>
-                        filter
-                    </Typography>
                     <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", flexGrow: 1 }}>
                         {allTags.map((tag) => (
                             <FilterChip

@@ -19,7 +19,6 @@ const imageStyle = {
   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
   border: "1px solid #575757",
   backgroundColor: "transparent",
-  transition: "transform 0.3s ease",
 };
 
 const About = () => {
@@ -57,12 +56,7 @@ const About = () => {
                 component="img"
                 src={swirlImg}
                 alt="swirl"
-                sx={{
-                  ...imageStyle,
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                  },
-                }}
+                sx={imageStyle}
               />
               <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
                 hi, i'm swirl :) i'm a gamer and software engineer who enjoys the mathematical side of the world, which translates directly into digging into how healing works across different games, mostly aligned with world of warcraft. i've been playing wow since cataclysm, and started maining mistweaver monk in mists of pandaria.
@@ -102,12 +96,7 @@ const About = () => {
                   component="img"
                   src={mistweaverLogo}
                   alt="mistweaver"
-                  sx={{
-                    ...imageStyle,
-                    "&:hover": {
-                      transform: "scale(1.1)",
-                    },
-                  }}
+                  sx={imageStyle}
                 />
               </Stack>
             </Box>

@@ -6,7 +6,7 @@ import { CHANGELOG } from "@data/changelog";
 import { formatDate } from "@util/stringManipulation";
 
 const title = "Changelog";
-const description = "A history of updates and changes to Wait, I'm Ramping!";
+const description = "A history of updates to Wait, I'm Ramping!";
 export const metadata = PageMetadata(title, description);
 
 export default function ChangelogPage() {

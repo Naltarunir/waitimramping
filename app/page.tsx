@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
     Typography,
@@ -10,7 +9,6 @@ import {
 import RainbowCard, { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import SwirlLink from "@components/SwirlLink/SwirlLink";
 import { CONTENT_WIDTH, FONT, HAIRLINE } from "@components/Theme/tokens";
-import { CHANGELOG } from "@data/changelog";
 
 const CURRENT_PATCH = "12.1.5";
 
@@ -51,61 +49,19 @@ const tools = [
 ];
 
 const STATUS_GREEN = RAINBOW_COLORS[1];
-const LAST_SEEN_KEY = 'lastSeenChangelog';
 
-const relativeTime = (date: Date): string => {
-    const days = Math.floor((Date.now() - date.getTime()) / 86400000);
-    if (days <= 0) return 'today';
-    if (days === 1) return 'yesterday';
-    if (days < 14) return `${days} days ago`;
-    if (days < 60) return `${Math.floor(days / 7)} weeks ago`;
-    return `${Math.floor(days / 30)} months ago`;
-};
-
-const StatusLine = () => {
-    const latest = CHANGELOG[0].date;
-    const [hasNew, setHasNew] = useState(false);
-
-    useEffect(() => {
-        const lastSeen = localStorage.getItem(LAST_SEEN_KEY);
-        setHasNew(!lastSeen || new Date(lastSeen) < latest);
-    }, [latest]);
-
-    const markSeen = () => {
-        localStorage.setItem(LAST_SEEN_KEY, latest.toISOString());
-        setHasNew(false);
-    };
-
-    return (
-        <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.75 }}>
-            <Box sx={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: STATUS_GREEN }} />
-            <Typography component="div" sx={{ fontSize: FONT.small, color: 'text.secondary' }}>
-                current for patch{' '}
-                <Box component="span" sx={{ fontFamily: 'monospace', fontWeight: 700, color: STATUS_GREEN }}>
-                    {CURRENT_PATCH}
-                </Box>
-                {' · '}updated {relativeTime(latest)}{' · '}
-                <Box component="span" sx={{ position: 'relative' }}>
-                    <SwirlLink href="/changelog" fontWeight={700} sx={{ fontSize: FONT.small }} onClick={markSeen}>
-                        what's new
-                    </SwirlLink>
-                    {hasNew && (
-                        <Box sx={{
-                            position: 'absolute',
-                            top: -2,
-                            right: -7,
-                            width: 6,
-                            height: 6,
-                            borderRadius: '50%',
-                            backgroundColor: '#7ee5ff',
-                            boxShadow: '0 0 6px #7ee5ff',
-                        }} />
-                    )}
-                </Box>
-            </Typography>
+const StatusLine = () => (
+    <Typography component="div" sx={{ fontSize: FONT.small, color: 'text.secondary' }}>
+        current for patch{' '}
+        <Box component="span" sx={{ fontFamily: 'monospace', fontWeight: 700, color: STATUS_GREEN }}>
+            {CURRENT_PATCH}
         </Box>
-    );
-};
+        {' · '}
+        <SwirlLink href="/changelog" fontWeight={700} sx={{ fontSize: FONT.small }}>
+            what's new
+        </SwirlLink>
+    </Typography>
+);
 
 const Hero = () => (
     <Box sx={{
@@ -114,23 +70,16 @@ const Hero = () => (
         flexDirection: 'column',
         alignItems: 'center',
         gap: 1,
-        '@keyframes gradientShift': {
-            '0%': { backgroundPosition: '0% 50%' },
-            '50%': { backgroundPosition: '100% 50%' },
-            '100%': { backgroundPosition: '0% 50%' },
-        },
     }}>
         <Typography
             variant="h2"
             component="h1"
             sx={{
                 fontWeight: 'bold',
-                background: `linear-gradient(90deg, ${[...RAINBOW_COLORS, ...RAINBOW_COLORS].join(', ')})`,
-                backgroundSize: '200% auto',
+                background: RAINBOW_GRADIENT,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                animation: 'gradientShift 6s linear infinite',
             }}
         >
             Wait, I'm Ramping!

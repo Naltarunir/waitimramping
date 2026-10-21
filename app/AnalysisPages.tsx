@@ -43,7 +43,7 @@ export const mwDamage = {
   label: "Mistweaver Damage Comparison", 
   path: "/analysis/mw-damage", 
   preview: "/previews/mw-damage.png",
-  description: "Evaluate formulated damage output of various Mistweaver rotations",
+  description: "Evaluate formulated damage output of Mistweaver rotations",
   tags: ["Rotation", "Damage"],
   createdDate: date(2025, 3, 26),
   component: DamageComparison
@@ -68,7 +68,7 @@ export const risingSunKickResets = {
   path: "/analysis/rising-sun-kick-resets", 
   preview: "/previews/rising-sun-kick-resets.png",
   description: <>
-    Find the probabilities of <SpellLink spell={SPELLS.RISING_SUN_KICK}/> resets based on various input rotations
+    Find the probabilities of <SpellLink spell={SPELLS.RISING_SUN_KICK}/> resets based on input rotations
   </>,
   tags: ["Probability", "Monk", "Rotation"],
   createdDate: date(2025, 7, 10),
@@ -82,7 +82,7 @@ export const chiJi = {
   path: "/analysis/chi-ji",
   preview: "/previews/chi-ji.png",
   description: <>
-    Simulate the theoretical HPS of various rotations done inside of <SpellLink spell={SPELLS.CHI_JI}/>
+    Simulate the theoretical HPS of rotations inside <SpellLink spell={SPELLS.CHI_JI}/>
   </>,
   tags: ["Healing", "Monk", "Rotation"],
   createdDate: date(2025, 7, 12),
@@ -94,7 +94,7 @@ export const heartOfTheJadeSerpent = {
   path: "/analysis/heart-of-the-jade-serpent",
   preview: "/previews/heart-of-the-jade-serpent.png",
   description: <>
-    Analyze the effects of <SpellLink spell={TALENTS.HEART_OF_THE_JADE_SERPENT}/>'s increased cooldown recovery rate to find how many extra casts are received during a fight
+    Analyze the effects of <SpellLink spell={TALENTS.HEART_OF_THE_JADE_SERPENT}/>'s increased cooldown recovery rate to find how many extra casts you get during a fight
   </>,
   tags: ["Monk"],
   createdDate: date(2025, 8, 1),
@@ -120,7 +120,7 @@ export const mistyCoalescence = {
   path: "/analysis/misty-coalescence",
   preview: "/previews/misty-coalescence.png",
   description: <>
-    Visually graph <SpellLink spell={SPELLS.RENEWING_MIST}/>'s healing increase based on group size with <SpellLink spell={TALENTS.MISTY_COALESCENCE}/>
+    Graph <SpellLink spell={SPELLS.RENEWING_MIST}/>'s healing increase based on group size with <SpellLink spell={TALENTS.MISTY_COALESCENCE}/>
   </>,
   tags: ["Healing", "Monk"],
   createdDate: date(2026, 1, 25),
@@ -134,7 +134,7 @@ export const jadefireTeachingsRwk = {
   path: "/analysis/rushing-wind-kick",
   preview: "/previews/jft-rwk.png",
   description: <>
-    Comparison of <SpellLink spell={SPELLS.RISING_SUN_KICK}/> (<SpellLink spell={TALENTS.JADEFIRE_TEACHINGS}/>) and <SpellLink spell={TALENTS.RUSHING_WIND_KICK}/> damage and healing output
+    Compare <SpellLink spell={SPELLS.RISING_SUN_KICK}/> (<SpellLink spell={TALENTS.JADEFIRE_TEACHINGS}/>) and <SpellLink spell={TALENTS.RUSHING_WIND_KICK}/> damage and healing output
   </>,
   tags: ["Healing", "Monk"],
   createdDate: date(2026, 2, 15),
@@ -148,7 +148,7 @@ export const sheilunVsDocj = {
   path: "/analysis/sheilun-vs-docj",
   preview: "/previews/sg-docj.png",
   description: <>
-    Comparing the healing output of <SpellLink spell={SPELLS.SHEILUNS_GIFT}/> main target to a <SpellLink spell={TALENTS.DANCE_OF_CHI_JI}/> proc (1 Friendly Only)
+    Compare the healing output of <SpellLink spell={SPELLS.SHEILUNS_GIFT}/> main target to a <SpellLink spell={TALENTS.DANCE_OF_CHI_JI}/> proc (1 Friendly Only)
   </>,
   tags: ["Healing", "Monk"],
   createdDate: date(2026, 4, 15),
@@ -162,7 +162,7 @@ export const sheilunsGiftBreakdown = {
   path: "/analysis/sheiluns-gift-breakdown",
   preview: "/previews/sg-breakdown.png",
   description: <>
-    Detailed breakdown of <SpellLink spell={SPELLS.SHEILUNS_GIFT}/>'s healing distribution
+    Break down <SpellLink spell={SPELLS.SHEILUNS_GIFT}/>'s healing distribution
   </>,
   tags: ["Healing", "Monk"],
   createdDate: date(2026, 4, 22),
@@ -173,7 +173,7 @@ export const whenDoIRamp = {
   label: "When Do I Ramp?",
   path: "/when-do-i-ramp",
   preview: "/previews/when-do-i-ramp.png",
-  description: "Calculate ramp timings for spell cast efficiency and planning",
+  description: "Calculate when to start your ramp before a mechanic",
   tags: ["Healing", "Damage", "Rotation"],
   createdDate: date(2025, 2, 28),
   component: WhenDoIRamp
