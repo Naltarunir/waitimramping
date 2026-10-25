@@ -13,7 +13,7 @@ import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
 import { iconFallbackUrl, iconLocalUrl } from "@util/wowhead";
 import { type InteractionData, getInteractions } from "@data/interactions";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
-import { SpecChip } from "@components/FilterChips/FilterChips";
+import { SelectChip, SpecChip } from "@components/FilterChips/FilterChips";
 import { useSpec } from "@context/SpecContext";
 import { GlassTooltip } from "@components/Glass/Tooltip/GlassTooltip";
 
@@ -219,13 +219,26 @@ const pullIslandsIn = (links: InteractionData["links"], positions: Map<string, P
 
         let shift = 0;
         while (box.x1 + shift + ISLAND_STEP < maxX && free(shift + ISLAND_STEP)) shift += ISLAND_STEP;
-        if (shift === 0) continue;
 
         for (const id of island) positions.set(id, { x: (positions.get(id) as Point).x + shift, y: (positions.get(id) as Point).y });
         const members = new Set(island);
         for (const [id, points] of routes) {
             const [from, to] = id.split(">");
             if (members.has(from) && members.has(to)) routes.set(id, points.map((pt) => ({ x: pt.x + shift, y: pt.y })));
+        }
+
+        // the next island has to stop short of this one rather than land on the same spot
+        for (const id of island) {
+            const { x, y } = positions.get(id) as Point;
+            obstacles.push({ x0: x, x1: x + NODE_SIZE, y0: y, y1: y + NODE_SIZE });
+        }
+        for (const [id, points] of routes) {
+            const [from, to] = id.split(">");
+            if (!members.has(from) || !members.has(to)) continue;
+            for (let i = 1; i < points.length; i++) {
+                const [p, q] = [points[i - 1], points[i]];
+                obstacles.push({ x0: Math.min(p.x, q.x), x1: Math.max(p.x, q.x), y0: Math.min(p.y, q.y), y1: Math.max(p.y, q.y) });
+            }
         }
     }
 };
@@ -265,11 +278,12 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
     const [placed, setPlaced] = useState<Layout | null>(null);
     const [hovered, setHovered] = useState<string | null>(null);
     const [fullscreen, setFullscreen] = useState(false);
+    const [withHero, setWithHero] = useState(false);
     const chartRef = useRef<HTMLDivElement>(null);
 
     const { spec, setSpec } = useSpec();
 
-    const interactions = getInteractions(spec);
+    const interactions = getInteractions(spec, withHero);
 
     // the chart is laid out again for each spec, so the old one is dropped first
     useEffect(() => {
@@ -346,7 +360,22 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
             <ConfigPanel
               sx={{ maxWidth: CONTENT_WIDTH.wide }}
               accent={spec.color}
-                leading={<SpecChip accent={spec.color} spec={spec} onChange={setSpec} />}
+                leading={
+                    <>
+                        <SpecChip accent={spec.color} spec={spec} onChange={setSpec} />
+                        <SelectChip
+                            accent={spec.color}
+                            title="hero talents"
+                            value={withHero ? "on" : "off"}
+                            options={[
+                                { value: "off", label: "off" },
+                                { value: "on", label: "on" },
+                            ]}
+                            onChange={(value) => setWithHero(value === "on")}
+                            active={withHero}
+                        />
+                    </>
+                }
                 sections = {[]}
             />
             <Box sx={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0, gap: 0 }}>
