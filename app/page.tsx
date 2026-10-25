@@ -100,7 +100,7 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
             flexDirection: 'column',
             height: '100%',
             overflow: 'hidden',
-            '&:hover .tool-shot': { opacity: 1, transform: 'scale(1.03)' },
+            '&:hover .tool-shot': { opacity: 1 },
         }}
     >
         <Box sx={{
@@ -120,7 +120,7 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.7,
-                    transition: 'opacity 0.25s ease, transform 0.4s ease',
+                    transition: 'opacity 0.25s ease',
                 }}
             />
         </Box>
