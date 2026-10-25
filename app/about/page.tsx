@@ -1,7 +1,7 @@
 
 import { Typography, Card, CardContent, Divider, Stack, Box } from "@mui/material";
 import { PageMetadata } from "@components/PageMetadata/PageMetadata";
-import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
+import { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import { CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
 
 const title = "About";
@@ -74,19 +74,19 @@ const About = () => {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
                   ever since, competitive healing has been a major focus in my gameplay. i've reached{" "}
-                  <Box component="span" sx={{ color: "#ffd700", fontWeight: "bold" }}>
+                  <Box component="span" sx={{ color: RAINBOW_COLORS[2], fontWeight: "bold" }}>
                     world rank 20 in raid
                   </Box>
                   , earned multiple{" "}
-                  <Box component="span" sx={{ color: "#ff69b4", fontWeight: "bold" }}>
+                  <Box component="span" sx={{ color: RAINBOW_COLORS[3], fontWeight: "bold" }}>
                     0.1% titles in mythic+
                   </Box>{" "}
                   season to season. on another note, i am the{" "}
-                  <Box component="span" sx={{ color: "#89ff7f", fontWeight: "bold" }}>
+                  <Box component="span" sx={{ color: RAINBOW_COLORS[1], fontWeight: "bold" }}>
                     mistweaver guide writer for wowhead
                   </Box>{" "}
                   and i'm currently a{" "}
-                  <Box component="span" sx={{ color: "#7ee5ff", fontWeight: "bold" }}>
+                  <Box component="span" sx={{ color: RAINBOW_COLORS[0], fontWeight: "bold" }}>
                     veteran and moderator in peak of serenity
                   </Box>
                   .{" "}
