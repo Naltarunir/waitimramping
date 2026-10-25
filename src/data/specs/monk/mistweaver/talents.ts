@@ -796,6 +796,11 @@ const talents = {
         id: 173841,
         icon: 'achievement_zone_sholazar_10',
     },
+    BURST_OF_LIFE: {
+        name: "Burst of Life",
+        id: 399226,
+        icon: 'ability_rogue_imrovedrecuperate',
+    },
 } satisfies Record<string, spell>;
 
 export default talents;

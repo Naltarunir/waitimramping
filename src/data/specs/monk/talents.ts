@@ -116,6 +116,16 @@ const talents = {
         id: 1266748,
         icon: 'ability_monk_souldance',
     },
+    VIVACIOUS_VIVIFICATION: {
+        name: "Vivacious Vivification",
+        id: 388812,
+        icon: 'ability_monk_vivify',
+    },
+    SERENE_SURGE: {
+        name: "Serene Surge",
+        id: 1266734,
+        icon: 'ability_monk_surgingmist',
+    },
 } satisfies Record<string, spell>;
 
 export default talents;
