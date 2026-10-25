@@ -35,6 +35,8 @@ interface SpellNodeData extends Record<string, unknown> {
 interface RoutedEdgeData extends Record<string, unknown> {
     points: Point[];
     aura: boolean;
+    from: string;
+    to: string;
 }
 
 // hover lives in context so the node and edge arrays stay the same objects; changing them on every
@@ -111,10 +113,13 @@ const ARROW = 5;
 
 // the layout engine routes each arrow itself, so it can end anywhere along the side of an icon
 const RoutedEdge: React.FC<EdgeProps<Edge<RoutedEdgeData>>> = ({ id, source, target, data }) => {
-    const { hovered } = useContext(HoverContext);
+    const { hovered, container } = useContext(HoverContext);
+    const [cursor, setCursor] = useState<Point>({ x: 0, y: 0 });
+    const [overLine, setOverLine] = useState(false);
+    const anchor = useMemo(() => ({ getBoundingClientRect: () => new DOMRect(cursor.x, cursor.y, 0, 0) }), [cursor]);
     if (!data || data.points.length < 2) return null;
 
-    const active = hovered !== null && (source === hovered || target === hovered);
+    const active = overLine || (hovered !== null && (source === hovered || target === hovered));
     const dimmed = hovered !== null && !active;
     const color = active ? ACCENT : INK.muted;
     const points = data.points;
@@ -136,6 +141,22 @@ const RoutedEdge: React.FC<EdgeProps<Edge<RoutedEdgeData>>> = ({ id, source, tar
                 style={{ stroke: color, strokeWidth: active ? 2 : 1, strokeDasharray: data.aura ? "3 3" : undefined }}
             />
             <polygon points={head} fill={color} />
+            <GlassTooltip
+                title={`${data.from} → ${data.to}`}
+                placement="top"
+                slotProps={{ popper: { anchorEl: anchor, container } }}
+            >
+                <path
+                    d={path}
+                    fill="none"
+                    stroke="transparent"
+                    strokeWidth={10}
+                    style={{ pointerEvents: "stroke" }}
+                    onMouseEnter={() => setOverLine(true)}
+                    onMouseLeave={() => setOverLine(false)}
+                    onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
+                />
+            </GlassTooltip>
         </g>
     );
 };
@@ -302,6 +323,7 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
 
     const edges: Edge<RoutedEdgeData>[] = useMemo(() => {
         if (!placed || !interactions) return [];
+        const names = new Map(interactions.nodes.map((n) => [String(n.id), n.name]));
         return interactions.links.map((l) => {
             const id = `${l.from}>${l.to}`;
             return {
@@ -309,7 +331,10 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
                 source: String(l.from),
                 target: String(l.to),
                 type: "routed",
-                data: { points: placed.routes.get(id) ?? [], aura: l.kinds.length === 1 && l.kinds[0] === "Apply Aura" },
+                data: { points: placed.routes.get(id) ?? [], aura: l.kinds.length === 1 && l.kinds[0] === "Apply Aura",
+                    from: names.get(String(l.from)) ?? "",
+                    to: names.get(String(l.to)) ?? "",
+                },
             };
         });
     }, [placed, interactions]);
