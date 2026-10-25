@@ -4,6 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useIsNonProd } from "@lib/betaModeClient";
 import { RAINBOW_COLORS } from '@components/Buttons/RainbowCard';
 
+const HEADING_FONT = 'var(--font-heading), sans-serif';
+
 const THEME_COLORS = {
     nonProd: RAINBOW_COLORS[3],
     primary: RAINBOW_COLORS[0],
@@ -47,6 +49,10 @@ const Theme = ({ children }: { children: React.ReactNode }) => {
         },
         typography: {
             fontFamily: 'inherit',
+            h1: { fontFamily: HEADING_FONT },
+            h2: { fontFamily: HEADING_FONT },
+            h3: { fontFamily: HEADING_FONT },
+            h4: { fontFamily: HEADING_FONT },
             allVariants: {
                 textTransform: 'lowercase' as const,
             },

@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import Script from "next/script";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { SpecProvider } from "@context/SpecContext";
@@ -10,6 +10,7 @@ import ClientTilingBackground from "@components/Tiling/ClientTilingBackground";
 import { PageMetadata } from "@components/PageMetadata/PageMetadata";
 
 const font = Inter({ subsets: ["latin"], display: "swap" });
+const headingFont = Sora({ subsets: ["latin"], display: "swap", variable: "--font-heading" });
 export const metadata = PageMetadata();
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={font.className}>
+        <html lang="en" className={`${font.className} ${headingFont.variable}`}>
             <head>
                 <script
                     dangerouslySetInnerHTML={{
