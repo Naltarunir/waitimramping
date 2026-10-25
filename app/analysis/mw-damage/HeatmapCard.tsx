@@ -49,11 +49,11 @@ const HeatmapCard: React.FC<Props> = ({ rotationConfigs, player, rerollKey, show
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center" sx={{ fontWeight: 'bold', border: 0, py: 1, px: 1.5, width: 60 }}>
+              <TableCell align="center" sx={{ fontWeight: 'bold', py: 1, px: 1.5, width: 60 }}>
                 <Typography variant="caption" fontWeight="bold">Targets</Typography>
               </TableCell>
               {rotationConfigs.map(config => (
-                <TableCell key={config.dataKey} align="center" sx={{ border: 0, py: 1, px: 1, width: 120, minWidth: 120 }}>
+                <TableCell key={config.dataKey} align="center" sx={{ py: 1, px: 1, width: 120, minWidth: 120 }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       {config.spells.map((spell, idx) => (
@@ -75,7 +75,7 @@ const HeatmapCard: React.FC<Props> = ({ rotationConfigs, player, rerollKey, show
               const range = max - min || 1;
               return (
                 <TableRow key={targets}>
-                  <TableCell align="center" sx={{ border: 0, py: 1.25, px: 1.5 }}>
+                  <TableCell align="center" sx={{ py: 1.25, px: 1.5 }}>
                     <Typography variant="body2" fontWeight="bold">{targets}</Typography>
                   </TableCell>
                   {values.map((value, idx) => {
@@ -85,7 +85,6 @@ const HeatmapCard: React.FC<Props> = ({ rotationConfigs, player, rerollKey, show
                     const b = Math.round(68 + t * (128 - 68));
                     return (
                       <TableCell key={rotationConfigs[idx].dataKey} align="center" sx={{
-                        border: 0,
                         py: 1.25,
                         px: 1,
                         backgroundColor: `rgba(${r}, ${g}, ${b}, 0.18)`,

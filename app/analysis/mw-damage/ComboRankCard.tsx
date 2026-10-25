@@ -73,10 +73,10 @@ const ComboRankCard: React.FC<Props> = ({ targetCount, spellById }) => {
           <Table size="small"><TableBody>
             {[...Array(14)].map((_, i) => (
               <TableRow key={i}>
-                <TableCell sx={{ border: 0, py: 0.75, px: 1.5, width: 36 }}><Skeleton variant="text" width={24} /></TableCell>
-                <TableCell sx={{ border: 0, py: 0.75, px: 1 }}><Box sx={{ display: 'flex', gap: 0.5 }}>{[...Array(5)].map((_, j) => <Skeleton key={j} variant="rounded" width={22} height={22} />)}</Box></TableCell>
-                <TableCell sx={{ border: 0, py: 0.75, px: 1 }}><Box sx={{ display: 'flex', gap: 0.5 }}>{[...Array(3)].map((_, j) => <Skeleton key={j} variant="rounded" width={18} height={18} />)}</Box></TableCell>
-                <TableCell align="right" sx={{ border: 0, py: 0.75, px: 1.5 }}><Skeleton variant="text" width={48} sx={{ ml: 'auto' }} /></TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5, width: 36 }}><Skeleton variant="text" width={24} /></TableCell>
+                <TableCell sx={{ py: 0.75, px: 1 }}><Box sx={{ display: 'flex', gap: 0.5 }}>{[...Array(5)].map((_, j) => <Skeleton key={j} variant="rounded" width={22} height={22} />)}</Box></TableCell>
+                <TableCell sx={{ py: 0.75, px: 1 }}><Box sx={{ display: 'flex', gap: 0.5 }}>{[...Array(3)].map((_, j) => <Skeleton key={j} variant="rounded" width={18} height={18} />)}</Box></TableCell>
+                <TableCell align="right" sx={{ py: 0.75, px: 1.5 }}><Skeleton variant="text" width={48} sx={{ ml: 'auto' }} /></TableCell>
               </TableRow>
             ))}
           </TableBody></Table>
@@ -89,17 +89,17 @@ const ComboRankCard: React.FC<Props> = ({ targetCount, spellById }) => {
               const activeTalentSpells = r.talentIds.map(id => spellById.get(id)).filter((s): s is spell => s !== undefined);
               return (
                 <TableRow key={idx} sx={{ bgcolor: isTop ? 'rgba(250,204,21,0.06)' : undefined }}>
-                  <TableCell sx={{ border: 0, py: 0.75, px: 1.5, width: 36, color: isTop ? '#facc15' : 'text.disabled', fontWeight: 700, fontSize: FONT.small }}>
+                  <TableCell sx={{ py: 0.75, px: 1.5, width: 36, color: isTop ? '#facc15' : 'text.disabled', fontWeight: 700, fontSize: FONT.small }}>
                     #{idx + 1}
                   </TableCell>
-                  <TableCell sx={{ border: 0, py: 0.75, px: 1 }}>
+                  <TableCell sx={{ py: 0.75, px: 1 }}>
                     <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', pointerEvents: 'none' }}>
                       {activeTalentSpells.map(t => (
                         <SpellButton key={t.id} selectedSpell={t} size={ICON.sm} />
                       ))}
                     </Box>
                   </TableCell>
-                  <TableCell sx={{ border: 0, py: 0.75, px: 1, whiteSpace: 'nowrap' }}>
+                  <TableCell sx={{ py: 0.75, px: 1, whiteSpace: 'nowrap' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, pointerEvents: 'none' }}>
                       {r.rotationSpellIds.map((id, i) => {
                         const s = spellById.get(id);
@@ -107,7 +107,7 @@ const ComboRankCard: React.FC<Props> = ({ targetCount, spellById }) => {
                       })}
                     </Box>
                   </TableCell>
-                  <TableCell align="right" sx={{ border: 0, py: 0.75, px: 1.5, whiteSpace: 'nowrap' }}>
+                  <TableCell align="right" sx={{ py: 0.75, px: 1.5, whiteSpace: 'nowrap' }}>
                     <Typography variant="caption" sx={{ color: r.rotationColor, fontWeight: 700 }}>
                       {formatNumber(r.value, 2)}
                     </Typography>
