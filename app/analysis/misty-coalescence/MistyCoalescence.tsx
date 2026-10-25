@@ -25,6 +25,7 @@ import {
 import PageHeader from '@components/PageHeader/PageHeader';
 import { T } from '@util/T';
 import TALENTS from '@data/talents';
+import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
 
 const MAX_WIDTH = 1100;
 const MAX_INCREASE = TALENTS.MISTY_COALESCENCE.effects.maxIncrease;
@@ -96,9 +97,9 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                         <Chip 
                             label={T(`${DUNGEON_MAX_PLAYERS}-player Content: ${DUNGEON_RATE}% per player`)}
                             sx={{ 
-                                backgroundColor: 'rgba(34, 197, 94, 0.2)',
-                                color: '#22c55e',
-                                borderColor: '#22c55e',
+                                backgroundColor: `${CHART_COLORS.green}${CHART_ALPHA.area}`,
+                                color: CHART_COLORS.green,
+                                borderColor: CHART_COLORS.green,
                                 fontWeight: 'bold',
                             }}
                             variant="outlined"
@@ -106,9 +107,9 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                         <Chip 
                             label={T(`${RAID_MAX_PLAYERS}-player Content: ${RAID_RATE}% per player`)}
                             sx={{ 
-                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                                color: '#3b82f6',
-                                borderColor: '#3b82f6',
+                                backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.area}`,
+                                color: CHART_COLORS.cyan,
+                                borderColor: CHART_COLORS.cyan,
                                 fontWeight: 'bold',
                             }}
                             variant="outlined"
@@ -116,9 +117,9 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                         <Chip 
                             label={T(`Maximum: ${MAX_INCREASE}%`)}
                             sx={{ 
-                                backgroundColor: 'rgba(168, 85, 247, 0.2)',
-                                color: '#a855f7',
-                                borderColor: '#a855f7',
+                                backgroundColor: `${CHART_COLORS.lavender}${CHART_ALPHA.area}`,
+                                color: CHART_COLORS.lavender,
+                                borderColor: CHART_COLORS.lavender,
                                 fontWeight: 'bold',
                             }}
                             variant="outlined"
@@ -167,18 +168,18 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                             />
                             <ReferenceLine 
                                 y={MAX_INCREASE} 
-                                stroke={'#a855f7'} 
+                                stroke={CHART_COLORS.lavender} 
                                 strokeDasharray="5 5"
                                 label={{ 
                                     value: T(`Max (${MAX_INCREASE}%)`), 
-                                    fill: '#a855f7',
+                                    fill: CHART_COLORS.lavender,
                                     fontSize: 12,
                                 }}
                             />
                             <Line 
                                 type="monotone" 
                                 dataKey="dungeonIncrease" 
-                                stroke="#22c55e" 
+                                stroke={CHART_COLORS.green} 
                                 strokeWidth={3}
                                 name={T(`${DUNGEON_MAX_PLAYERS}-player (Dungeon)`)}
                                 dot={{ r: 4 }}
@@ -187,7 +188,7 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                             <Line 
                                 type="monotone" 
                                 dataKey="raidIncrease" 
-                                stroke="#3b82f6" 
+                                stroke={CHART_COLORS.cyan} 
                                 strokeWidth={3}
                                 name={T(`${RAID_MAX_PLAYERS}-player (Raid)`)}
                                 dot={{ r: 4 }}

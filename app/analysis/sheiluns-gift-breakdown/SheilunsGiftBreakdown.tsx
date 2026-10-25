@@ -9,7 +9,7 @@ import PageHeader from "@components/PageHeader/PageHeader";
 import TalentsCard from "@components/TalentsCard/TalentsCard";
 import StatsCard, { Group, statsSummary, type StatsCardOptions } from "@components/StatsCard/StatsCard";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
-import { CONTENT_WIDTH } from "@components/Theme/tokens";
+import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH } from "@components/Theme/tokens";
 
 import type spell from "@data/spells/spell";
 import TALENTS from "@data/specs/monk/mistweaver/talents";
@@ -71,15 +71,15 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
       {
         label: T("Base Healing"),
         data: healingData.map(data => data.basePercent),
-        backgroundColor: "rgba(255, 99, 132, 0.8)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: `${CHART_COLORS.pink}${CHART_ALPHA.bar}`,
+        borderColor: CHART_COLORS.pink,
         borderWidth: 2,
       },
       {
         label: T("Cloud Healing"),
         data: healingData.map(data => data.cloudsPercent),
-        backgroundColor: "rgba(54, 162, 235, 0.8)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.bar}`,
+        borderColor: CHART_COLORS.cyan,
         borderWidth: 2,
       },
     ],
@@ -145,22 +145,22 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
       {
         label: T("Main Target"),
         data: healingData.map(data => data.mainSpellpower),
-        backgroundColor: "rgba(255, 99, 132, 0.8)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: `${CHART_COLORS.pink}${CHART_ALPHA.bar}`,
+        borderColor: CHART_COLORS.pink,
         borderWidth: 2,
       },
       {
         label: T("Other Targets"),
         data: healingData.map(data => data.cloudsSpellpower),
-        backgroundColor: "rgba(54, 162, 235, 0.8)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.bar}`,
+        borderColor: CHART_COLORS.cyan,
         borderWidth: 2,
       },
       {
         label: T("Total Spellpower"),
         data: healingData.map(data => data.totalSpellpower),
-        backgroundColor: "rgba(75, 192, 192, 0.8)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: `${CHART_COLORS.green}${CHART_ALPHA.bar}`,
+        borderColor: CHART_COLORS.green,
         borderWidth: 2,
       },
     ],

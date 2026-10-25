@@ -25,7 +25,7 @@ import {
 import { T } from "@util/T";
 import StatsCard, { Group, statsSummary, type StatsCardOptions } from "@components/StatsCard/StatsCard";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
-import { CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
+import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -128,15 +128,15 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
       {
         label: T(rsk.name),
         data: rskValues,
-        borderColor: "rgb(249, 85, 3)",
-        backgroundColor: "rgba(255, 159, 64, 0.2)",
+        borderColor: CHART_COLORS.gold,
+        backgroundColor: `${CHART_COLORS.gold}${CHART_ALPHA.area}`,
         fill: false,
       },
       {
         label: T(rwk.name),
         data: rwkValues,
-        borderColor: "rgb(185, 234, 246)",
-        backgroundColor: "rgba(103, 178, 227, 0.2)",
+        borderColor: CHART_COLORS.cyan,
+        backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.area}`,
         fill: false,
       },
     ],

@@ -17,7 +17,7 @@ import PageHeader from "@components/PageHeader/PageHeader";
 import TalentsCard from "@components/TalentsCard/TalentsCard";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
 import { Group } from "@components/StatsCard/StatsCard";
-import { CONTENT_WIDTH } from "@components/Theme/tokens";
+import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH } from "@components/Theme/tokens";
 import type spell from "@data/spells/spell";
 import { calcSpellpower } from "@data/spells/spell";
 import SPELLS from "@data/spells";
@@ -56,20 +56,20 @@ const Conduit: React.FC<{ title: React.ReactNode; description: React.ReactNode }
 
     const colorMap = {
         jade: {
-            backgroundColor: "rgba(54, 162, 235, 0.8)",
-            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.cyan,
         },
         sheilun: {
-            backgroundColor: "rgba(255, 99, 132, 0.8)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: `${CHART_COLORS.pink}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.pink,
         },
         conduit: {
-            backgroundColor: "rgba(75, 192, 192, 0.8)",
-            borderColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: `${CHART_COLORS.green}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.green,
         },
         unity: {
-            backgroundColor: "rgba(250, 247, 153, 0.8)",
-            borderColor: "rgba(250, 247, 153, 1)",
+            backgroundColor: `${CHART_COLORS.gold}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.gold,
         },
     };
 
@@ -326,7 +326,7 @@ const Conduit: React.FC<{ title: React.ReactNode; description: React.ReactNode }
                                 <TalentsCard
                                     label="Talents"
                                     options={selectedTalents}
-                                    color={"#4bc0c0"}
+                                    color={CHART_COLORS.green}
                                     onChange={handleTalentChange}
                                 />
                             </Group>

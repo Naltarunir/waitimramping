@@ -9,7 +9,7 @@ import PageHeader from "@components/PageHeader/PageHeader";
 import TalentsCard from "@components/TalentsCard/TalentsCard";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
 import { Group } from "@components/StatsCard/StatsCard";
-import { CONTENT_WIDTH } from "@components/Theme/tokens";
+import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH } from "@components/Theme/tokens";
 
 import type spell from "@data/spells/spell";
 import SPELLS from "@data/spells";
@@ -188,22 +188,22 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
         {
             label: T(TALENTS.ANCIENT_TEACHINGS.name),
             data: ancientTeachingsData,
-            backgroundColor: "rgba(255, 169, 32, 0.8)",
-            borderColor: "rgba(255, 177, 51, 1)",
+            backgroundColor: `${CHART_COLORS.gold}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.gold,
             borderWidth: 1,
         },
         {
             label: T(TALENTS.HARMONIC_SURGE.name),
             data: harmonicSurgeData,
-            backgroundColor: "rgba(153, 102, 255, 0.8)",
-            borderColor: "rgba(153, 102, 255, 1)",
+            backgroundColor: `${CHART_COLORS.lavender}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.lavender,
             borderWidth: 1,
         },
         {
             label: T(TALENTS.GUST_OF_MISTS.name),
             data: normalGOMData,
-            backgroundColor: "rgba(118, 201, 167, 0.8)",
-            borderColor: "rgba(118, 201, 167, 1)",
+            backgroundColor: `${CHART_COLORS.green}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.green,
             borderWidth: 1,
         },
     ];
@@ -212,8 +212,8 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
         datasets.push({
             label: T(SPELLS.CHI_JI.name),
             data: chiJiGustData,
-            backgroundColor: "rgba(216, 91, 38, 0.8)",
-            borderColor: "rgba(216, 91, 38, 1)",
+            backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.bar}`,
+            borderColor: CHART_COLORS.cyan,
             borderWidth: 1,
         });
     }
@@ -301,7 +301,7 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
                                 <TalentsCard
                                     label="Talents"
                                     options={new Map(VISIBLE_TALENTS.map(t => [t, selectedTalents.get(t) ?? false]))}
-                                    color={"#9966ff"}
+                                    color={CHART_COLORS.lavender}
                                     onChange={handleTalentChange}
                                 />
                             </Group>

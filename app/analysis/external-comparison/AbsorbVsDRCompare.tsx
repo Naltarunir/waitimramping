@@ -9,6 +9,7 @@ import PageHeader from "@components/PageHeader/PageHeader";
 
 import { T } from "@util/T";
 import { formatNumber } from "@util/stringManipulation";
+import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -57,22 +58,22 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
       {
         label: T(`${formatNumber(absorbValue)} Absorb`),
         data: absorbDamageIntake,
-        borderColor: "rgba(255, 99, 132, 0.6)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: `${CHART_COLORS.pink}${CHART_ALPHA.line}`,
+        backgroundColor: `${CHART_COLORS.pink}${CHART_ALPHA.area}`,
         fill: true,
       },
       {
         label: T(`${formatNumber(damageReduction, 1)}% damage reduction`),
         data: reductionDamageIntake,
-        borderColor: "rgba(53, 162, 235, 0.6)",
-        backgroundColor: "rgba(53, 162, 235, 0.2)",
+        borderColor: `${CHART_COLORS.cyan}${CHART_ALPHA.line}`,
+        backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.area}`,
         fill: true,
       },
       {
         label: T("No mitigation"),
         data: damageValues,
-        borderColor: "rgba(75, 192, 192, 0.6)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: `${CHART_COLORS.green}${CHART_ALPHA.line}`,
+        backgroundColor: `${CHART_COLORS.green}${CHART_ALPHA.area}`,
         fill: false,
         borderDash: [5, 5],
       },

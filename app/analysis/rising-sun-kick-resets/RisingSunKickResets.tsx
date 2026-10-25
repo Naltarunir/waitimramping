@@ -30,6 +30,7 @@ import type spell from "@data/spells/spell";
 import { useRotationManager } from "@hooks/useRotationManager";
 import { T } from "@util/T";
 import { pluralize, hexToRgb, formatPercent } from "@util/stringManipulation";
+import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -155,16 +156,16 @@ const createChartData = (rotations: any[], calculateRotationStats: Function) => 
         {
             label: T("Reset Chance (%)"),
             data: rotations.map(r => calculateRotationStats(r.steps).rotationResetChance),
-            borderColor: "rgba(255, 99, 132, 0.6)",
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: `${CHART_COLORS.pink}${CHART_ALPHA.line}`,
+            backgroundColor: `${CHART_COLORS.pink}${CHART_ALPHA.area}`,
             fill: false,
             yAxisID: 'y',
         },
         {
             label: T("Resets per GCD"),
             data: rotations.map(r => calculateRotationStats(r.steps).resetsPerGCD),
-            borderColor: "rgba(54, 162, 235, 0.6)",
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: `${CHART_COLORS.cyan}${CHART_ALPHA.line}`,
+            backgroundColor: `${CHART_COLORS.cyan}${CHART_ALPHA.area}`,
             fill: false,
             yAxisID: 'y1',
         },

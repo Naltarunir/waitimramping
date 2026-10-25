@@ -14,6 +14,7 @@ import { CLASSES } from "@data/class";
 import { calculateSheilunsGiftBreakdown } from "@data/specs/monk/mistweaver/calcs/SheilunsGift";
 
 import { T } from "@util/T";
+import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -64,8 +65,8 @@ const SheilunVsDocJ: React.FC<{ title: React.ReactNode; description: React.React
   const sortedAbilities = allAbilities.sort((a, b) => a.value - b.value);
 
   const getColor = (type: string) => {
-    if (type === 'sheilun') return { bg: "rgba(255, 99, 132, 0.8)", border: "rgba(255, 99, 132, 1)" };
-    return { bg: "rgba(62, 172, 37, 0.8)", border: "rgba(62, 172, 37, 1)" };
+    if (type === 'sheilun') return { bg: `${CHART_COLORS.pink}${CHART_ALPHA.bar}`, border: CHART_COLORS.pink };
+    return { bg: `${CHART_COLORS.green}${CHART_ALPHA.bar}`, border: CHART_COLORS.green };
   };
 
   const chartData = {

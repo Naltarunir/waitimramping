@@ -68,7 +68,20 @@ export const SECTIONS: Section[] = [
     { key: "bugs", label: "Bugs", path: "/bugs", color: RAINBOW_COLORS[4] },
 ];
 
-export const CHART_COLORS = ["#3b82f6", "#d97706", "#f43f5e", "#15803d", "#a855f7"];
+// chart series reuse the rainbow accents; alpha suffixes are hex bytes appended to a color
+export const CHART_COLORS = {
+    cyan: RAINBOW_COLORS[0],
+    green: RAINBOW_COLORS[1],
+    gold: RAINBOW_COLORS[2],
+    pink: RAINBOW_COLORS[3],
+    lavender: RAINBOW_COLORS[4],
+};
+
+export const CHART_ALPHA = {
+    bar: "d9",
+    line: "99",
+    area: "33",
+};
 
 export const sectionForPath = (pathname: string | null): Section => {
     if (!pathname || pathname === "/") return SECTIONS[0];
