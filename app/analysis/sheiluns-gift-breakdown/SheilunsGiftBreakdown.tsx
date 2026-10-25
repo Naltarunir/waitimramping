@@ -25,7 +25,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
   const theme = useTheme();
-  
+
   const [selectedTalents, setSelectedTalents] = useState<TalentMap>(
     new Map<spell, boolean | number>([
       [TALENTS.INVIGORATING_MISTS, true],
@@ -64,7 +64,7 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
     .join('_');
 
   const percentageChartData = useMemo(() => ({
-    labels: healingData.map(data => 
+    labels: healingData.map(data =>
       T(data.cloudCount + " " + pluralize(data.cloudCount, "Cloud"))
     ),
     datasets: [
@@ -138,7 +138,7 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
   }), [theme.custom.chart.gridColor]);
 
   const absoluteChartData = useMemo(() => ({
-    labels: healingData.map(data => 
+    labels: healingData.map(data =>
       T(data.cloudCount + " " + pluralize(data.cloudCount, "Cloud"))
     ),
     datasets: [
@@ -213,7 +213,7 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
   }), [theme.custom.chart.gridColor]);
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
       <PageHeader
         title={title}
         subtitle={description}
@@ -253,7 +253,7 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
         <Box sx={{ height: 500, width: "100%" }}>
           <Bar
             key={`absolute-${talentKey}`}
-            data={absoluteChartData} 
+            data={absoluteChartData}
             options={absoluteChartOptions}
             redraw={true}
           />
@@ -264,7 +264,7 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
         <Box sx={{ height: 500, width: "100%" }}>
           <Bar
             key={`percentage-${talentKey}`}
-            data={percentageChartData} 
+            data={percentageChartData}
             options={percentageChartOptions}
             redraw={true}
           />

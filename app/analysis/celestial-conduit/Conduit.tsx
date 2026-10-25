@@ -117,18 +117,18 @@ const Conduit: React.FC<{ title: React.ReactNode; description: React.ReactNode }
 
     const calculateSheilunSpellpower = (stacks: number) => {
         const healingPerTarget = sheilunBaseHealing + (sheilunHealingPerStack * stacks);
-        
+
         const mainTargetHealing = healingPerTarget * (1 + sheilunMainTargetIncrease);
-        
+
         const emperorsFavorMultiplier = selectedTalents.get(emperorsFavor)
             ? emperorsFavor.effects?.increase
             : 1;
-        
+
         const finalMainTargetHealing = mainTargetHealing * emperorsFavorMultiplier;
         const otherTargetsHealing = healingPerTarget * (sheilunTargetsHit - 1);
-        
+
         const totalHealing = finalMainTargetHealing + otherTargetsHealing;
-        
+
         return calcSpellpower(totalHealing, intellect);
     };
 
@@ -148,7 +148,7 @@ const Conduit: React.FC<{ title: React.ReactNode; description: React.ReactNode }
     const jeSpellpowers = jeValues.map((value) => jeSpellpowerCalc(value));
 
     const xValues = Array.from({ length: sheilunMaxStacks + 1 }, (_, i) => i);
-    const sheilunSpellpowers = xValues.map((stacks) => 
+    const sheilunSpellpowers = xValues.map((stacks) =>
         calculateSheilunSpellpower(stacks)
     );
 
@@ -308,7 +308,7 @@ const Conduit: React.FC<{ title: React.ReactNode; description: React.ReactNode }
             sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: 2,
+                gap: 1,
                 alignItems: "center",
                 justifyContent: "center",
             }}

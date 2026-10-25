@@ -173,7 +173,7 @@ const DamageComparison: React.FC<{ title: React.ReactNode; description: React.Re
   };
 
   if (!mounted) return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
       <PageHeader title={title} subtitle={description} marginBottom={0} />
       {/* controls card */}
       <Card variant="outlined" sx={{ width: "100%", maxWidth: CONTENT_WIDTH.wide, p: 2 }}>
@@ -204,7 +204,7 @@ const DamageComparison: React.FC<{ title: React.ReactNode; description: React.Re
   );
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
       <PageHeader title={title} subtitle={description} marginBottom={0} />
       <Box sx={{ width: "100%", maxWidth: CONTENT_WIDTH.wide }}>
         <ConfigPanel

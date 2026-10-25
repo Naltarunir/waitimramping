@@ -228,7 +228,7 @@ const Analysis: React.FC<{ title: string; description: string }> = ({ title, des
                 </Box>
             </Box>
 
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 {displayedPages.map((tool) => (
                     <Grid size={{ xs: 12, sm: 6, md: 4 }} key={tool.path}>
                         <AnalysisCard tool={tool} isOutdated={isOutdated(tool)} />

@@ -78,7 +78,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
 
   if (calcMode === "totalHealing") {
     rskValues = targetValues.map(targets => rskBaseHealing);
-    
+
     rwkValues = targetValues.map(targets => {
       const effectiveTargets = Math.min(targets, rwkMaxHealingTargets);
       const directHealing = rwkDirectHealing * effectiveTargets;
@@ -98,7 +98,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
       const totalHealing = directHealing + rwkDamageHealing;
       return totalHealing / targets;
     });
-    
+
     yAxisLabel = T("Healing Per Target");
   } else if (calcMode === "damage") {
     rskValues = targetValues.map(targets => rskBaseDamage);
@@ -198,12 +198,12 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
   );
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
       <PageHeader
         title={title}
         subtitle={description}
       />
-      
+
       <ConfigPanel
         sx={{ maxWidth: CONTENT_WIDTH.wide }}
         accent={mistweaver.color}

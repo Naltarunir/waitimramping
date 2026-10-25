@@ -31,9 +31,9 @@ const YULONS_AVATAR_RPPM = 1.5;
 const TIMELINE_HEIGHT = 500;
 const MAIN_TIMELINE_Y_RATIO = 2.5;
 const CAST_PRIORITY = [
-    SPELLS.THUNDER_FOCUS_TEA, 
-    SPELLS.RENEWING_MIST, 
-    SPELLS.RISING_SUN_KICK, 
+    SPELLS.THUNDER_FOCUS_TEA,
+    SPELLS.RENEWING_MIST,
+    SPELLS.RISING_SUN_KICK,
     SPELLS.LIFE_COCOON
 ];
 
@@ -76,7 +76,7 @@ const createAffectedAbilities = (talents: Map<spell, boolean>): AbilityCooldown[
     const lifeCocoonCooldown = chrysalisEnabled && TALENTS.CHRYSALIS.effects?.cooldown
         ? TALENTS.CHRYSALIS.effects.cooldown
         : SPELLS.LIFE_COCOON.cooldown;
-    
+
     return [
         {
             spell: SPELLS.RENEWING_MIST,
@@ -120,22 +120,22 @@ const isCurrentlyBlocked = (time: number, castPeriods: CastPeriod[]): boolean =>
 const initializeAbilityData = (abilities: AbilityCooldown[]): { abilityData: SimulationData; baselineData: BaselineData } => {
     const abilityData: SimulationData = {};
     const baselineData: BaselineData = {};
-    
+
     abilities.forEach(ability => {
         abilityData[ability.spell.name] = { availableTimes: [], onCooldownPeriods: [] };
         baselineData[ability.spell.name] = { availableTimes: [] };
     });
-    
+
     return { abilityData, baselineData };
 };
 
 const generateConduitCasts = (timeRange: number, celestialConduitCastTime: number): { events: HotJSEvent[], casts: CastPeriod[] } => {
     const events: HotJSEvent[] = [];
     const casts: CastPeriod[] = [];
-    
+
     for (let time = 0; time < timeRange; time += SPELLS.CELESTIAL_CONDUIT.cooldown) {
         const castTime = celestialConduitCastTime || 3;
-        
+
         casts.push({ start: time, end: time + castTime });
         events.push({
             castStartTime: time,
@@ -146,44 +146,44 @@ const generateConduitCasts = (timeRange: number, celestialConduitCastTime: numbe
             castTime: castTime
         });
     }
-    
+
     return { events, casts };
 };
 
 const generateYulonsAvatarProc = (
-    timeRange: number, 
+    timeRange: number,
     procsPerMinute: number = 1.5,
     conduitEvents: HotJSEvent[]
 ): HotJSEvent[] => {
     const events: HotJSEvent[] = [];
     const totalProcs = Math.floor((timeRange / 60) * procsPerMinute);
-    
+
     const blockedTimes = conduitEvents.map(e => e.castStartTime);
-    
+
     const procTimes: number[] = [];
     const minGapBetweenProcs = 10;
     const minGapFromBlocked = 2;
-    
+
     for (let i = 0; i < totalProcs; i++) {
         let validTime = false;
         let attempts = 0;
         let procTime = 0;
-        
+
         while (!validTime && attempts < 100) {
             procTime = Math.random() * timeRange;
-            
-            const farFromOtherProcs = procTimes.every(existingTime => 
+
+            const farFromOtherProcs = procTimes.every(existingTime =>
                 Math.abs(existingTime - procTime) > minGapBetweenProcs
             );
-            
-            const notBlocked = blockedTimes.every(blockedTime => 
+
+            const notBlocked = blockedTimes.every(blockedTime =>
                 Math.abs(blockedTime - procTime) > minGapFromBlocked
             );
-            
+
             validTime = farFromOtherProcs && notBlocked;
             attempts++;
         }
-        
+
         if (validTime) {
             procTimes.push(procTime);
             events.push({
@@ -191,15 +191,15 @@ const generateYulonsAvatarProc = (
                 startTime: procTime,
                 duration: 4,
                 multiplier: 1.75,
-                source: { 
-                    ...TALENTS.YULONS_AVATAR, 
-                    name: "Yu'lon's Avatar Proc" 
+                source: {
+                    ...TALENTS.YULONS_AVATAR,
+                    name: "Yu'lon's Avatar Proc"
                 } as spell,
                 castTime: 0
             });
         }
     }
-    
+
     return events.sort((a, b) => a.startTime - b.startTime);
 };
 
@@ -213,14 +213,14 @@ const simulateBaseline = (
 
     for (let time = 0; time < timeRange; time += 0.1) {
         time = roundTime(time);
-        
+
         if (time >= nextGCDFree) {
             for (const cast of CAST_PRIORITY) {
                 const ability = baselineAbilities.find(a => a.spell.name === cast.name);
                 if (ability && time >= ability.nextAvailable) {
                     const triggersGCD = ability.spell.gcd !== false;
                     const castTime = ability.spell.castTime || 0;
-                    
+
                     if (!triggersGCD || time >= nextGCDFree) {
                         if (triggersGCD) {
                             nextGCDFree = time + (castTime === 0 ? GCD : Math.max(castTime, GCD));
@@ -247,20 +247,20 @@ const simulateWithHotJS = (
 ): HotJSEvent[] => {
     const updatedEvents = [...events];
     const simAbilities = abilities.map(a => ({ ...a, nextAvailable: 0 }));
-    
+
     let tftNextAvailable = 0;
-    
+
     let nextGCDFree = 0;
-    
+
     for (let time = 0; time < timeRange; time += 0.1) {
         time = roundTime(time);
-        
+
         let activeMultiplier = 1;
         if (cdrEnabled) {
-            const activeBuffs = updatedEvents.filter(event => 
+            const activeBuffs = updatedEvents.filter(event =>
                 time >= event.startTime && time < event.startTime + event.duration
             );
-            
+
             if (activeBuffs.length > 0) {
                 activeMultiplier = Math.max(...activeBuffs.map(buff => buff.multiplier));
             }
@@ -280,7 +280,7 @@ const simulateWithHotJS = (
                 source: SPELLS.THUNDER_FOCUS_TEA,
                 castTime: 0
             });
-            
+
             tftNextAvailable = time + (SPELLS.THUNDER_FOCUS_TEA.cooldown || 30);
         }
 
@@ -296,29 +296,29 @@ const simulateWithHotJS = (
                 const ability = simAbilities.find(a => a.spell.name === cast.name);
                 if (ability && time >= ability.nextAvailable) {
                     const triggersGCD = ability.spell.gcd !== false;
-                    
+
                     if (!triggersGCD || time >= nextGCDFree) {
                         const castTime = ability.spell.castTime || 0;
-                        
+
                         if (triggersGCD) {
                             nextGCDFree = time + (castTime === 0 ? GCD : Math.max(castTime, GCD));
                         }
 
                         ability.nextAvailable = time + (ability.spell.cooldown || 0);
-                        
+
                         abilityData[ability.spell.name].availableTimes.push(time);
                         abilityData[ability.spell.name].onCooldownPeriods.push({
                             start: time,
                             end: ability.nextAvailable
                         });
-                        
+
                         if (triggersGCD) break;
                     }
                 }
             }
         }
     }
-    
+
     return updatedEvents;
 };
 
@@ -458,7 +458,7 @@ const TimelineView: React.FC<{
 }> = ({ events, abilities, abilityData, timeRange }) => {
     const mainTimelineY = TIMELINE_HEIGHT / MAIN_TIMELINE_Y_RATIO;
     const leftMargin = 30;
-    
+
     return (
         <Card variant="outlined" sx={{
             maxWidth: CONTENT_WIDTH.wide,
@@ -468,14 +468,14 @@ const TimelineView: React.FC<{
                 <Typography sx={{ mb: 1, fontSize: FONT.micro, color: 'text.disabled' }}>
                     {T("Assumes every spell is used on cooldown as it becomes available")}
                 </Typography>
-                <Box sx={{ 
+                <Box sx={{
                     overflowX: 'auto',
                     overflowY: 'hidden',
                     maxWidth: '100%',
                 }}>
-                    <Box sx={{ 
-                        position: 'relative', 
-                        height: TIMELINE_HEIGHT, 
+                    <Box sx={{
+                        position: 'relative',
+                        height: TIMELINE_HEIGHT,
                         width: Math.max(1200, timeRange * 6 + leftMargin),
                         borderRadius: 1,
                         border: `1px solid ${HAIRLINE}`,
@@ -516,15 +516,15 @@ const TimelineView: React.FC<{
 
                         {events.map((event, i) => {
                             const yOffset = (i % 3) * 50;
-                            
+
                             const castStartPercent = (event.castStartTime / timeRange) * (100 - (leftMargin / (timeRange * 6 + leftMargin)) * 100);
                             const castStartCalc = `calc(${leftMargin}px + ${castStartPercent}%)`;
-                            
+
                             const hotjsStartPercent = (event.startTime / timeRange) * (100 - (leftMargin / (timeRange * 6 + leftMargin)) * 100);
                             const hotjsStartCalc = `calc(${leftMargin}px + ${hotjsStartPercent}%)`;
-                            
+
                             const hotjsDurationWidth = `${(event.duration / timeRange) * (100 - (leftMargin / (timeRange * 6 + leftMargin)) * 100)}%`;
-                            
+
                             return (
                                 <Box key={`hotjs-${i}`}>
                                     <Box sx={{
@@ -559,7 +559,7 @@ const TimelineView: React.FC<{
                                             />
                                         </Box>
                                     </GlassTooltip>
-                                    
+
                                     <GlassTooltip title={
                                         <div style={{ textAlign: 'center' }}>
                                             Heart of the Jade Serpent active: {event.startTime.toFixed(1)}s - {(event.startTime + event.duration).toFixed(1)}s<br />
@@ -595,13 +595,13 @@ const TimelineView: React.FC<{
 
                         {abilities.map((ability, abilityIndex) => {
                             const yPosition = mainTimelineY + 60 + (abilityIndex * 60);
-                            
+
                             return (
                                 <Box key={ability.spell.name}>
                                     {abilityData[ability.spell.name].availableTimes.filter(time => time > 0).map((castTime, castIndex) => {
                                         const leftPosPercent = (castTime / timeRange) * (100 - (leftMargin / (timeRange * 6 + leftMargin)) * 100);
                                         const leftPosCalc = `calc(${leftMargin}px + ${leftPosPercent}%)`;
-                                        
+
                                         return (
                                             <Box key={`${ability.spell.name}-${castIndex}`}>
                                                 <GlassTooltip title={`${T(ability.spell.name)} cast at ${castTime.toFixed(1)}s`}>
@@ -650,16 +650,16 @@ const TimelineView: React.FC<{
 
 const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
     const mistweaver = CLASSES.MONK.SPECS.MISTWEAVER;
-    
+
     const [timeRange, setTimeRange] = useState<number>(300);
     const [cdrEnabled, setCdrEnabled] = useState<boolean>(true);
     const [stats, setStats] = useState<StatsCardOptions>(mistweaver.stats);
-    
+
     const allTalents = new Map<spell, boolean>([
         [TALENTS.YULONS_AVATAR, true],
         [TALENTS.CHRYSALIS, false],
     ]);
-    
+
     const [talents, setTalents] = useState(allTalents);
 
     const handleTalentChange = (talent: spell, checked: boolean) => {
@@ -673,21 +673,21 @@ const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> 
 
     const simulation = useMemo(() => {
         const { abilityData, baselineData } = initializeAbilityData(affectedAbilities);
-        
+
         const { events: conduitEvents, casts: conduitCasts } = generateConduitCasts(
-            timeRange, 
+            timeRange,
             celestialConduitCastTime
         );
-        
+
         const yulonsAvatarProcEvents = yulonsAvatarEnabled
             ? generateYulonsAvatarProc(timeRange, avatarProcsPerMinute, conduitEvents)
             : [];
-        
+
         const allEvents = [...conduitEvents, ...yulonsAvatarProcEvents];
         const allCastPeriods = conduitCasts;
-        
+
         simulateBaseline(timeRange, affectedAbilities, baselineData);
-        
+
         const finalEvents = simulateWithHotJS(
             timeRange,
             affectedAbilities,
@@ -696,16 +696,16 @@ const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> 
             cdrEnabled,
             allCastPeriods
         );
-        
-        return { 
-            events: finalEvents, 
-            abilityData, 
-            baselineData, 
-            abilities: affectedAbilities 
+
+        return {
+            events: finalEvents,
+            abilityData,
+            baselineData,
+            abilities: affectedAbilities
         };
     }, [
-        timeRange, 
-        celestialConduitCastTime, 
+        timeRange,
+        celestialConduitCastTime,
         cdrEnabled,
         yulonsAvatarEnabled,
         avatarProcsPerMinute,
@@ -713,7 +713,7 @@ const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> 
     ]);
 
     return (
-        <Container sx={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
+        <Container sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}>
             <PageHeader title={title} subtitle={description} />
 
             <ConfigPanel

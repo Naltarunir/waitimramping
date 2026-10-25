@@ -118,7 +118,7 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
         total: number;
     };
     const abilityData: AbilityDatum[] = [];
-    
+
     abilityData.push({
         label: T(SPELLS.TIGER_PALM.name),
         ancientTeachings: tigerPalmHealing,
@@ -283,7 +283,7 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
     };
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+        <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
             <PageHeader
                 title={title}
                 subtitle={description}
@@ -309,7 +309,7 @@ const HarmonicSurge: React.FC<{ title: string; description: string }> = ({ title
                     },
                 ]}
             />
-            
+
             <Box sx={{ height: 600, width: "100%", display: "flex", justifyContent: "center" }}>
                 <Bar data={chartData} options={chartOptions} />
             </Box>

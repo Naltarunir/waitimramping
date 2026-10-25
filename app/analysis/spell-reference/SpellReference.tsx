@@ -345,8 +345,11 @@ const SpellReference: React.FC<{ title: React.ReactNode; description: React.Reac
   const mobileHidden = ["cast", "baseSp"];
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center" }}>
-      <PageHeader title={title} subtitle={description} marginBottom={0} />
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
+      <PageHeader
+        title={title}
+        subtitle={description}
+      />
 
       <ConfigPanel
         sx={{ maxWidth: CONTENT_WIDTH.wide }}

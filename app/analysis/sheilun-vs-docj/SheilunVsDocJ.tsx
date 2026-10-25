@@ -118,7 +118,7 @@ const SheilunVsDocJ: React.FC<{ title: React.ReactNode; description: React.React
   };
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", justifyContent: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center", justifyContent: "center" }}>
       <PageHeader
         title={title}
         subtitle={description}

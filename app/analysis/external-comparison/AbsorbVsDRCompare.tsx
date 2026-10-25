@@ -36,7 +36,7 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
   useEffect(() => {
     let intersectX: number | null = null;
     let intersectY: number | null = null;
-  
+
     for (let i = 0; i < damageValues.length; i++) {
       if (reductionDamageIntake[i] < absorbDamageIntake[i]) {
         intersectX = damageValues[i];
@@ -44,7 +44,7 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
         break;
       }
     }
-  
+
     setIntersectionPoint({
       x: intersectX,
       y: intersectY,
@@ -81,7 +81,7 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
   }), [absorbValue, damageReduction, absorbDamageIntake, reductionDamageIntake, damageValues]);
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 1, alignItems: "center" }}>
       <PageHeader
         title={title}
         subtitle={description}
@@ -140,9 +140,9 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
 
       {intersectionPoint.x !== null && intersectionPoint.y !== null && (
         <Typography variant="body1">
-          
+
             Damage Reduction becomes better than Absorb at {formatNumber(intersectionPoint.x)} damage ({formatNumber(intersectionPoint.y)} damage intake).
-          
+
         </Typography>
       )}
     </Container>
@@ -150,4 +150,3 @@ const AbsorbVsDRCompare: React.FC<{ title: React.ReactNode; description: React.R
 };
 
 export default AbsorbVsDRCompare;
-
