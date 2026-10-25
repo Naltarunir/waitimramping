@@ -1,11 +1,12 @@
 "use client";
 import type React from "react";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import ELK from "elkjs/lib/elk.bundled.js";
 import type { ElkExtendedEdge, ElkNode } from "elkjs/lib/elk-api";
 import { Background, BaseEdge, type Edge, type EdgeProps, Handle, type Node, type NodeProps, Position, ReactFlow } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { Box, Typography, Container } from "@mui/material";
+import { Box, Typography, Container, IconButton } from "@mui/material";
+import { Fullscreen, FullscreenExit } from "@mui/icons-material";
 import PageHeader from "@components/PageHeader/PageHeader";
 import { FONT, HAIRLINE, ICON, INK, RADIUS, CONTENT_WIDTH } from "@components/Theme/tokens";
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
@@ -38,7 +39,7 @@ interface RoutedEdgeData extends Record<string, unknown> {
 
 // hover lives in context so the node and edge arrays stay the same objects; changing them on every
 // hover makes React Flow re-measure and briefly hide every node
-const HoverContext = createContext<{ hovered: string | null; connected: Set<string> | null }>({ hovered: null, connected: null });
+const HoverContext = createContext<{ hovered: string | null; connected: Set<string> | null; container?: HTMLElement }>({ hovered: null, connected: null });
 
 // one half of a node that shows two spells, cut along the diagonal
 const NodeIcon: React.FC<{ icon: string; name: string; clip: string }> = ({ icon, name, clip }) => (
@@ -54,10 +55,10 @@ const NodeIcon: React.FC<{ icon: string; name: string; clip: string }> = ({ icon
 );
 
 const SpellNode: React.FC<NodeProps<Node<SpellNodeData>>> = ({ id, data }) => {
-    const { hovered, connected } = useContext(HoverContext);
+    const { hovered, connected, container } = useContext(HoverContext);
     const dimmed = connected !== null && !connected.has(id);
     return (
-        <GlassTooltip title={data.name} placement="top" arrow disableInteractive>
+        <GlassTooltip title={data.name} placement="top" arrow disableInteractive slotProps={{ popper: { container } }}>
             <Box sx={{ width: NODE_SIZE, height: NODE_SIZE, opacity: dimmed ? 0.25 : 1, transition: "opacity 0.15s ease" }}>
                 <Handle type="target" position={Position.Left} style={{ opacity: 0 }} />
                 {data.splitIcons ? (
@@ -242,6 +243,8 @@ const layout = async (interactions: InteractionData): Promise<Layout> => {
 const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
     const [placed, setPlaced] = useState<Layout | null>(null);
     const [hovered, setHovered] = useState<string | null>(null);
+    const [fullscreen, setFullscreen] = useState(false);
+    const chartRef = useRef<HTMLDivElement>(null);
 
     const { spec, setSpec } = useSpec();
 
@@ -260,6 +263,17 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
             current = false;
         };
     }, [interactions]);
+
+    useEffect(() => {
+        const sync = () => setFullscreen(document.fullscreenElement === chartRef.current);
+        document.addEventListener("fullscreenchange", sync);
+        return () => document.removeEventListener("fullscreenchange", sync);
+    }, []);
+
+    const toggleFullscreen = () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else chartRef.current?.requestFullscreen();
+    };
 
     const connected = useMemo(() => {
         if (!hovered || !interactions) return null;
@@ -312,24 +326,35 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
             />
             <Box sx={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0, gap: 0 }}>
                 <Box
+                    ref={chartRef}
                     sx={{
+                        position: "relative",
                         flex: 1,
                         minHeight: 0,
+                        backgroundColor: "background.default",
                         border: `1px solid ${HAIRLINE}`,
                         borderRadius: `${RADIUS.card}px`,
                         overflow: "hidden",
                         "& .react-flow__edge": { pointerEvents: "none" },
                     }}
                 >
+                    <IconButton
+                        onClick={toggleFullscreen}
+                        aria-label={fullscreen ? "exit full view" : "open full view"}
+                        size="small"
+                        sx={{ position: "absolute", top: 8, right: 8, zIndex: 5 }}
+                    >
+                        {fullscreen ? <FullscreenExit fontSize="small" /> : <Fullscreen fontSize="small" />}
+                    </IconButton>
                     {!interactions && (
                         <Box sx={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", px: 2 }}>
                             <Typography sx={{ fontSize: FONT.body, color: "text.secondary" }}>there's no interaction chart for {spec.name} {spec.class} yet</Typography>
                         </Box>
                     )}
                     {placed && (
-                        <HoverContext.Provider value={{ hovered, connected }}>
+                        <HoverContext.Provider value={{ hovered, connected, container: fullscreen ? (chartRef.current ?? undefined) : undefined }}>
                             <ReactFlow
-                                key={spec.key}
+                                key={`${spec.key}-${fullscreen}`}
                                 nodes={nodes}
                                 edges={edges}
                                 nodeTypes={nodeTypes}

@@ -31,6 +31,7 @@ export const GlassTooltip = (props: TooltipProps) => {
                     }
                 },
                 popper: {
+                    ...(slotProps?.popper as any),
                     modifiers: [
                     {
                         name: 'offset',
