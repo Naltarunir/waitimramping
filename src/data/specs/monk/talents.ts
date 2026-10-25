@@ -106,6 +106,16 @@ const talents = {
         id: 322113,
         icon: 'ability_monk_touchofdeath',
     },
+    MIST_CALLER: {
+        name: "Mist Caller",
+        id: 1266811,
+        icon: 'ability_monk_serenity',
+    },
+    VITAL_CLARITY: {
+        name: "Vital Clarity",
+        id: 1266748,
+        icon: 'ability_monk_souldance',
+    },
 } satisfies Record<string, spell>;
 
 export default talents;

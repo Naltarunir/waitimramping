@@ -145,7 +145,7 @@ const talents = {
             duration: 25,
             gustIncrease: 0.2,
             soothingBreathIncrease: 5,
-            chiCocoonEnvmDuration: 4, 
+            chiCocoonEnvmDuration: 4,
         }
     },
     GIFT_OF_THE_CELESTIALS: {
@@ -323,6 +323,31 @@ const talents = {
             name: "Chi Cocoon (Spiritfont)"
         },
         formula: (stats) => (stats.totalHp ?? 0) * (24 * 0.30) / 100 * (1 + stats.versatility / 100), // 30% effectiveness from regular chi cocoons
+    },
+    CHI_JI_GUST_OF_MISTS: {
+        name: "Gust of Mists",
+        id: 343819,
+        icon: 'monk_stance_redcrane',
+        display: {
+            name: "Chi-Ji's Gust of Mists"
+        },
+        category: CATEGORY.HEALING,
+    },
+    YULON_CHI_COCOON: {
+        name: "Chi Cocoon",
+        id: 406139,
+        icon: 'ability_monk_chiexplosion',
+        display: {
+            name: "Chi Cocoon (Yu'lon)"
+        },
+    },
+    CHI_JI_CHI_COCOON: {
+        name: "Chi Cocoon",
+        id: 406220,
+        icon: 'inv_pet_crane',
+        display: {
+            name: "Chi Cocoon (Chi-Ji)"
+        },
     },
     ZEN_PULSE: {
         name: "Zen Pulse",
@@ -740,6 +765,36 @@ const talents = {
         effects: {
             rskDamageIncrease: 0.15,
         }
+    },
+    LIFECYCLES: {
+        name: "Lifecycles",
+        id: 197915,
+        icon: 'ability_monk_souldance',
+    },
+    RESPLENDENT_MIST: {
+        name: "Resplendent Mist",
+        id: 388020,
+        icon: 'spell_nature_abolishmagic',
+    },
+    DANCING_MISTS: {
+        name: "Dancing Mists",
+        id: 388701,
+        icon: 'ability_monk_serenity',
+    },
+    DEEP_CLARITY: {
+        name: "Deep Clarity",
+        id: 446345,
+        icon: 'ability_monk_zenmeditation',
+    },
+    TRANQUIL_TEA: {
+        name: "Tranquil Tea",
+        id: 1270621,
+        icon: 'inv_misc_pearlmilktea',
+    },
+    POOL_OF_MISTS: {
+        name: "Pool of Mists",
+        id: 173841,
+        icon: 'achievement_zone_sholazar_10',
     },
 } satisfies Record<string, spell>;
 
