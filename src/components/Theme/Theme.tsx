@@ -3,13 +3,12 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/st
 import CssBaseline from '@mui/material/CssBaseline';
 import { useIsNonProd } from "@lib/betaModeClient";
 import { RAINBOW_COLORS } from '@components/Buttons/RainbowCard';
-import { HEADING_FONT } from '@components/Theme/tokens';
+import { FONT, HAIRLINE, HAIRLINE_SOFT, HEADING_FONT, INK } from '@components/Theme/tokens';
 
 const THEME_COLORS = {
     nonProd: RAINBOW_COLORS[3],
     primary: RAINBOW_COLORS[0],
     chart: "#494949",
-    tableHead: "#1e1e1e",
     tableBody: "#121212",
 };
 
@@ -57,10 +56,49 @@ const Theme = ({ children }: { children: React.ReactNode }) => {
             },
         },
         components: {
+            MuiTabs: {
+                styleOverrides: {
+                    root: {
+                        minHeight: 36,
+                        borderBottom: `1px solid ${HAIRLINE}`,
+                    },
+                },
+            },
+            MuiTab: {
+                styleOverrides: {
+                    root: {
+                        minHeight: 36,
+                        paddingTop: 0,
+                        paddingBottom: 0,
+                        fontSize: FONT.body,
+                    },
+                },
+            },
             MuiTableHead: {
                 styleOverrides: {
                     root: {
-                        backgroundColor: THEME_COLORS.tableHead,
+                        backgroundColor: THEME_COLORS.tableBody,
+                    },
+                },
+            },
+            MuiTableCell: {
+                styleOverrides: {
+                    head: {
+                        color: INK.muted,
+                        fontSize: FONT.micro,
+                        borderBottom: `1px solid ${HAIRLINE}`,
+                    },
+                    body: {
+                        borderBottom: `1px solid ${HAIRLINE_SOFT}`,
+                    },
+                },
+            },
+            MuiTableRow: {
+                styleOverrides: {
+                    root: {
+                        '&:last-child td, &:last-child th': {
+                            borderBottom: 0,
+                        },
                     },
                 },
             },
