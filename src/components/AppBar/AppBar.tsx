@@ -19,7 +19,7 @@ import SwirlButton from "@components/Buttons/SwirlButton";
 import { NavIconButton } from "@components/Buttons/NavIconButton";
 import { GlassBox } from "@components/Glass";
 import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
-import { BLUR, SECTIONS } from "@components/Theme/tokens";
+import { BLUR, HEADING_FONT, SECTIONS } from "@components/Theme/tokens";
 
 // the logo links home
 const NAV_SECTIONS = SECTIONS.filter(section => section.path !== "/");
@@ -184,6 +184,9 @@ function ResponsiveAppBar() {
                             <img src="/apple-icon.png" alt="Logo" style={{ width: 20, height: 20, transform: 'translateY(1px)' }} />
                             {!isHomePage && (
                                 <span style={{
+                                    fontFamily: HEADING_FONT,
+                                    position: "relative",
+                                    top: 1.5,
                                     background: titleHovered ? RAINBOW_GRADIENT : "none",
                                     WebkitBackgroundClip: titleHovered ? "text" : "unset",
                                     WebkitTextFillColor: titleHovered ? "transparent" : "white",

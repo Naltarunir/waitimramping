@@ -3,8 +3,7 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/st
 import CssBaseline from '@mui/material/CssBaseline';
 import { useIsNonProd } from "@lib/betaModeClient";
 import { RAINBOW_COLORS } from '@components/Buttons/RainbowCard';
-
-const HEADING_FONT = 'var(--font-heading), sans-serif';
+import { HEADING_FONT } from '@components/Theme/tokens';
 
 const THEME_COLORS = {
     nonProd: RAINBOW_COLORS[3],
