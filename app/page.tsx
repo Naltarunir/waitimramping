@@ -7,7 +7,6 @@ import {
     Avatar,
 } from "@mui/material";
 import RainbowCard, { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
-import SwirlLink from "@components/SwirlLink/SwirlLink";
 import { CONTENT_WIDTH, FONT, HAIRLINE } from "@components/Theme/tokens";
 
 const CURRENT_PATCH = "12.1.5";
@@ -56,10 +55,6 @@ const StatusLine = () => (
         <Box component="span" sx={{ fontFamily: 'monospace', fontWeight: 700, color: STATUS_GREEN }}>
             {CURRENT_PATCH}
         </Box>
-        {' · '}
-        <SwirlLink href="/changelog" fontWeight={700} sx={{ fontSize: FONT.small }}>
-            what's new
-        </SwirlLink>
     </Typography>
 );
 

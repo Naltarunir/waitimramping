@@ -4,7 +4,7 @@ import { analysisPages } from "./AnalysisPages";
 
 export const dynamic = "force-static";
 
-const staticPaths = ["", "about", "analysis", "bugs", "changelog"];
+const staticPaths = ["", "about", "analysis", "bugs"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const paths = [
