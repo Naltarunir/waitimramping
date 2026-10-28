@@ -144,6 +144,7 @@ const talents = {
         name: "Jade Bond",
         id: 388031,
         icon: 'inv_inscription_deck_jadeserpent',
+        exclusive: [388212],
         effects: {
             duration: 25,
             gustIncrease: 0.2,
@@ -155,6 +156,7 @@ const talents = {
         name: "Gift of the Celestials",
         id: 388212,
         icon: 'inv_pet_jadeserpentpet',
+        exclusive: [388031],
     },
     MIST_WRAP: {
         name: "Mist Wrap",
