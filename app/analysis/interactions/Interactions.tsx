@@ -17,6 +17,8 @@ import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
 import { SelectChip, SpecChip } from "@components/FilterChips/FilterChips";
 import { useSpec } from "@context/SpecContext";
 import { GlassTooltip } from "@components/Glass/Tooltip/GlassTooltip";
+import { motion } from "@components/Theme/motion";
+import { DURATION, EASE } from "@components/Theme/motion";
 
 const NODE_SIZE = ICON.lg;
 const ACCENT = RAINBOW_COLORS[0];
@@ -75,7 +77,7 @@ const SpellNode: React.FC<NodeProps<Node<SpellNodeData>>> = ({ id, data }) => {
     const dimmed = connected !== null && !connected.has(id);
     return (
         <GlassTooltip title={data.name} placement="top" arrow disableInteractive slotProps={{ popper: { container } }}>
-            <Box sx={{ width: NODE_SIZE, height: NODE_SIZE, opacity: dimmed ? 0.25 : 1, transition: "opacity 0.3s cubic-bezier(0.22,1,0.36,1)" }}>
+            <Box sx={{ width: NODE_SIZE, height: NODE_SIZE, opacity: dimmed ? 0.25 : 1, transition: motion("opacity") }}>
                 <Handle type="target" position={Position.Left} style={{ opacity: 0 }} />
                 {data.splitIcons ? (
                     <Box
@@ -147,7 +149,7 @@ const RoutedEdge: React.FC<EdgeProps<Edge<RoutedEdgeData>>> = ({ id, source, tar
     const path = [...points.slice(0, -1), base].map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
 
     return (
-        <g opacity={dimmed ? 0.1 : 1} style={{ transition: "opacity 0.3s cubic-bezier(0.22,1,0.36,1)" }}>
+        <g opacity={dimmed ? 0.1 : 1} style={{ transition: motion("opacity") }}>
             <BaseEdge
                 id={id}
                 path={path}
@@ -427,8 +429,8 @@ const Interactions: React.FC<{ title: React.ReactNode; description: React.ReactN
                         <Box sx={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 1.5 }}>
                             {[0, 1, 2].map((i) => (
                                 <Box key={i} sx={{ position: "relative", width: 9, height: 9, borderRadius: "50%", backgroundColor: INK.muted }}>
-                                    <Box sx={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: ACCENT, opacity: 0, animation: `${halo} 1.2s cubic-bezier(0.22, 1, 0.36, 1) ${i * 0.4}s infinite` }} />
-                                    <Box sx={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: ACCENT, opacity: 0, animation: `${lit} 1.2s cubic-bezier(0.22, 1, 0.36, 1) ${i * 0.4}s infinite` }} />
+                                    <Box sx={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: ACCENT, opacity: 0, animation: `${halo} ${DURATION.pulse} ${EASE} ${i * 0.4}s infinite` }} />
+                                    <Box sx={{ position: "absolute", inset: 0, borderRadius: "50%", backgroundColor: ACCENT, opacity: 0, animation: `${lit} ${DURATION.pulse} ${EASE} ${i * 0.4}s infinite` }} />
                                 </Box>
                             ))}
                         </Box>

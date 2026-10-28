@@ -27,6 +27,7 @@ import TALENTS from '@data/talents';
 import { CLASSES } from '@data/class';
 import { CONTENT_WIDTH, FONT, HAIRLINE, ICON } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 const YULONS_AVATAR_RPPM = 1.5;
 const TIMELINE_HEIGHT = 500;
@@ -614,7 +615,7 @@ const TimelineView: React.FC<{
                                                         zIndex: 4,
                                                         '&:hover': {
                                                             transform: 'translateX(-50%) scale(1.1)',
-                                                            transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)'
+                                                            transition: motion("transform")
                                                         }
                                                     }}>
                                                         <IconButtonBase

@@ -1,4 +1,5 @@
 import { IconButton, type IconButtonProps } from "@mui/material";
+import { motion } from "@components/Theme/motion";
 
 interface NavIconButtonProps extends Omit<IconButtonProps, 'sx'> {
     hoverColor?: string;
@@ -22,7 +23,7 @@ export const NavIconButton = ({
             {...props}
             sx={{
                 color: initialColor,
-                transition: "color 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+                transition: motion("color", "transform"),
                 backgroundColor: "transparent",
                 "&:hover": {
                     color: hoverColor,

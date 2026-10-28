@@ -1,5 +1,6 @@
 import type React from "react";
 import { Card, type CardProps } from "@mui/material";
+import { motion } from "@components/Theme/motion";
 
 export const RAINBOW_COLORS = ["#7ee5ff", "#89ff7f", "#ffe75e", "#ff69b4", "#d0a3ff"];
 export const RAINBOW_GRADIENT = `linear-gradient(90deg, ${RAINBOW_COLORS.map((color, index) => 
@@ -20,7 +21,7 @@ const RainbowCard: React.FC<RainbowCardProps> = ({ sx, children, href, ...rest }
                 (theme) => ({
                     border: "1px solid transparent",
                     background: `linear-gradient(${theme.palette.background.paper}, ${theme.palette.background.paper}) padding-box, linear-gradient(${theme.palette.divider}, ${theme.palette.divider}) border-box`,
-                    transition: "background 0.3s cubic-bezier(0.22,1,0.36,1)",
+                    transition: motion("background"),
                     cursor: href ? "pointer" : "default",
                     textDecoration: "none",
                     "&:hover": {

@@ -20,6 +20,7 @@ import { NavIconButton } from "@components/Buttons/NavIconButton";
 import { GlassBox } from "@components/Glass";
 import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import { BLUR, HEADING_FONT, SECTIONS } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 // the logo links home
 const NAV_SECTIONS = SECTIONS.filter(section => section.path !== "/");
@@ -110,7 +111,7 @@ function ResponsiveAppBar() {
                                         bgcolor: buttonColor,
                                         borderColor: "transparent",
                                         transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                        transition: motion("transform"),
                                         zIndex: 2,
                                     },
                                     '&:hover': {
@@ -176,7 +177,7 @@ function ResponsiveAppBar() {
                                 whiteSpace: "nowrap",
                                 fontSize: { xs: "1rem", md: "1.25rem" },
                                 color: "white",
-                                transition: "color 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                transition: motion("color"),
                                 "&:hover": {
                                     opacity: 0.7,
                                 },
@@ -192,7 +193,7 @@ function ResponsiveAppBar() {
                                     WebkitBackgroundClip: titleHovered ? "text" : "unset",
                                     WebkitTextFillColor: titleHovered ? "transparent" : "white",
                                     backgroundClip: titleHovered ? "text" : "unset",
-                                    transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                    transition: motion("all"),
                                 }}>
                                     Wait, I'm Ramping!
                                 </span>

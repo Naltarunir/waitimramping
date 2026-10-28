@@ -32,6 +32,7 @@ import { T } from "@util/T";
 import { pluralize, hexToRgb, formatPercent } from "@util/stringManipulation";
 import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -69,7 +70,7 @@ const ProgressBar: React.FC<{
                     height: '100%', 
                     width: `${Math.min(percentage, 100)}%`,
                     backgroundColor: color,
-                    transition: 'width 0.3s cubic-bezier(0.22,1,0.36,1)'
+                    transition: motion("width")
                 }} />
             </Box>
         </Box>

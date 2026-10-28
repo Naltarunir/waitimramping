@@ -1,5 +1,11 @@
 @import "../src/styles/wowheadRestyle.css";
 
+/* mirrors src/components/Theme/motion.ts for plain css */
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-hover: 0.3s;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -79,7 +85,7 @@ main:focus {
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  transition: top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: top var(--duration-hover) var(--ease);
 }
 
 .skip-link:focus {

@@ -10,6 +10,7 @@ import { formatNumber } from "@util/stringManipulation";
 import type { ModelResult, } from "./model";
 import type { RotationConfig } from "./types";
 import { ICON } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 type Props = {
   rotationConfigs: RotationConfig[];
@@ -41,7 +42,7 @@ const BreakdownCard: React.FC<Props> = ({ rotationConfigs, damageData, showAsHea
           label={spellObj.name}
           sublabel={`${formatNumber(dps, 2)} ${showAsHealing ? 'HPS' : 'DPS'}`}
           labelSuffix={hasSub && (
-            <ExpandMore sx={{ fontSize: 14, color: 'text.disabled', transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)', transform: isExpanded ? 'rotate(180deg)' : 'none' }} />
+            <ExpandMore sx={{ fontSize: 14, color: 'text.disabled', transition: motion("transform"), transform: isExpanded ? 'rotate(180deg)' : 'none' }} />
           )}
         />
       </Box>

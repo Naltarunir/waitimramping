@@ -10,6 +10,7 @@ import SpecDisplay from "@components/SpecializationSelect/SpecDisplay";
 import { type specialization, getSpecs, getSpecializationByKey } from '@data/class';
 import { KeyboardArrowDown } from "@components/Icons";
 import { BLUR, FIELD_HEIGHT, FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 interface SpecializationSelectProps {
   selectedSpec: specialization;
@@ -64,18 +65,18 @@ const SpecializationSelect: React.FC<SpecializationSelectProps> = ({
             borderRadius: 1,
             color: 'text.primary',
             fontSize: FONT.small,
-            transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1)',
+            transition: motion("border-color"),
             '&:hover': { borderColor: 'text.secondary' },
           } : {
             cursor: 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
-            transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+            transition: motion("transform"),
             '&:hover': { transform: 'scale(1.06)' },
           }}
         >
           <SpecDisplay spec={selectedSpec} short={!withLabel} />
-          {withLabel && <KeyboardArrowDown sx={{ fontSize: 18, opacity: 0.5, transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)', transform: open ? 'rotate(90deg)' : 'none' }} />}
+          {withLabel && <KeyboardArrowDown sx={{ fontSize: 18, opacity: 0.5, transition: motion("transform"), transform: open ? 'rotate(90deg)' : 'none' }} />}
         </Box>
         
         <GlassMenu

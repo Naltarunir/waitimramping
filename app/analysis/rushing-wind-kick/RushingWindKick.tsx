@@ -26,6 +26,7 @@ import { T } from "@util/T";
 import StatsCard, { Group, statsSummary, type StatsCardOptions } from "@components/StatsCard/StatsCard";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
 import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -236,7 +237,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
                         border: `1px solid ${isSelected ? mistweaver.color + "55" : "rgba(255,255,255,0.08)"}`,
                         backgroundColor: isSelected ? mistweaver.color + "18" : "transparent",
                         opacity: isSelected ? 1 : 0.45,
-                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1)",
+                        transition: motion("transform", "box-shadow"),
                         userSelect: "none",
                         whiteSpace: "nowrap",
                         "&:hover": { transform: "scale(1.03)" },

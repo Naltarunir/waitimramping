@@ -6,6 +6,7 @@ import type { specialization } from "@data/class";
 import SpellButton from "@components/SpellButtons/SpellButton";
 import { GlassTooltip } from "@components/Glass/Tooltip/GlassTooltip";
 import { FONT, ICON } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 interface SpellButtonsProps {
     selectedSpec?: specialization;
@@ -125,7 +126,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
                                             borderRadius: 4,
                                             border: "1px solid rgba(255,255,255,0.12)",
                                             opacity: 0.55,
-                                            transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                            transition: motion("all"),
                                             whiteSpace: "nowrap",
                                         }}
                                     >

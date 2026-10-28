@@ -1,5 +1,6 @@
 import { IconButton, type IconButtonProps, type SxProps, type Theme, useTheme } from "@mui/material";
 import { HAIRLINE_SOFT, TINT, tintedControl } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 interface SwirlIconButtonProps extends Omit<IconButtonProps, 'sx'> {
     tint?: 'default' | 'danger' | 'warning' | 'primary';
@@ -39,7 +40,7 @@ export const SwirlIconButton = ({
             border: '1px solid',
             borderColor: NEUTRAL.border,
             borderRadius: 1,
-            transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)',
+            transition: motion("border-color", "background-color"),
             '&:hover': { borderColor: NEUTRAL.hoverBorder, backgroundColor: NEUTRAL.hoverBg },
         };
 

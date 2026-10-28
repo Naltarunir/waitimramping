@@ -9,6 +9,7 @@ import {
 import RainbowCard, { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import Reveal from "@components/Reveal/Reveal";
 import { CONTENT_WIDTH, FONT, HAIRLINE, MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 const CURRENT_PATCH = "12.1.5";
 
@@ -117,7 +118,7 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.7,
-                    transition: 'opacity 0.3s cubic-bezier(0.22,1,0.36,1)',
+                    transition: motion("opacity"),
                 }}
             />
         </Box>
@@ -164,7 +165,7 @@ const Byline = () => (
                     alt="swirl"
                     sx={{ width: 24, height: 24, borderRadius: '4px', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
-                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: 'color 0.3s cubic-bezier(0.22,1,0.36,1)' }}>
+                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: motion("color") }}>
                     made by{' '}
                     <Box
                         component="span"

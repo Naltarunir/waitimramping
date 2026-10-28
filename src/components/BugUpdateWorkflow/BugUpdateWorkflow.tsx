@@ -16,6 +16,7 @@ import { SwirlIconButton } from "@components/Buttons/SwirlIconButton";
 import { GlassTooltip } from "@components/Glass";
 import { FONT, HAIRLINE } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 // served by scripts/bug-update-server.mjs (npm run bugs)
 const UPDATE_URL = "http://localhost:3111/update";
@@ -154,7 +155,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                         }
                     />
                     <Box sx={{ height: 2, flexShrink: 0, backgroundColor: HAIRLINE }}>
-                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: "width 0.3s cubic-bezier(0.22,1,0.36,1)" }} />
+                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: motion("width") }} />
                     </Box>
                     <Typography sx={{ px: 2, pt: 1.5, fontSize: FONT.small, color: "text.secondary" }}>
                         Is this bug still broken in build {buildNumber}?

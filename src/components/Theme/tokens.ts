@@ -1,3 +1,4 @@
+import { motion } from "./motion";
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
 
 // one typeface site wide: headings inherit it, the system monospace is only for numbers
@@ -11,8 +12,7 @@ export const SURFACE = {
     overlay: "#272727",
 };
 
-// heavy easing used for every transition
-export const EASE = "cubic-bezier(0.22,1,0.36,1)";
+export { EASE } from "./motion";
 
 export const HAIRLINE = "rgba(255,255,255,0.10)";
 export const HAIRLINE_SOFT = "rgba(255,255,255,0.05)";
@@ -122,7 +122,7 @@ export const tintedControl = (accent: string, selected = false) => ({
     border: "1px solid",
     borderColor: selected ? accent : accent + TINT.restBorder,
     borderRadius: `${RADIUS.control}px`,
-    transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.22,1,0.36,1)",
+    transition: motion("border-color", "background-color", "color"),
     "&:hover": { borderColor: accent },
 });
 

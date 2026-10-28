@@ -6,6 +6,7 @@ import { GlassMenu } from '@components/Glass/Menu';
 import type { SxProps } from '@mui/material/styles';
 import { KeyboardArrowDown } from "@components/Icons";
 import { CONTROL_HEIGHT, FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 export interface GlassSelectOption {
     value: string;
@@ -46,7 +47,7 @@ const GlassSelect: React.FC<GlassSelectProps> = ({ value, options, onChange, lab
                     borderRadius: 1,
                     fontSize: FONT.small,
                     whiteSpace: 'nowrap',
-                    transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1)',
+                    transition: motion("border-color"),
                     userSelect: 'none',
                     '&:hover': { borderColor: 'text.secondary' },
                 }}
@@ -58,7 +59,7 @@ const GlassSelect: React.FC<GlassSelectProps> = ({ value, options, onChange, lab
                     fontSize: 18,
                     opacity: 0.5,
                     ml: 'auto',
-                    transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+                    transition: motion("transform"),
                     transform: open ? 'rotate(90deg)' : 'none',
                 }} />
             </Box>

@@ -5,6 +5,7 @@ import { Box, Collapse, Typography, useTheme } from "@mui/material";
 import { ExpandMore } from "@components/Icons";
 import { CHIP_HEIGHT, FONT, TINT } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 export interface ConfigSection {
     key: string;
@@ -67,7 +68,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                 cursor: "pointer",
                                 userSelect: "none",
                                 whiteSpace: "nowrap",
-                                transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                transition: motion("border-color", "background-color"),
                                 "&:hover": { borderColor: accentColor },
                             }}
                         >
@@ -88,7 +89,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                 fontSize: 14,
                                 color: "text.disabled",
                                 transform: isActive ? "rotate(180deg)" : "none",
-                                transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+                                transition: motion("transform"),
                             }} />
                         </Box>
                     );

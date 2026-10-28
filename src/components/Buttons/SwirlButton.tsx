@@ -3,6 +3,7 @@ import { Box, Button, type Theme, useTheme } from "@mui/material";
 import { T } from "@util/T";
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
 import { FONT, HAIRLINE_SOFT, INK, TINT, tintedControl } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 const REST_BORDER = "rgba(255,255,255,0.15)";
 const DISABLED_INK = "rgba(255,255,255,0.22)";
@@ -64,7 +65,7 @@ const SwirlButton: React.FC<SwirlButtonProps> = ({
         height: 2,
         backgroundColor: accent,
         transform: selected ? "scaleX(1)" : "scaleX(0)",
-        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+        transition: motion("transform"),
     };
 
     const navSx = {
@@ -128,7 +129,7 @@ const SwirlButton: React.FC<SwirlButtonProps> = ({
                 position: "relative",
                 fontWeight: 600,
                 textTransform: "none",
-                transition: "color 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s cubic-bezier(0.22,1,0.36,1)",
+                transition: motion("color", "border-color"),
                 ...(isNav ? navSx : tintedSx),
                 ...sx,
             }}

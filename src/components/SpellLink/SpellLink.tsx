@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import type spell from "@data/spells/spell";
 import { iconLocalUrl, iconFallbackUrl, wowheadSpellUrl } from "@util/wowhead";
 import { ICON, RADIUS } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 export interface WowLinkProps {
     name: string;
@@ -53,7 +54,7 @@ export const WowLink: React.FC<WowLinkProps> = ({
                 gap: gap,
                 textDecoration: "none",
                 cursor: "pointer",
-                transition: "opacity 0.3s cubic-bezier(0.22,1,0.36,1)",
+                transition: motion("opacity"),
                 verticalAlign: "middle",
                 marginTop: -0.3,
                 ...sx,
@@ -68,7 +69,7 @@ export const WowLink: React.FC<WowLinkProps> = ({
                     padding: 0,
                     borderRadius: `${RADIUS.control}px`,
                     overflow: "hidden",
-                    transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+                    transition: motion("transform"),
                     border: "1px solid",
                     borderColor: "divider",
                     backgroundColor: "transparent",

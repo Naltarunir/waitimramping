@@ -4,6 +4,7 @@ import { TextField, InputAdornment, Box, Typography } from '@mui/material';
 import { ArrowDropUp, ArrowDropDown } from "@components/Icons";
 import { SwirlIconButton } from '@components/Buttons/SwirlIconButton';
 import { CONTROL_HEIGHT, FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 interface SwirlFieldProps {
     label?: string;
@@ -54,7 +55,7 @@ const SwirlField: React.FC<SwirlFieldProps> = ({ label, value, onChange, suffix,
                         endAdornment: (
                             <InputAdornment position="end">
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px', opacity: hovered ? 1 : 0, transition: 'opacity 0.3s cubic-bezier(0.22,1,0.36,1)' }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px', opacity: hovered ? 1 : 0, transition: motion("opacity") }}>
                                         <SwirlIconButton
                                             onClick={() => onChange(value === "" ? min + 1 : value + 1)}
                                             sx={{ p: '1px', minWidth: 0, height: 18, width: 18 }}

@@ -10,6 +10,7 @@ import { CHIP_HEIGHT, FONT, ICON, RADIUS, TINT } from "@components/Theme/tokens"
 import { type specialization, getSpecs, getSpecializationByKey } from "@data/class";
 import { iconLocalUrl, iconFallbackUrl } from "@util/wowhead";
 import { MONO_FONT } from "@components/Theme/tokens";
+import { motion } from "@components/Theme/motion";
 
 const chipTitle = { fontSize: FONT.micro, fontWeight: 700, letterSpacing: 0.5, color: "text.disabled" };
 const chipValue = { fontSize: FONT.small, fontFamily: MONO_FONT, color: "text.primary", textTransform: "lowercase" };
@@ -29,7 +30,7 @@ const filterChip = (accent: string, active: boolean) => ({
     backgroundColor: active ? accent + TINT.wash : "background.paper",
     userSelect: "none",
     whiteSpace: "nowrap",
-    transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)",
+    transition: motion("border-color", "background-color"),
     "&:hover": { borderColor: accent },
 });
 
@@ -130,7 +131,7 @@ export const SelectChip: React.FC<SelectChipProps> = ({ accent, title, value, op
                     fontSize: 14,
                     color: "text.disabled",
                     transform: anchor ? "rotate(180deg)" : "none",
-                    transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+                    transition: motion("transform"),
                 }} />
             </Box>
             <GlassMenu

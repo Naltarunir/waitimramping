@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
-import { EASE } from "@components/Theme/tokens";
+import { DURATION, EASE } from "@components/Theme/motion";
 
 interface RevealProps {
     children: React.ReactNode;
@@ -46,7 +46,7 @@ const Reveal: React.FC<RevealProps> = ({ children, delay = 0, sx }) => {
                     opacity: shown ? 1 : 0,
                     transform: shown ? "translateY(0)" : "translateY(64px)",
                     filter: shown ? "blur(0)" : "blur(12px)",
-                    transition: `opacity 800ms ${EASE} ${delay}ms, transform 800ms ${EASE} ${delay}ms, filter 800ms ${EASE} ${delay}ms`,
+                    transition: `opacity ${DURATION.reveal} ${EASE} ${delay}ms, transform ${DURATION.reveal} ${EASE} ${delay}ms, filter ${DURATION.reveal} ${EASE} ${delay}ms`,
                     willChange: shown ? "auto" : "opacity, transform, filter",
                 },
                 ...(Array.isArray(sx) ? sx : [sx]),
