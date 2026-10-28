@@ -1,7 +1,7 @@
 ﻿"use client";
 import type React from "react";
 import { useState, useEffect } from "react";
-import { Box, useTheme, Card, Divider, Grid } from "@mui/material";
+import { Box, Card, Divider, Grid } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
 import PageHeader from "@components/PageHeader/PageHeader";
 import SpellButtons from "@components/SpellButtons/SpellButtons";
@@ -30,7 +30,6 @@ interface TalentSnapshot {
 }
 
 const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
-    const theme = useTheme();
     const [rotationHPS, setRotationHPS] = useState<RotationResult[]>([]);
     const [expandedRotations, setExpandedRotations] = useState<Set<number>>(new Set());
     const [isSimulating, setIsSimulating] = useState(false);
@@ -260,7 +259,6 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                         expanded={expandedRotations.has(index)}
                                         onToggleExpansion={() => toggleRotationExpansion(index)}
                                         onDelete={() => removeRotation(rotations[index].id)}
-                                        theme={theme}
                                     />
                                 </Grid>
                             ))}
