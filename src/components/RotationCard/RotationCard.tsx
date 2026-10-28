@@ -6,7 +6,7 @@ import { DeleteTwoTone, ContentCopyTwoTone } from "@components/Icons";
 import type { RotationResult } from '../../../app/analysis/chi-ji/types';
 import SpellButton from "@components/SpellButtons/SpellButton";
 import { formatNumber, formatPercent } from "@util/stringManipulation";
-import { iconFallbackUrl, iconLocalUrl, wowheadSpellUrl } from "@util/wowhead";
+import { iconFallbackUrl, iconLocalUrl } from "@util/wowhead";
 import TALENTS from "@data/specs/monk/mistweaver/talents";
 import SPELLS from "@data/spells";
 import type spell from "@data/spells/spell";
@@ -84,43 +84,39 @@ const sourceFill = (sources: Source[], length: number, cap: string): string => {
     return `linear-gradient(90deg, ${stops.join(', ')}, ${cap} ${bodyEnd}%, ${cap} ${length}%, transparent ${length}%)`;
 };
 
-const SourceLegend: React.FC<{ sources: Source[]; total: number }> = ({ sources, total }) => (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 1.5, rowGap: 0.5 }}>
-        {sources.map(source => (
-            <Box key={source.key} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                {source.spell ? (
-                    // a plain wowhead link, so the tooltip works without SpellButton's hover scaling
-                    <Box
-                        component="a"
-                        href={wowheadSpellUrl(source.spell.id, source.spell.spellModifier)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        sx={{ display: 'flex', flexShrink: 0 }}
-                    >
-                        <Box
-                            component="img"
-                            src={iconLocalUrl(source.spell.icon)}
-                            alt={source.title}
-                            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                                if (!e.currentTarget.src.startsWith('https://wow.zamimg.com')) {
-                                    e.currentTarget.src = iconFallbackUrl(source.spell!.icon);
-                                }
-                            }}
-                            sx={{ width: ICON.xs, height: ICON.xs, borderRadius: 0.5, outline: `1px solid ${source.color}` }}
-                        />
-                    </Box>
-                ) : (
-                    <GlassTooltip title={source.title}>
-                        <Box sx={{ width: ICON.xs, height: ICON.xs, borderRadius: 0.5, bgcolor: source.color, flexShrink: 0 }} />
-                    </GlassTooltip>
-                )}
-                <Typography sx={{ fontSize: FONT.micro, color: 'text.secondary' }}>
-                    {formatPercent((source.value / total) * 100, 1)}
-                </Typography>
-            </Box>
-        ))}
-    </Box>
+// base healing is the spell's own, so it gets a plain swatch instead of an icon
+const SourceIcon: React.FC<{ source: Source }> = ({ source }) => source.spell ? (
+    <Box
+        component="img"
+        src={iconLocalUrl(source.spell.icon)}
+        alt={source.title}
+        onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+            if (!e.currentTarget.src.startsWith('https://wow.zamimg.com')) {
+                e.currentTarget.src = iconFallbackUrl(source.spell!.icon);
+            }
+        }}
+        sx={{ width: ICON.xs, height: ICON.xs, borderRadius: 0.5, outline: `1px solid ${source.color}`, flexShrink: 0 }}
+    />
+) : (
+    <Box sx={{ width: ICON.xs, height: ICON.xs, borderRadius: 0.5, bgcolor: source.color, flexShrink: 0 }} />
 );
+
+const SourceTooltip: React.FC<{ healing: number; sources: Source[]; showSources?: boolean }> = ({ healing, sources, showSources }) => {
+    const total = sources.reduce((sum, source) => sum + source.value, 0);
+
+    return (
+        <Box>
+            <Box>{formatNumber(Math.round(healing))} total</Box>
+            {showSources && sources.map(source => (
+                <Box key={source.key} sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mt: 0.5 }}>
+                    <SourceIcon source={source} />
+                    <Box>{formatNumber(Math.round(source.value))}</Box>
+                    <Box sx={{ color: 'text.secondary' }}>{formatPercent((source.value / total) * 100, 1)}</Box>
+                </Box>
+            ))}
+        </Box>
+    );
+};
 
 const HeaderCell: React.FC<{ children?: React.ReactNode; right?: boolean }> = ({ children, right }) => (
     <Typography sx={{ fontSize: FONT.micro, fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', color: 'text.disabled', textAlign: right ? 'right' : 'left' }}>
@@ -160,14 +156,7 @@ const BreakdownRows: React.FC<{ rows: Row[]; accent: string; showSources?: boole
                     <GlassTooltip
                         key={row.key}
                         placement="top"
-                        title={
-                            <Box>
-                                <Box>{formatNumber(Math.round(row.healing))} total</Box>
-                                {showSources && row.sources.map(source => (
-                                    <Box key={source.key}>{source.title}: {formatNumber(Math.round(source.value))}</Box>
-                                ))}
-                            </Box>
-                        }
+                        title={<SourceTooltip healing={row.healing} sources={row.sources} showSources={showSources} />}
                     >
                         <Box
                             sx={{
@@ -191,12 +180,6 @@ const BreakdownRows: React.FC<{ rows: Row[]; accent: string; showSources?: boole
                                     <Typography noWrap sx={{ fontSize: FONT.body, fontWeight: 500 }}>
                                         {row.name}
                                     </Typography>
-                                    {showSources && (
-                                        <SourceLegend
-                                            sources={row.sources}
-                                            total={row.sources.reduce((sum, source) => sum + source.value, 0)}
-                                        />
-                                    )}
                                 </Box>
                             </Box>
                             <NumberCell>{formatNumber(Math.round(row.healing / duration))}</NumberCell>
