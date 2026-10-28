@@ -23,7 +23,7 @@ export function PageMetadata(
     url: string = SITE_URL
 ) { 
     const branchName = getBranchName();
-    const branchPrefix = branchName ? `[${branchName}] ` : "";
+    const branchPrefix = branchName && branchName !== "local" ? `[${branchName}] ` : "";
     const formattedDescription = T(description);
     
     const fullTitle = title !== SITE_NAME 
