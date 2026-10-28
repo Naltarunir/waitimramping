@@ -64,18 +64,18 @@ const SpecializationSelect: React.FC<SpecializationSelectProps> = ({
             borderRadius: 1,
             color: 'text.primary',
             fontSize: FONT.small,
-            transition: 'border-color 0.2s cubic-bezier(0.32,0.72,0,1)',
+            transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1)',
             '&:hover': { borderColor: 'text.secondary' },
           } : {
             cursor: 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
-            transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)',
+            transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
             '&:hover': { transform: 'scale(1.06)' },
           }}
         >
           <SpecDisplay spec={selectedSpec} short={!withLabel} />
-          {withLabel && <KeyboardArrowDown sx={{ fontSize: 18, opacity: 0.5, transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)', transform: open ? 'rotate(90deg)' : 'none' }} />}
+          {withLabel && <KeyboardArrowDown sx={{ fontSize: 18, opacity: 0.5, transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)', transform: open ? 'rotate(90deg)' : 'none' }} />}
         </Box>
         
         <GlassMenu

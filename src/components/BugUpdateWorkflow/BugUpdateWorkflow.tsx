@@ -154,7 +154,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                         }
                     />
                     <Box sx={{ height: 2, flexShrink: 0, backgroundColor: HAIRLINE }}>
-                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: "width 0.3s cubic-bezier(0.32,0.72,0,1)" }} />
+                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: "width 0.3s cubic-bezier(0.22,1,0.36,1)" }} />
                     </Box>
                     <Typography sx={{ px: 2, pt: 1.5, fontSize: FONT.small, color: "text.secondary" }}>
                         Is this bug still broken in build {buildNumber}?

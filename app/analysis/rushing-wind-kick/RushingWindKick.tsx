@@ -219,7 +219,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
             title: "mode",
             summary: (modeOptions.find(opt => opt.value === calcMode)?.label ?? "").toLowerCase(),
             content: (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
                 {modeOptions.map(opt => {
                   const isSelected = opt.value === calcMode;
                   return (
@@ -236,7 +236,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
                         border: `1px solid ${isSelected ? mistweaver.color + "55" : "rgba(255,255,255,0.08)"}`,
                         backgroundColor: isSelected ? mistweaver.color + "18" : "transparent",
                         opacity: isSelected ? 1 : 0.45,
-                        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1), box-shadow 0.3s cubic-bezier(0.32,0.72,0,1)",
+                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1)",
                         userSelect: "none",
                         whiteSpace: "nowrap",
                         "&:hover": { transform: "scale(1.03)" },

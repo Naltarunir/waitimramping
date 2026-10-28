@@ -32,7 +32,7 @@ const RampAnswer: React.FC<{ seconds: number; accent: string }> = ({ seconds, ac
             borderRadius: `${RADIUS.card}px`,
             border: hasAnswer ? `1px solid ${accent}55` : `1px dashed ${HAIRLINE}`,
             backgroundColor: hasAnswer ? `${accent}0d` : 'transparent',
-            transition: 'border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)',
+            transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)',
         }}>
             <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 0.25, my: 0.25 }}>
                 <Typography sx={{

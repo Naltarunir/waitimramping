@@ -55,7 +55,7 @@ const IconButtonBase: React.FC<IconButtonBaseProps> = ({
         padding: 0,
         borderRadius: `${RADIUS.control}px`,
         overflow: "hidden",
-        transition: "transform 0.2s cubic-bezier(0.32,0.72,0,1)",
+        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
         border: `1px solid ${theme.palette.divider}`,
         transform: isHovered ? "scale(1.06)" : "scale(1)",
         backgroundColor: "transparent",

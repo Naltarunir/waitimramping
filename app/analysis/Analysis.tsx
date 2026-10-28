@@ -61,7 +61,7 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                         backgroundPosition: "center",
                         filter: "blur(0.5px)",
                         opacity: 0.8,
-                        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
+                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
                     }} />
 
                     {/* gradient */}
@@ -70,7 +70,7 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                         background: hovered
                             ? "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 100%)"
                             : "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 55%)",
-                        transition: "background 0.3s cubic-bezier(0.32,0.72,0,1)",
+                        transition: "background 0.3s cubic-bezier(0.22,1,0.36,1)",
                     }} />
 
                     {/* outdated badge */}
@@ -98,7 +98,7 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                     <Box sx={{
                         position: "absolute", bottom: 0, left: 0, right: 0, px: 1.5, pb: 1.5,
                         transform: hovered ? `translateY(-${descHeight - 12}px)` : "translateY(0)",
-                        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
+                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
                         willChange: "transform",
                     }}>
                         <Typography variant="body1" component="div" fontWeight="bold" color="white" sx={{ lineHeight: 1.3 }}>
@@ -112,7 +112,7 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                             position: "absolute", bottom: 0, left: 0, right: 0, px: 1.5, pb: 1.5,
                             transform: hovered ? "translateY(0)" : "translateY(200px)",
                             opacity: hovered ? 1 : 0,
-                            transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1), opacity 0.2s cubic-bezier(0.32,0.72,0,1)",
+                            transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s cubic-bezier(0.22,1,0.36,1)",
                             willChange: "transform",
                         }}
                     >
@@ -150,7 +150,7 @@ const FilterChip: React.FC<{ label: string; active?: boolean; accent: string; on
             cursor: "pointer",
             userSelect: "none",
             whiteSpace: "nowrap",
-            transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
+            transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)",
             "&:hover": { borderColor: accent + "88" },
         }}
     >

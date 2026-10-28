@@ -39,7 +39,7 @@ export const SwirlIconButton = ({
             border: '1px solid',
             borderColor: NEUTRAL.border,
             borderRadius: 1,
-            transition: 'border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)',
+            transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)',
             '&:hover': { borderColor: NEUTRAL.hoverBorder, backgroundColor: NEUTRAL.hoverBg },
         };
 

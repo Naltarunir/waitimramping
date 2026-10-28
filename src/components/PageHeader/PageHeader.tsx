@@ -70,7 +70,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 <Box sx={{ flexShrink: 0 }}>
                     <Typography
                         variant="h1"
-                        sx={{ fontWeight: "bold", fontSize: "1.875em", color: "text.primary", lineHeight: 1.2, mb: 0.5 }}
+                        sx={{ fontWeight: "bold", fontSize: "1.875rem", color: "text.primary", lineHeight: 1.2, mb: 0.5 }}
                     >
                         {title}
                     </Typography>

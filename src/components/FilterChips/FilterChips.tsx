@@ -29,7 +29,7 @@ const filterChip = (accent: string, active: boolean) => ({
     backgroundColor: active ? accent + TINT.wash : "background.paper",
     userSelect: "none",
     whiteSpace: "nowrap",
-    transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
+    transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)",
     "&:hover": { borderColor: accent },
 });
 
@@ -130,7 +130,7 @@ export const SelectChip: React.FC<SelectChipProps> = ({ accent, title, value, op
                     fontSize: 14,
                     color: "text.disabled",
                     transform: anchor ? "rotate(180deg)" : "none",
-                    transition: "transform 0.2s cubic-bezier(0.32,0.72,0,1)",
+                    transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
                 }} />
             </Box>
             <GlassMenu

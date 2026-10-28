@@ -117,7 +117,7 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.7,
-                    transition: 'opacity 0.25s cubic-bezier(0.32,0.72,0,1)',
+                    transition: 'opacity 0.3s cubic-bezier(0.22,1,0.36,1)',
                 }}
             />
         </Box>
@@ -164,7 +164,7 @@ const Byline = () => (
                     alt="swirl"
                     sx={{ width: 24, height: 24, borderRadius: '4px', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
-                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: 'color 0.2s cubic-bezier(0.32,0.72,0,1)' }}>
+                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: 'color 0.3s cubic-bezier(0.22,1,0.36,1)' }}>
                     made by{' '}
                     <Box
                         component="span"

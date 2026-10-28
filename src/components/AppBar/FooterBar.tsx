@@ -14,7 +14,7 @@ const FooterBar = () => {
             position="static"
             component="footer"
             sx={{
-                mt: 3.5,
+                mt: 3,
                 backgroundImage: 'none',
                 bgcolor: "rgba(23, 23, 23, 0.85)",
                 backdropFilter: BLUR.bar,

@@ -89,7 +89,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
                     <React.Fragment key={label}>
                         <span style={rowLabel}>{label}</span>
                         {rowSep}
-                        <div style={{ display: "flex", gap: 5, flexWrap: "wrap", alignItems: "center" }}>
+                        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", alignItems: "center" }}>
                             {spells.map((spell) => (
                                 <SpellButton key={spell.id} selectedSpell={spell} action={handleSpellClick} />
                             ))}
@@ -125,7 +125,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
                                             borderRadius: 4,
                                             border: "1px solid rgba(255,255,255,0.12)",
                                             opacity: 0.55,
-                                            transition: "all 0.2s cubic-bezier(0.32,0.72,0,1)",
+                                            transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)",
                                             whiteSpace: "nowrap",
                                         }}
                                     >

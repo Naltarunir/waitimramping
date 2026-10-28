@@ -21,7 +21,7 @@ export const rowLabel: React.CSSProperties = { fontSize: FONT.micro, fontWeight:
 export const rowSep = <div style={{ width: 1, alignSelf: "stretch", background: "rgba(255,255,255,0.12)" }} />;
 
 export const Group: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <div style={{ display: "grid", gridTemplateColumns: "max-content 1px auto", gap: "8px 10px", alignItems: "start" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "max-content 1px auto", gap: "8px 12px", alignItems: "start" }}>
         {children}
     </div>
 );

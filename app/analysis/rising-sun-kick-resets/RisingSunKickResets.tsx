@@ -69,7 +69,7 @@ const ProgressBar: React.FC<{
                     height: '100%', 
                     width: `${Math.min(percentage, 100)}%`,
                     backgroundColor: color,
-                    transition: 'width 0.3s cubic-bezier(0.32,0.72,0,1)'
+                    transition: 'width 0.3s cubic-bezier(0.22,1,0.36,1)'
                 }} />
             </Box>
         </Box>
@@ -135,7 +135,7 @@ const SpellInfoDisplay: React.FC<{
             <Typography variant="body2" sx={{ fontWeight: 'medium', minWidth: 100 }}>
                 Formula:
             </Typography>
-            <Typography variant="body2" sx={{ fontFamily: MONO_FONT, fontSize: '0.9em' }}>
+            <Typography variant="body2" sx={{ fontFamily: MONO_FONT, fontSize: '0.875rem' }}>
                 1 - (reset %)<sup>boks</sup>
             </Typography>
         </Box>

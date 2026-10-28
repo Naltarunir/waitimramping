@@ -70,7 +70,7 @@ const NotFound: React.FC = () => {
                 }}
             />
             <Box>
-                <Typography variant="h1" sx={{ fontWeight: "bold", fontSize: "3em", lineHeight: 1.1, mb: 0.5 }}>
+                <Typography variant="h1" sx={{ fontWeight: "bold", fontSize: "3rem", lineHeight: 1.1, mb: 0.5 }}>
                     404
                 </Typography>
                 <Box sx={{ height: 2, borderRadius: 1, background: RAINBOW_GRADIENT, mb: 1.5, mx: "auto" }} />

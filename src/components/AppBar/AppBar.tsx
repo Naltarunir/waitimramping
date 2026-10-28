@@ -110,7 +110,7 @@ function ResponsiveAppBar() {
                                         bgcolor: buttonColor,
                                         borderColor: "transparent",
                                         transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                                        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
+                                        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
                                         zIndex: 2,
                                     },
                                     '&:hover': {
@@ -176,7 +176,7 @@ function ResponsiveAppBar() {
                                 whiteSpace: "nowrap",
                                 fontSize: { xs: "1rem", md: "1.25rem" },
                                 color: "white",
-                                transition: "color 0.2s cubic-bezier(0.32,0.72,0,1)",
+                                transition: "color 0.3s cubic-bezier(0.22,1,0.36,1)",
                                 "&:hover": {
                                     opacity: 0.7,
                                 },
@@ -192,7 +192,7 @@ function ResponsiveAppBar() {
                                     WebkitBackgroundClip: titleHovered ? "text" : "unset",
                                     WebkitTextFillColor: titleHovered ? "transparent" : "white",
                                     backgroundClip: titleHovered ? "text" : "unset",
-                                    transition: "all 0.3s cubic-bezier(0.32,0.72,0,1)",
+                                    transition: "all 0.3s cubic-bezier(0.22,1,0.36,1)",
                                 }}>
                                     Wait, I'm Ramping!
                                 </span>

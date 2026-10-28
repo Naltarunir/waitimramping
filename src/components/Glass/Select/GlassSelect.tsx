@@ -46,7 +46,7 @@ const GlassSelect: React.FC<GlassSelectProps> = ({ value, options, onChange, lab
                     borderRadius: 1,
                     fontSize: FONT.small,
                     whiteSpace: 'nowrap',
-                    transition: 'border-color 0.2s cubic-bezier(0.32,0.72,0,1)',
+                    transition: 'border-color 0.3s cubic-bezier(0.22,1,0.36,1)',
                     userSelect: 'none',
                     '&:hover': { borderColor: 'text.secondary' },
                 }}
@@ -58,7 +58,7 @@ const GlassSelect: React.FC<GlassSelectProps> = ({ value, options, onChange, lab
                     fontSize: 18,
                     opacity: 0.5,
                     ml: 'auto',
-                    transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)',
+                    transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
                     transform: open ? 'rotate(90deg)' : 'none',
                 }} />
             </Box>

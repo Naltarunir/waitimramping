@@ -22,7 +22,7 @@ const HeroTreeRow: React.FC<HeroTreeRowProps> = ({ info, spells, onChange }) => 
             {info.shortName}
         </span>
         {rowSep}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
             {spells.map(([spell, isChecked]) => (
                 <TalentOption
                     key={spell.id}

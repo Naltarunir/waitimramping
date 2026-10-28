@@ -41,7 +41,7 @@ const BreakdownCard: React.FC<Props> = ({ rotationConfigs, damageData, showAsHea
           label={spellObj.name}
           sublabel={`${formatNumber(dps, 2)} ${showAsHealing ? 'HPS' : 'DPS'}`}
           labelSuffix={hasSub && (
-            <ExpandMore sx={{ fontSize: 14, color: 'text.disabled', transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)', transform: isExpanded ? 'rotate(180deg)' : 'none' }} />
+            <ExpandMore sx={{ fontSize: 14, color: 'text.disabled', transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)', transform: isExpanded ? 'rotate(180deg)' : 'none' }} />
           )}
         />
       </Box>

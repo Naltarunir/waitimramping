@@ -79,7 +79,7 @@ main:focus {
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  transition: top 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .skip-link:focus {
@@ -95,15 +95,15 @@ main:focus {
   }
 }
 
+/* reduced motion keeps the opacity fade and drops movement and blur */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *:not(.reveal), *:not(.reveal)::before, *:not(.reveal)::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 
   .reveal {
-    opacity: 1 !important;
     transform: none !important;
     filter: none !important;
   }

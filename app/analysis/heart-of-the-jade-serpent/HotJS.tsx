@@ -614,7 +614,7 @@ const TimelineView: React.FC<{
                                                         zIndex: 4,
                                                         '&:hover': {
                                                             transform: 'translateX(-50%) scale(1.1)',
-                                                            transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)'
+                                                            transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)'
                                                         }
                                                     }}>
                                                         <IconButtonBase

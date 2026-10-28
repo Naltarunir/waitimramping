@@ -12,7 +12,7 @@ const Code: React.FC<TypographyProps> = ({ sx, ...rest }) => (
                 px: 0.5,
                 py: 0.25,
                 borderRadius: 0.5,
-                fontSize: "0.85em",
+                fontSize: "0.75rem",
             },
             ...(Array.isArray(sx) ? sx : [sx]),
         ]}

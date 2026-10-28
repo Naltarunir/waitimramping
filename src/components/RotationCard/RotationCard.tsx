@@ -108,7 +108,7 @@ const SourceTooltip: React.FC<{ healing: number; sources: Source[]; showSources?
         <Box>
             <Box>{formatNumber(Math.round(healing))} total</Box>
             {showSources && sources.map(source => (
-                <Box key={source.key} sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mt: 0.5 }}>
+                <Box key={source.key} sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
                     <SourceIcon source={source} />
                     <Box>{formatNumber(Math.round(source.value))}</Box>
                     <Box sx={{ color: 'text.secondary' }}>{formatPercent((source.value / total) * 100, 1)}</Box>
@@ -165,7 +165,7 @@ const BreakdownRows: React.FC<{ rows: Row[]; accent: string; showSources?: boole
                                 alignItems: 'center',
                                 gap: 1,
                                 px: 2,
-                                py: 0.75,
+                                py: 1,
                                 borderTop: `1px solid ${HAIRLINE_SOFT}`,
                                 background: sourceFill(row.sources, fillEnd, tintAlpha(accent, "8c")),
                                 '&:hover': { filter: 'brightness(1.15)' },
@@ -267,7 +267,7 @@ export const RotationCard: React.FC<RotationCardProps> = ({
                     <Box sx={{ display: 'flex', gap: 0.5, alignSelf: 'flex-start' }}>
                         <GlassTooltip title="Copy to current rotation">
                             <IconButton size="small" onClick={onCopy} sx={{ p: 0.25, color: 'text.disabled', '&:hover': { color: 'text.secondary' } }}>
-                                <ContentCopyTwoTone sx={{ fontSize: 15 }} />
+                                <ContentCopyTwoTone sx={{ fontSize: 16 }} />
                             </IconButton>
                         </GlassTooltip>
                         <IconButton size="small" onClick={onDelete} color="error" sx={{ p: 0.25 }}>
@@ -277,7 +277,7 @@ export const RotationCard: React.FC<RotationCardProps> = ({
                 </Box>
             </Box>
 
-            <Box sx={{ display: 'flex', gap: 2.5, px: 2, borderTop: `1px solid ${HAIRLINE}`, borderBottom: `1px solid ${HAIRLINE}` }}>
+            <Box sx={{ display: 'flex', gap: 2, px: 2, borderTop: `1px solid ${HAIRLINE}`, borderBottom: `1px solid ${HAIRLINE}` }}>
                 {tabs.map((label, i) => (
                     <Box
                         key={label}
@@ -319,7 +319,7 @@ export const RotationCard: React.FC<RotationCardProps> = ({
                             </Typography>
                         ))}
                     </Box>
-                    <Box sx={{ display: 'grid', gridTemplateColumns: COLUMNS, alignItems: 'center', gap: 1, px: 2, py: 0.75 }}>
+                    <Box sx={{ display: 'grid', gridTemplateColumns: COLUMNS, alignItems: 'center', gap: 1, px: 2, py: 0.5 }}>
                         <HeaderCell />
                         <HeaderCell>spell</HeaderCell>
                         <HeaderCell right>hps</HeaderCell>

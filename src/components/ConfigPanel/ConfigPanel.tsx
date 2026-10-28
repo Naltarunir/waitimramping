@@ -67,7 +67,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                 cursor: "pointer",
                                 userSelect: "none",
                                 whiteSpace: "nowrap",
-                                transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
+                                transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1)",
                                 "&:hover": { borderColor: accentColor },
                             }}
                         >
@@ -88,7 +88,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                 fontSize: 14,
                                 color: "text.disabled",
                                 transform: isActive ? "rotate(180deg)" : "none",
-                                transition: "transform 0.2s cubic-bezier(0.32,0.72,0,1)",
+                                transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
                             }} />
                         </Box>
                     );

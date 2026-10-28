@@ -12,7 +12,7 @@ export const SURFACE = {
 };
 
 // heavy easing used for every transition
-export const EASE = "cubic-bezier(0.32,0.72,0,1)";
+export const EASE = "cubic-bezier(0.22,1,0.36,1)";
 
 export const HAIRLINE = "rgba(255,255,255,0.10)";
 export const HAIRLINE_SOFT = "rgba(255,255,255,0.05)";
@@ -122,7 +122,7 @@ export const tintedControl = (accent: string, selected = false) => ({
     border: "1px solid",
     borderColor: selected ? accent : accent + TINT.restBorder,
     borderRadius: `${RADIUS.control}px`,
-    transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1), color 0.2s cubic-bezier(0.32,0.72,0,1)",
+    transition: "border-color 0.3s cubic-bezier(0.22,1,0.36,1), background-color 0.3s cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.22,1,0.36,1)",
     "&:hover": { borderColor: accent },
 });
 
