@@ -6,7 +6,7 @@ import {
     Stack,
     Typography
 } from '@mui/material';
-import { Add, DeleteForever, DeleteTwoTone } from '@mui/icons-material';
+import { Add, DeleteForever, DeleteTwoTone } from "@components/Icons";
 import SpellButton from '../SpellButtons/SpellButton';
 import { toRomanNumeral } from '../../util/toRomanNumeral';
 import type Spell from "../../data/spells/spell";

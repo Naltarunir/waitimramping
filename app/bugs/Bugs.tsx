@@ -3,7 +3,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { usePathname, useSearchParams } from "next/navigation";
-import { SearchOff } from "@mui/icons-material";
+import { SearchOff } from "@components/Icons";
 
 import PageHeader from "@components/PageHeader/PageHeader";
 import SwirlLink from "@components/SwirlLink/SwirlLink";
@@ -149,7 +149,7 @@ const BugsPage: React.FC<{ title: React.ReactNode; description: React.ReactNode 
                     </>
                 ) : (
                     <Box sx={{ py: 5, display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
-                        <SearchOff sx={{ fontSize: 32, color: "text.disabled" }} />
+                        <SearchOff sx={{ fontSize: 30, color: "text.disabled" }} />
                         <Typography sx={{ fontSize: FONT.body, color: "text.secondary" }}>
                             {isDefault ? "No bugs found for this spec" : "No bugs match these filters"}
                         </Typography>

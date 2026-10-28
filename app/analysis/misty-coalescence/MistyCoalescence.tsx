@@ -87,7 +87,7 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
     const data = useMemo(() => generateData(), []);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
             <PageHeader title={title} subtitle={description} />
             
             <Card variant="outlined" sx={{ maxWidth: MAX_WIDTH, width: "95%", mx: "auto", mb: 2 }}>
@@ -163,7 +163,7 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                                 verticalAlign="bottom"
                                 wrapperStyle={{ 
                                     color: '#fff',
-                                    paddingTop: '15px',
+                                    paddingTop: '16px',
                                 }}
                             />
                             <ReferenceLine 

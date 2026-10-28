@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/st
 import CssBaseline from '@mui/material/CssBaseline';
 import { useIsNonProd } from "@lib/betaModeClient";
 import { RAINBOW_COLORS } from '@components/Buttons/RainbowCard';
-import { FONT, HAIRLINE, HAIRLINE_SOFT, HEADING_FONT, INK } from '@components/Theme/tokens';
+import { EASE, FONT, HAIRLINE, HAIRLINE_SOFT, HEADING_FONT, INK } from '@components/Theme/tokens';
 
 const THEME_COLORS = {
     nonProd: RAINBOW_COLORS[3],
@@ -109,11 +109,25 @@ const Theme = ({ children }: { children: React.ReactNode }) => {
                     },
                 },
             },
+            MuiButtonBase: {
+                styleOverrides: {
+                    root: {
+                        transition: `background-color 0.2s ${EASE}, border-color 0.2s ${EASE}, color 0.2s ${EASE}, transform 0.2s ${EASE}, opacity 0.2s ${EASE}`,
+                        '&:active': {
+                            transform: 'scale(0.98)',
+                        },
+                        '&.Mui-focusVisible': {
+                            outline: `2px solid ${isNonProd ? THEME_COLORS.nonProd : THEME_COLORS.primary}`,
+                            outlineOffset: 2,
+                        },
+                    },
+                },
+            },
             MuiButton: {
                 styleOverrides: {
                     root: {
                         '&:hover': {
-                            backgroundColor: 'transparent',
+                            backgroundColor: 'rgba(255, 255, 255, 0.06)',
                         },
                     },
                 },

@@ -2,8 +2,8 @@
 import type React from "react";
 import { useState, useEffect } from "react";
 import { Box, Typography, Skeleton } from "@mui/material";
-import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import SwirlButton from "@components/Buttons/SwirlButton";
+import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
 import SpellLink from "@components/SpellLink/SpellLink";
 import SPELLS from "@data/spells";
 import { FONT } from "@components/Theme/tokens";

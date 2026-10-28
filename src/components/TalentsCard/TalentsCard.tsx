@@ -52,7 +52,7 @@ export const TalentOption: React.FC<TalentOptionProps> = ({ talent, isChecked, o
             sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "6px",
+                gap: "4px",
                 cursor: "pointer",
                 padding: "4px 10px 4px 4px",
                 borderRadius: radius,
@@ -61,7 +61,7 @@ export const TalentOption: React.FC<TalentOptionProps> = ({ talent, isChecked, o
                 borderRight: joined === 'left' ? 'none' : undefined,
                 borderLeft: joined === 'right' ? `1px solid ${dividerColor}` : undefined,
                 backgroundColor: isChecked ? color + "14" : "transparent",
-                transition: "transform 0.3s ease, border-color 0.15s ease, background-color 0.15s ease",
+                transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1), border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
                 userSelect: "none",
                 whiteSpace: "nowrap",
                 ...(joined === undefined && { "&:hover": { transform: "scale(1.03)" } }),
@@ -96,7 +96,7 @@ const RankedTalentOption: React.FC<RankedTalentOptionProps> = ({ talent, rank, m
     return (
         <Box sx={{
             display: "flex",
-            transition: "transform 0.3s ease",
+            transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
             "&:hover": { transform: "scale(1.02)" },
         }}>
             <TalentOption
@@ -129,7 +129,7 @@ const RankedTalentOption: React.FC<RankedTalentOptionProps> = ({ talent, rank, m
                     fontSize: FONT.micro,
                     fontWeight: 500,
                     color: isChecked ? "text.primary" : "text.disabled",
-                    transition: "border-color 0.15s ease, background-color 0.15s ease",
+                    transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
                     userSelect: "none",
                 }}
             >
@@ -184,7 +184,7 @@ const TalentsCard: React.FC<TalentsCardProps> = ({ options, color, label, card, 
             items.push(
                 <Box key={talent.name} sx={{
                     display: "flex",
-                    transition: "transform 0.3s ease",
+                    transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
                     "&:hover": { transform: "scale(1.02)" },
                 }}>
                     <TalentOption talent={talent} isChecked={isChecked} onChange={handleChange} color={color} joined="left" />

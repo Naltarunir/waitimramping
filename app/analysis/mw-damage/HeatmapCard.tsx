@@ -75,7 +75,7 @@ const HeatmapCard: React.FC<Props> = ({ rotationConfigs, player, rerollKey, show
               const range = max - min || 1;
               return (
                 <TableRow key={targets}>
-                  <TableCell align="center" sx={{ py: 1.25, px: 1.5 }}>
+                  <TableCell align="center" sx={{ py: 1, px: 1.5 }}>
                     <Typography variant="body2" fontWeight="bold">{targets}</Typography>
                   </TableCell>
                   {values.map((value, idx) => {
@@ -85,7 +85,7 @@ const HeatmapCard: React.FC<Props> = ({ rotationConfigs, player, rerollKey, show
                     const b = Math.round(68 + t * (128 - 68));
                     return (
                       <TableCell key={rotationConfigs[idx].dataKey} align="center" sx={{
-                        py: 1.25,
+                        py: 1,
                         px: 1,
                         backgroundColor: `rgba(${r}, ${g}, ${b}, 0.18)`,
                       }}>

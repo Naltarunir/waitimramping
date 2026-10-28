@@ -13,7 +13,7 @@ import {
     ListItemButton,
     ListItemText,
 } from "@mui/material";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Menu as MenuIcon } from "@components/Icons";
 import { useBranchName, useIsNonProd } from "@lib/betaModeClient";
 import SwirlButton from "@components/Buttons/SwirlButton";
 import { NavIconButton } from "@components/Buttons/NavIconButton";
@@ -110,7 +110,7 @@ function ResponsiveAppBar() {
                                         bgcolor: buttonColor,
                                         borderColor: "transparent",
                                         transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                                        transition: "transform 0.3s ease",
+                                        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
                                         zIndex: 2,
                                     },
                                     '&:hover': {
@@ -142,7 +142,7 @@ function ResponsiveAppBar() {
                 sx={{
                     height: 48,
                     minHeight: 48,
-                    mb: 3.5,
+                    mb: 3,
                     justifyContent: "center",
                     backgroundImage: "none",
                     bgcolor: "#171717d9",
@@ -174,8 +174,9 @@ function ResponsiveAppBar() {
                                 fontWeight: 700,
                                 textDecoration: "none",
                                 whiteSpace: "nowrap",
-                                fontSize: { xs: "1.05rem", md: "1.3rem" },
+                                fontSize: { xs: "1rem", md: "1.25rem" },
                                 color: "white",
+                                transition: "color 0.2s cubic-bezier(0.32,0.72,0,1)",
                                 "&:hover": {
                                     opacity: 0.7,
                                 },
@@ -186,12 +187,12 @@ function ResponsiveAppBar() {
                                 <span style={{
                                     fontFamily: HEADING_FONT,
                                     position: "relative",
-                                    top: 1.5,
+                                    top: 0,
                                     background: titleHovered ? RAINBOW_GRADIENT : "none",
                                     WebkitBackgroundClip: titleHovered ? "text" : "unset",
                                     WebkitTextFillColor: titleHovered ? "transparent" : "white",
                                     backgroundClip: titleHovered ? "text" : "unset",
-                                    transition: "all 0.3s ease",
+                                    transition: "all 0.3s cubic-bezier(0.32,0.72,0,1)",
                                 }}>
                                     Wait, I'm Ramping!
                                 </span>
@@ -200,7 +201,7 @@ function ResponsiveAppBar() {
                                 <Typography
                                     component="span"
                                     sx={{
-                                        fontSize: { xs: "0.65rem", md: "0.75rem" },
+                                        fontSize: "0.75rem",
                                         fontWeight: 500,
                                         lineHeight: 1,
                                         transform: "translateY(1px)",

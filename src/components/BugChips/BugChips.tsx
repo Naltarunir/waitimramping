@@ -1,10 +1,11 @@
 import type React from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@components/Icons";
 import SwirlChip from "@components/SwirlChip/SwirlChip";
 import { GlassTooltip } from "@components/Glass";
 import { type Bug, STATUS, SEVERITY_COLORS, STATUS_COLORS, getStatusBadge } from "@data/bugs";
 import { FONT } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 interface BugChipsProps {
     bug: Bug;
@@ -54,7 +55,7 @@ export const BugChips: React.FC<BugChipsProps> = ({ bug, showTooltip = true }) =
                                         variant="caption" 
                                         sx={{ 
                                             fontSize: FONT.small,
-                                            fontFamily: 'monospace',
+                                            fontFamily: MONO_FONT,
                                             opacity: index === 0 ? 1 : 0.8,
                                             fontWeight: 400,
                                         }}

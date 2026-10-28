@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -39,4 +39,72 @@ main {
 
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(128, 128, 128, 0.6);
+}
+
+/* headings balance, body copy avoids orphaned words */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* numbers line up in tables and answers */
+td, th, code {
+  font-variant-numeric: tabular-nums;
+}
+
+/* visible keyboard focus everywhere, including plain links and inputs */
+:focus-visible {
+  outline: 2px solid #7ee5ff;
+  outline-offset: 2px;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: -64px;
+  left: 16px;
+  z-index: 2000;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: #171717;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  transition: top 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* scroll reveal (see Reveal.tsx); never hide content when scripts are off */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }

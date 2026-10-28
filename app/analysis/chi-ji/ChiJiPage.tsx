@@ -3,7 +3,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Box, Card, Divider, Grid } from "@mui/material";
-import { Refresh } from "@mui/icons-material";
+import { Refresh } from "@components/Icons";
 import PageHeader from "@components/PageHeader/PageHeader";
 import SpellButtons from "@components/SpellButtons/SpellButtons";
 import CurrentRotationControl from "@components/CurrentRotationControl/CurrentRotationControl";
@@ -132,7 +132,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
             : [];
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
             <PageHeader
                 title={title} 
                 subtitle={description}

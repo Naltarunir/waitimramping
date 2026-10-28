@@ -27,7 +27,7 @@ const AbilityBar: React.FC<AbilityBarProps> = ({ pct, color, label, sublabel, di
             {sublabel}
           </Typography>
         )}
-        <SwirlChip message={formatPercent(pct * 100, 1)} borderColor={color} fontSize="0.7rem" />
+        <SwirlChip message={formatPercent(pct * 100, 1)} borderColor={color} fontSize="0.75rem" />
       </Box>
     </Box>
     <Box sx={{ position: 'relative', height: dimmed ? 4 : 6, borderRadius: '2px', bgcolor: 'rgba(255,255,255,0.08)' }}>

@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { Box, Container, Divider, useTheme, Card, Typography, Tab, Tabs, Skeleton } from "@mui/material";
-import { Refresh, EmojiEvents } from "@mui/icons-material";
+import { Refresh, EmojiEvents } from "@components/Icons";
 import SwirlButton from "@components/Buttons/SwirlButton";
 
 import PageHeader from "@components/PageHeader/PageHeader";

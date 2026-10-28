@@ -1,7 +1,7 @@
 import type spell from "@data/spells/spell";
 import type { Tags } from "@data/shared/tags";
 import { type ReactNode } from "react";
-import { Check, Close } from "@mui/icons-material";
+import { Check, Close } from "@components/Icons";
 
 export enum SEVERITY {
     CRITICAL = "Critical",

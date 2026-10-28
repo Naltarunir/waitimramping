@@ -99,7 +99,7 @@ const Timeline: React.FC<{ title: React.ReactNode; description: React.ReactNode 
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
             <PageHeader title={title} subtitle={description} />
 
             {isMobile && (

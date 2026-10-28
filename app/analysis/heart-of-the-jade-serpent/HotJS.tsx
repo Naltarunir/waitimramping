@@ -26,6 +26,7 @@ import { pluralize } from '@util/stringManipulation';
 import TALENTS from '@data/talents';
 import { CLASSES } from '@data/class';
 import { CONTENT_WIDTH, FONT, HAIRLINE, ICON } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 const YULONS_AVATAR_RPPM = 1.5;
 const TIMELINE_HEIGHT = 500;
@@ -357,11 +358,11 @@ const SetupOptions: React.FC<{
 };
 
 const SummaryPair: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-    <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.75 }}>
+    <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
         <Typography sx={{ fontSize: FONT.small, color: 'text.disabled' }}>
             {label}
         </Typography>
-        <Typography sx={{ fontFamily: 'monospace', fontSize: FONT.small, color: 'text.primary' }}>
+        <Typography sx={{ fontFamily: MONO_FONT, fontSize: FONT.small, color: 'text.primary' }}>
             {value}
         </Typography>
     </Box>
@@ -417,21 +418,21 @@ const Results: React.FC<{
                                 <Typography sx={{ fontSize: FONT.body, fontWeight: 600 }}>
                                     {ability.spell.name}
                                 </Typography>
-                                <Typography sx={{ fontFamily: 'monospace', fontSize: FONT.micro, color: 'text.disabled' }}>
+                                <Typography sx={{ fontFamily: MONO_FONT, fontSize: FONT.micro, color: 'text.disabled' }}>
                                     {castsPerMinute.toFixed(1)}{T("cpm")}
                                     {avgCooldown > 0 && <>, {avgCooldown.toFixed(1)}s {T("avg cd")}</>}
                                 </Typography>
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 0.25 }}>
-                                <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.75 }}>
-                                    <Typography sx={{ fontFamily: 'monospace', fontSize: FONT.heading, lineHeight: 1, color: ability.color }}>
+                                <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
+                                    <Typography sx={{ fontFamily: MONO_FONT, fontSize: FONT.heading, lineHeight: 1, color: ability.color }}>
                                         {withHotJS}
                                     </Typography>
                                     <Typography sx={{ fontSize: FONT.small, color: 'text.secondary' }}>
                                         {T(pluralize(withHotJS, "Cast")).toLowerCase()}
                                     </Typography>
                                 </Box>
-                                <Typography sx={{ fontFamily: 'monospace', fontSize: FONT.micro, color: extraCasts > 0 ? '#4ade80' : 'text.disabled' }}>
+                                <Typography sx={{ fontFamily: MONO_FONT, fontSize: FONT.micro, color: extraCasts > 0 ? '#4ade80' : 'text.disabled' }}>
                                     +{extraCasts} {T("Extra").toLowerCase()}
                                 </Typography>
                             </Box>
@@ -439,7 +440,7 @@ const Results: React.FC<{
                     );
                 })}
             </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 3, rowGap: 0.5, px: 2, py: 1.25, borderTop: `1px solid ${HAIRLINE}` }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 3, rowGap: 0.5, px: 2, py: 1, borderTop: `1px solid ${HAIRLINE}` }}>
                 <SummaryPair label={T("windows")} value={`${events.length}`} />
                 <SummaryPair label={T("uptime")} value={`${((uptime / timeRange) * 100).toFixed(1)}% (${uptime.toFixed(1)}s)`} />
                 {avatarProcsPerMinute !== null && (
@@ -613,7 +614,7 @@ const TimelineView: React.FC<{
                                                         zIndex: 4,
                                                         '&:hover': {
                                                             transform: 'translateX(-50%) scale(1.1)',
-                                                            transition: 'transform 0.2s ease'
+                                                            transition: 'transform 0.2s cubic-bezier(0.32,0.72,0,1)'
                                                         }
                                                     }}>
                                                         <IconButtonBase

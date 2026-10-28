@@ -2,8 +2,9 @@
 import type React from "react";
 import { useState, useRef } from "react";
 import { Box, Collapse, Typography, useTheme } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@components/Icons";
 import { CHIP_HEIGHT, FONT, TINT } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 export interface ConfigSection {
     key: string;
@@ -66,7 +67,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                 cursor: "pointer",
                                 userSelect: "none",
                                 whiteSpace: "nowrap",
-                                transition: "border-color 0.15s ease, background-color 0.15s ease",
+                                transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
                                 "&:hover": { borderColor: accentColor },
                             }}
                         >
@@ -79,15 +80,15 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ sections, accent, onReset, le
                                         {section.icon}
                                     </Box>
                                 )}
-                                <Typography component="div" sx={{ fontSize: FONT.small, fontFamily: "monospace", color: "text.primary" }}>
+                                <Typography component="div" sx={{ fontSize: FONT.small, fontFamily: MONO_FONT, color: "text.primary" }}>
                                     {section.summary}
                                 </Typography>
                             </Box>
                             <ExpandMore sx={{
-                                fontSize: 15,
+                                fontSize: 14,
                                 color: "text.disabled",
                                 transform: isActive ? "rotate(180deg)" : "none",
-                                transition: "transform 0.2s",
+                                transition: "transform 0.2s cubic-bezier(0.32,0.72,0,1)",
                             }} />
                         </Box>
                     );

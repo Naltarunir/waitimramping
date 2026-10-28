@@ -16,7 +16,7 @@ const SpecDisplay: React.FC<{ spec: specialization, short?: boolean }> = ({ spec
         border: "1px solid",
         borderColor: "divider",
         position: "relative",
-        marginRight: "5px",
+        marginRight: "4px",
         flexShrink: 0,
       }}
     >

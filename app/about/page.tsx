@@ -1,7 +1,7 @@
 
 import { Typography, Card, CardContent, Divider, Stack, Box } from "@mui/material";
 import { PageMetadata } from "@components/PageMetadata/PageMetadata";
-import { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
+import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
 import { CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
 
 const title = "About";
@@ -23,7 +23,7 @@ const imageStyle = {
 
 const About = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
       <Card
         variant="outlined"
         sx={{
@@ -35,15 +35,6 @@ const About = () => {
           boxSizing: "border-box",
           position: "relative",
           overflow: "hidden",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: RAINBOW_GRADIENT,
-          },
         }}
       >
         <CardContent>

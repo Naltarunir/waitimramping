@@ -1,6 +1,18 @@
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
 
-export const HEADING_FONT = "var(--font-heading), sans-serif";
+// one typeface site wide: headings inherit it, the system monospace is only for numbers
+export const HEADING_FONT = "inherit";
+export const MONO_FONT = "monospace";
+
+// approved dark surfaces
+export const SURFACE = {
+    base: "#121212",
+    raised: "#171717",
+    overlay: "#272727",
+};
+
+// heavy easing used for every transition
+export const EASE = "cubic-bezier(0.32,0.72,0,1)";
 
 export const HAIRLINE = "rgba(255,255,255,0.10)";
 export const HAIRLINE_SOFT = "rgba(255,255,255,0.05)";
@@ -17,14 +29,14 @@ export const BLUR = {
     bar: "blur(12px)",
 };
 
-// 1.25 ratio steps
+// every size lands on the Tailwind type scale (12, 14, 16, 18, 20, 24, 30)
 export const FONT = {
-    display: "2rem",
+    display: "1.875rem",
     heading: "1.5rem",
     subhead: "1.125rem",
     body: "0.875rem",
-    small: "0.78rem",
-    micro: "0.7rem",
+    small: "0.75rem",
+    micro: "0.75rem",
 };
 
 // spell icons are the layout's basic unit
@@ -110,7 +122,7 @@ export const tintedControl = (accent: string, selected = false) => ({
     border: "1px solid",
     borderColor: selected ? accent : accent + TINT.restBorder,
     borderRadius: `${RADIUS.control}px`,
-    transition: "border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease",
+    transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1), color 0.2s cubic-bezier(0.32,0.72,0,1)",
     "&:hover": { borderColor: accent },
 });
 

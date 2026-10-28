@@ -84,7 +84,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
 
     return (
         <div>
-            <div style={{ display: "grid", gridTemplateColumns: "max-content 1px auto", gap: "6px 10px", alignItems: "start" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "max-content 1px auto", gap: "4px 8px", alignItems: "start" }}>
                 {groups.map(({ label, spells }) => (
                     <React.Fragment key={label}>
                         <span style={rowLabel}>{label}</span>
@@ -125,7 +125,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
                                             borderRadius: 4,
                                             border: "1px solid rgba(255,255,255,0.12)",
                                             opacity: 0.55,
-                                            transition: "all 0.15s",
+                                            transition: "all 0.2s cubic-bezier(0.32,0.72,0,1)",
                                             whiteSpace: "nowrap",
                                         }}
                                     >

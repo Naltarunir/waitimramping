@@ -7,7 +7,7 @@ import { Background, BaseEdge, type Edge, type EdgeProps, Handle, type Node, typ
 import "@xyflow/react/dist/style.css";
 import { Box, Typography, Container, IconButton } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
-import { Fullscreen, FullscreenExit } from "@mui/icons-material";
+import { Fullscreen, FullscreenExit } from "@components/Icons";
 import PageHeader from "@components/PageHeader/PageHeader";
 import { FONT, HAIRLINE, ICON, INK, RADIUS, CONTENT_WIDTH } from "@components/Theme/tokens";
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
@@ -75,7 +75,7 @@ const SpellNode: React.FC<NodeProps<Node<SpellNodeData>>> = ({ id, data }) => {
     const dimmed = connected !== null && !connected.has(id);
     return (
         <GlassTooltip title={data.name} placement="top" arrow disableInteractive slotProps={{ popper: { container } }}>
-            <Box sx={{ width: NODE_SIZE, height: NODE_SIZE, opacity: dimmed ? 0.25 : 1, transition: "opacity 0.15s ease" }}>
+            <Box sx={{ width: NODE_SIZE, height: NODE_SIZE, opacity: dimmed ? 0.25 : 1, transition: "opacity 0.2s cubic-bezier(0.32,0.72,0,1)" }}>
                 <Handle type="target" position={Position.Left} style={{ opacity: 0 }} />
                 {data.splitIcons ? (
                     <Box
@@ -147,7 +147,7 @@ const RoutedEdge: React.FC<EdgeProps<Edge<RoutedEdgeData>>> = ({ id, source, tar
     const path = [...points.slice(0, -1), base].map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
 
     return (
-        <g opacity={dimmed ? 0.1 : 1} style={{ transition: "opacity 0.15s ease" }}>
+        <g opacity={dimmed ? 0.1 : 1} style={{ transition: "opacity 0.2s cubic-bezier(0.32,0.72,0,1)" }}>
             <BaseEdge
                 id={id}
                 path={path}

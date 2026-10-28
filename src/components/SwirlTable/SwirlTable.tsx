@@ -2,8 +2,8 @@
 import type React from "react";
 import { useState, useMemo } from "react";
 import { Box, Typography } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { KeyboardArrowUp as KeyboardArrowUpIcon } from "@components/Icons";
+import { KeyboardArrowDown as KeyboardArrowDownIcon } from "@components/Icons";
 import RainbowCard from "@components/Buttons/RainbowCard";
 import { CHIP_HEIGHT } from "@components/Theme/tokens";
 
@@ -112,8 +112,8 @@ function SwirlTable<T>({
                             </Typography>
                             {isSortable && sortKey === col.key && (
                                 sortDir === "asc"
-                                    ? <KeyboardArrowUpIcon sx={{ fontSize: "0.9rem", color: "text.disabled" }} />
-                                    : <KeyboardArrowDownIcon sx={{ fontSize: "0.9rem", color: "text.disabled" }} />
+                                    ? <KeyboardArrowUpIcon sx={{ fontSize: "0.875rem", color: "text.disabled" }} />
+                                    : <KeyboardArrowDownIcon sx={{ fontSize: "0.875rem", color: "text.disabled" }} />
                             )}
                         </Box>
                     );

@@ -22,7 +22,7 @@ export const NavIconButton = ({
             {...props}
             sx={{
                 color: initialColor,
-                transition: "color 0.3s ease, transform 0.3s ease",
+                transition: "color 0.3s cubic-bezier(0.32,0.72,0,1), transform 0.3s cubic-bezier(0.32,0.72,0,1)",
                 backgroundColor: "transparent",
                 "&:hover": {
                     color: hoverColor,

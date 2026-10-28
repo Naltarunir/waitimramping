@@ -7,7 +7,8 @@ import {
     Avatar,
 } from "@mui/material";
 import RainbowCard, { RAINBOW_COLORS, RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
-import { CONTENT_WIDTH, FONT, HAIRLINE } from "@components/Theme/tokens";
+import Reveal from "@components/Reveal/Reveal";
+import { CONTENT_WIDTH, FONT, HAIRLINE, MONO_FONT } from "@components/Theme/tokens";
 
 const CURRENT_PATCH = "12.1.5";
 
@@ -52,7 +53,7 @@ const STATUS_GREEN = RAINBOW_COLORS[1];
 const StatusLine = () => (
     <Typography component="div" sx={{ fontSize: FONT.small, color: 'text.secondary' }}>
         current for patch{' '}
-        <Box component="span" sx={{ fontFamily: 'monospace', fontWeight: 700, color: STATUS_GREEN }}>
+        <Box component="span" sx={{ fontFamily: MONO_FONT, fontWeight: 600, color: STATUS_GREEN }}>
             {CURRENT_PATCH}
         </Box>
     </Typography>
@@ -70,7 +71,8 @@ const Hero = () => (
             variant="h2"
             component="h1"
             sx={{
-                fontWeight: 'bold',
+                fontWeight: 700,
+                maxWidth: 680,
                 background: RAINBOW_GRADIENT,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -79,7 +81,7 @@ const Hero = () => (
         >
             Wait, I'm Ramping!
         </Typography>
-        <Typography variant="h6" color="text.secondary">
+        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 680 }}>
             Healer theorycrafting and optimization tools for World of Warcraft
         </Typography>
         <StatusLine />
@@ -115,7 +117,7 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.7,
-                    transition: 'opacity 0.25s ease',
+                    transition: 'opacity 0.25s cubic-bezier(0.32,0.72,0,1)',
                 }}
             />
         </Box>
@@ -132,14 +134,18 @@ const ToolCard = ({ tool, height }: { tool: typeof tools[number]; height: number
 
 const ToolGrid = () => (
     <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(6, 1fr)' }, gap: 2 }}>
-        {leadTools.map(tool => (
+        {leadTools.map((tool, i) => (
             <Box key={tool.path} sx={{ gridColumn: { md: 'span 3' } }}>
-                <ToolCard tool={tool} height={180} />
+                <Reveal delay={i * 100} sx={{ height: '100%' }}>
+                    <ToolCard tool={tool} height={180} />
+                </Reveal>
             </Box>
         ))}
-        {tools.map(tool => (
+        {tools.map((tool, i) => (
             <Box key={tool.path} sx={{ gridColumn: { md: 'span 2' } }}>
-                <ToolCard tool={tool} height={120} />
+                <Reveal delay={200 + i * 100} sx={{ height: '100%' }}>
+                    <ToolCard tool={tool} height={120} />
+                </Reveal>
             </Box>
         ))}
     </Box>
@@ -158,7 +164,7 @@ const Byline = () => (
                     alt="swirl"
                     sx={{ width: 24, height: 24, borderRadius: '4px', border: '1px solid rgba(255,255,255,0.1)' }}
                 />
-                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: 'color 0.2s' }}>
+                <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: 'color 0.2s cubic-bezier(0.32,0.72,0,1)' }}>
                     made by{' '}
                     <Box
                         component="span"
@@ -180,7 +186,9 @@ const Byline = () => (
 const Home = () => (
     <Container maxWidth="lg" sx={{ mt: 1, mb: 2 }}>
         <Box sx={{ maxWidth: CONTENT_WIDTH.wide, mx: 'auto', display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <Hero />
+            <Reveal>
+                <Hero />
+            </Reveal>
             <ToolGrid />
             <Byline />
         </Box>

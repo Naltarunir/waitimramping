@@ -64,7 +64,7 @@ const SwirlButton: React.FC<SwirlButtonProps> = ({
         height: 2,
         backgroundColor: accent,
         transform: selected ? "scaleX(1)" : "scaleX(0)",
-        transition: "transform 0.3s ease",
+        transition: "transform 0.3s cubic-bezier(0.32,0.72,0,1)",
     };
 
     const navSx = {
@@ -87,16 +87,16 @@ const SwirlButton: React.FC<SwirlButtonProps> = ({
         "& .sb-icon": {
             display: "flex",
             alignItems: "center",
-            px: 0.9,
+            px: 1,
             color: accent,
             backgroundColor: accent + TINT.wash,
             borderRight: `1px solid ${REST_BORDER}`,
-            "& svg": { fontSize: 15 },
+            "& svg": { fontSize: 14 },
         },
         "& .sb-label": {
             display: "flex",
             alignItems: "center",
-            px: 1.25,
+            px: 1,
             position: "relative",
             ...(hasIcon && { "&::after": underline }),
         },
@@ -128,7 +128,7 @@ const SwirlButton: React.FC<SwirlButtonProps> = ({
                 position: "relative",
                 fontWeight: 600,
                 textTransform: "none",
-                transition: "color 0.2s ease, border-color 0.15s ease",
+                transition: "color 0.2s cubic-bezier(0.32,0.72,0,1), border-color 0.2s cubic-bezier(0.32,0.72,0,1)",
                 ...(isNav ? navSx : tintedSx),
                 ...sx,
             }}

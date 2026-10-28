@@ -1,9 +1,9 @@
 import type React from "react";
 import { useState } from "react";
 import { Dialog, Typography, Box } from "@mui/material";
-import LinkIcon from "@mui/icons-material/Link";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
+import { Link as LinkIcon } from "@components/Icons";
+import { Check as CheckIcon } from "@components/Icons";
+import { Close as CloseIcon } from "@components/Icons";
 import SpellButton from "@components/SpellButtons/SpellButton";
 import SwirlLink from "@components/SwirlLink/SwirlLink";
 import SwirlChip from "@components/SwirlChip/SwirlChip";
@@ -12,6 +12,7 @@ import { GlassTooltip } from "@components/Glass";
 import { formatLogUrl } from "@util/stringManipulation";
 import { type Bug, SEVERITY_COLORS, STATUS, STATUS_COLORS } from "@data/bugs";
 import { FONT, HAIRLINE, ICON } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 interface BugDialogProps {
     open: boolean;
@@ -62,7 +63,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
         <>
             <Box sx={{ display: "flex", borderBottom: `1px solid ${HAIRLINE}` }}>
                 <Box sx={{ width: 7, flexShrink: 0, backgroundColor: severityColor }} />
-                <Box sx={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 2, px: 2.5, py: 2 }}>
+                <Box sx={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 2, px: 2, py: 2 }}>
                     <SpellButton selectedSpell={bug.spell} size={ICON.xl} showName />
                     <Box sx={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 0.5 }}>
                         <Typography sx={{ fontSize: FONT.small, color: "text.secondary" }}>
@@ -89,7 +90,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                 gridTemplateRows: { sm: "minmax(0, 1fr)" },
                 overflowY: { xs: "auto", sm: "hidden" },
             }}>
-                <Box sx={{ px: 2.5, py: 2, display: "flex", flexDirection: "column", gap: 2, overflowY: { sm: "auto" } }}>
+                <Box sx={{ px: 2, py: 2, display: "flex", flexDirection: "column", gap: 2, overflowY: { sm: "auto" } }}>
                     {bug.description && (
                         <Section label="Description">
                             <Typography component="div" variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
@@ -106,7 +107,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                     )}
                     {bug.logs && bug.logs.length > 0 && (
                         <Section label="Logs">
-                            <Box sx={{ display: "flex", flexDirection: "column", gap: 0.75 }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
                                 {bug.logs.map((log, i) => (
                                     <Box key={i} sx={{ display: "flex", alignItems: "baseline", gap: 1 }}>
                                         {log.label && (
@@ -136,7 +137,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                     borderTop: { xs: `1px solid ${HAIRLINE}`, sm: "none" },
                 }}>
                     <Fact label="SEVERITY">
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 0.75 }}>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                             <Box sx={{ width: 8, height: 8, borderRadius: "2px", backgroundColor: severityColor }} />
                             <Typography sx={{ fontSize: FONT.small }}>{bug.severity}</Typography>
                         </Box>
@@ -148,9 +149,9 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                     </Fact>
                     {bug.buildsTested.length > 0 && (
                         <Fact label="BUILDS TESTED">
-                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75 }}>
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                                 {[...bug.buildsTested].reverse().map((build, i) => (
-                                    <Typography key={build} sx={{ fontFamily: "monospace", fontSize: FONT.small, color: i === 0 ? "text.primary" : "text.disabled" }}>
+                                    <Typography key={build} sx={{ fontFamily: MONO_FONT, fontSize: FONT.small, color: i === 0 ? "text.primary" : "text.disabled" }}>
                                         {build}
                                     </Typography>
                                 ))}
@@ -159,7 +160,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                     )}
                     {bug.affectedSpells && bug.affectedSpells.length > 0 && (
                         <Fact label="AFFECTED SPELLS">
-                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75 }}>
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                                 {bug.affectedSpells.map(affected => (
                                     <SpellButton key={affected.id} selectedSpell={affected} size={ICON.sm} showName />
                                 ))}
@@ -170,7 +171,7 @@ export const BugDetails: React.FC<BugDetailsProps> = ({ bug, onClose, actions })
                         <Fact label="TAGS">
                             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                                 {bug.tags.map(tag => (
-                                    <SwirlChip key={tag.name} message={tag.name} borderColor={tag.color} fontSize="0.7rem" />
+                                    <SwirlChip key={tag.name} message={tag.name} borderColor={tag.color} fontSize="0.75rem" />
                                 ))}
                             </Box>
                         </Fact>

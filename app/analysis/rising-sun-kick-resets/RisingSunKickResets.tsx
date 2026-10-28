@@ -14,7 +14,7 @@ import {
     Divider,
     IconButton,
 } from "@mui/material";
-import { DeleteTwoTone } from "@mui/icons-material";
+import { DeleteTwoTone } from "@components/Icons";
 
 import PageHeader from "@components/PageHeader/PageHeader";
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
@@ -31,6 +31,7 @@ import { useRotationManager } from "@hooks/useRotationManager";
 import { T } from "@util/T";
 import { pluralize, hexToRgb, formatPercent } from "@util/stringManipulation";
 import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -68,7 +69,7 @@ const ProgressBar: React.FC<{
                     height: '100%', 
                     width: `${Math.min(percentage, 100)}%`,
                     backgroundColor: color,
-                    transition: 'width 0.3s ease'
+                    transition: 'width 0.3s cubic-bezier(0.32,0.72,0,1)'
                 }} />
             </Box>
         </Box>
@@ -134,7 +135,7 @@ const SpellInfoDisplay: React.FC<{
             <Typography variant="body2" sx={{ fontWeight: 'medium', minWidth: 100 }}>
                 Formula:
             </Typography>
-            <Typography variant="body2" sx={{ fontFamily: 'monospace', fontSize: '0.9em' }}>
+            <Typography variant="body2" sx={{ fontFamily: MONO_FONT, fontSize: '0.9em' }}>
                 1 - (reset %)<sup>boks</sup>
             </Typography>
         </Box>
@@ -338,7 +339,7 @@ const RisingSunKickResets: React.FC<{ title: React.ReactNode; description: React
     };
     
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+        <Container sx={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "center", justifyContent: "center" }}>
             <PageHeader
                 title={title}
                 subtitle={description}
@@ -363,7 +364,7 @@ const RisingSunKickResets: React.FC<{ title: React.ReactNode; description: React
                                 <Box sx={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    gap: 1.6,
+                                    gap: 1.5,
                                     width: '45%',
                                     alignItems: 'stretch'
                                 }}>

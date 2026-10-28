@@ -2,9 +2,9 @@
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Box, TextField, InputAdornment, Typography } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove } from "@components/Icons";
 import { GlassTooltip } from '@components/Glass';
-import { FIELD_HEIGHT, FONT } from "@components/Theme/tokens";
+import { FIELD_HEIGHT, FONT, MONO_FONT } from "@components/Theme/tokens";
 
 export interface FieldDef {
     key: string;
@@ -25,7 +25,7 @@ interface FieldCellsProps {
 // how long typing has to pause before the value is applied
 const COMMIT_DELAY_MS = 400;
 
-const inputSx = { width: 92, '& .MuiInputBase-input': { fontSize: FONT.body, fontFamily: 'monospace', py: 0 } };
+const inputSx = { width: 92, '& .MuiInputBase-input': { fontSize: FONT.body, fontFamily: MONO_FONT, py: 0 } };
 
 export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptionsChange, label }) => {
     const values = options as Record<string, number | undefined>;
@@ -132,8 +132,8 @@ export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptio
                     gap: 0.25,
                     minHeight: FIELD_HEIGHT,
                     boxSizing: "border-box",
-                    px: 1.25,
-                    py: 0.75,
+                    px: 1,
+                    py: 0.5,
                     borderRadius: 1,
                     border: "1px solid",
                     borderColor: isBelowMin ? "error.main" : "divider",

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import { ArrowUpward, ArrowDownward, Delete } from "@mui/icons-material";
+import { ArrowUpward, ArrowDownward, Delete } from "@components/Icons";
 import { SwirlIconButton } from "@components/Buttons/SwirlIconButton";
 
 import type spell from '@data/spells/spell';
@@ -417,7 +417,7 @@ export default function TimelineVisualizer({ selectedSpec, haste, rotations = []
                   width={RECT_HEIGHT}
                   height={RECT_HEIGHT}
                 >
-                  <ArrowUpward sx={{ fontSize: 15 }} />
+                  <ArrowUpward sx={{ fontSize: 14 }} />
                 </SwirlIconButton>
                 <SwirlIconButton
                   tint="danger"
@@ -425,7 +425,7 @@ export default function TimelineVisualizer({ selectedSpec, haste, rotations = []
                   width={RECT_HEIGHT}
                   height={RECT_HEIGHT}
                 >
-                  <Delete sx={{ fontSize: 15 }} />
+                  <Delete sx={{ fontSize: 14 }} />
                 </SwirlIconButton>
                 <SwirlIconButton
                   onClick={() => onMoveRotationDown(rotation.id)}
@@ -433,7 +433,7 @@ export default function TimelineVisualizer({ selectedSpec, haste, rotations = []
                   width={RECT_HEIGHT}
                   height={RECT_HEIGHT}
                 >
-                  <ArrowDownward sx={{ fontSize: 15 }} />
+                  <ArrowDownward sx={{ fontSize: 14 }} />
                 </SwirlIconButton>
               </Box>
             ))}

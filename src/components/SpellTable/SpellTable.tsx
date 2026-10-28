@@ -3,7 +3,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Stack, Typography, Divider, Card } from "@mui/material";
-import { ArrowUpward, ArrowDownward, DeleteTwoTone, DeleteForever } from "@mui/icons-material";
+import { ArrowUpward, ArrowDownward, DeleteTwoTone, DeleteForever } from "@components/Icons";
 
 import SwirlButton from "@components/Buttons/SwirlButton";
 import { SwirlIconButton } from "@components/Buttons/SwirlIconButton";
@@ -100,14 +100,14 @@ const SpellTable: React.FC<SpellTableProps> = ({
                                     display: "flex",
                                     alignItems: "center",
                                     px: 2,
-                                    py: 0.75,
+                                    py: 0.5,
                                     gap: 1.5,
                                 }}>
                                     <Typography variant="caption" color="text.disabled" sx={{ flexShrink: 0, minWidth: 16, textAlign: 'right' }}>
                                         {index + 1}
                                     </Typography>
                                     <SpellButton selectedSpell={spell} size={ICON.md} />
-                                    <Box sx={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'baseline', gap: 0.75 }}>
+                                    <Box sx={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
                                         <Typography variant="body2" noWrap>
                                             {spell.name} {spell.empowerLevel ? `(${toRomanNumeral(spell.empowerLevel)})` : ''}
                                         </Typography>

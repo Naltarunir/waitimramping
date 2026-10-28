@@ -59,7 +59,7 @@ const EmpowerLevelDialog: React.FC<EmpowerLevelDialogProps> = ({
             <DialogContent
                 sx={{
                     p: 2,
-                    backgroundColor: "rgba(18, 18, 18, 0.6)",
+                    backgroundColor: "rgba(24, 24, 24, 0.6)",
                     color: "white",
                 }}
             >

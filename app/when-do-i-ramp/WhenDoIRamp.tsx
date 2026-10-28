@@ -18,6 +18,7 @@ import { getSpellById } from '@data/spells';
 
 import { useSpec } from '@context/SpecContext';
 import { encodeShare, decodeShare } from '@util/rotationShare';
+import { MONO_FONT } from "@components/Theme/tokens";
 
 const RampAnswer: React.FC<{ seconds: number; accent: string }> = ({ seconds, accent }) => {
     const hasAnswer = seconds > 0;
@@ -31,14 +32,14 @@ const RampAnswer: React.FC<{ seconds: number; accent: string }> = ({ seconds, ac
             borderRadius: `${RADIUS.card}px`,
             border: hasAnswer ? `1px solid ${accent}55` : `1px dashed ${HAIRLINE}`,
             backgroundColor: hasAnswer ? `${accent}0d` : 'transparent',
-            transition: 'border-color 0.2s ease, background-color 0.2s ease',
+            transition: 'border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)',
         }}>
             <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 0.25, my: 0.25 }}>
                 <Typography sx={{
                     fontSize: FONT.display,
                     fontWeight: 700,
                     lineHeight: 1.1,
-                    fontFamily: 'monospace',
+                    fontFamily: MONO_FONT,
                     color: hasAnswer ? accent : 'text.disabled',
                 }}>
                     {hasAnswer ? Math.ceil(seconds) : '—'}
@@ -132,7 +133,7 @@ const WhenDoIRamp: React.FC<{ title: React.ReactNode; description: React.ReactNo
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
             <PageHeader title={title} subtitle={description} />
 
             <Box sx={{ maxWidth: CONTENT_WIDTH.narrow, width: { xs: "90%", sm: "90%", md: "100%" }, mx: "auto" }}>

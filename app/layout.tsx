@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter, Sora } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import Script from "next/script";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { SpecProvider } from "@context/SpecContext";
@@ -9,8 +9,6 @@ import FooterBar from "@components/AppBar/FooterBar";
 import ClientTilingBackground from "@components/Tiling/ClientTilingBackground";
 import { PageMetadata } from "@components/PageMetadata/PageMetadata";
 
-const font = Inter({ subsets: ["latin"], display: "swap" });
-const headingFont = Sora({ subsets: ["latin"], display: "swap", variable: "--font-heading" });
 export const metadata = PageMetadata();
 
 export default function RootLayout({
@@ -19,7 +17,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`${font.className} ${headingFont.variable}`}>
+        <html lang="en" className={`${GeistSans.className} ${GeistSans.variable}`}>
             <head>
                 <script
                     dangerouslySetInnerHTML={{
@@ -32,6 +30,7 @@ export default function RootLayout({
                 />
             </head>
             <body>
+                <a className="skip-link" href="#main">Skip to content</a>
                 <Script 
                     src="https://wow.zamimg.com/js/tooltips.js" 
                     strategy="afterInteractive"
@@ -41,7 +40,7 @@ export default function RootLayout({
                         <SpecProvider>
                             <ClientTilingBackground />
                             <AppBar />
-                            <main>{children}</main>
+                            <main id="main" tabIndex={-1}>{children}</main>
                             <FooterBar />
                         </SpecProvider>
                     </Theme>

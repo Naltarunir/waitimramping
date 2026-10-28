@@ -4,8 +4,9 @@ import SpellButton from "@components/SpellButtons/SpellButton";
 import SwirlTable, { type SwirlColumn } from "@components/SwirlTable/SwirlTable";
 import { type Bug, SEVERITY_COLORS, STATUS, STATUS_COLORS, getLatestBuild, getBuildSortValue } from "@data/bugs";
 import { extractTextFromReactNode } from "@util/extractTextFromReactNode";
-import { AttachFile } from "@mui/icons-material";
+import { AttachFile } from "@components/Icons";
 import { FONT, ICON } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 interface BugTableProps {
     bugs: Bug[];
@@ -23,7 +24,7 @@ const BugTable: React.FC<BugTableProps> = ({ bugs, iconSize, onRowClick }) => {
             label: "Bug",
             width: "1fr",
             render: bug => (
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, minWidth: 0, width: "100%" }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1, minWidth: 0, width: "100%" }}>
                     <SpellButton selectedSpell={bug.spell} size={ICON.md} showName />
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Typography variant="body2" component="div" sx={{ color: STATUS_COLORS[bug.status ?? STATUS.OPEN] }}>
@@ -34,9 +35,9 @@ const BugTable: React.FC<BugTableProps> = ({ bugs, iconSize, onRowClick }) => {
                                 {bug.spell.name}
                             </Typography>
                             {bug.logs && bug.logs.length > 0 && (
-                                <AttachFile sx={{ fontSize: "0.85rem", color: "primary.main", opacity: 0.8 }} />
+                                <AttachFile sx={{ fontSize: "0.75rem", color: "primary.main", opacity: 0.8 }} />
                             )}
-                            <Typography sx={{ fontFamily: "monospace", fontSize: FONT.micro, color: "text.disabled" }}>
+                            <Typography sx={{ fontFamily: MONO_FONT, fontSize: FONT.micro, color: "text.disabled" }}>
                                 {getLatestBuild(bug.buildsTested) || "—"}
                             </Typography>
                         </Box>
@@ -76,7 +77,7 @@ const BugTable: React.FC<BugTableProps> = ({ bugs, iconSize, onRowClick }) => {
             align: "center",
             sortValue: bug => getBuildSortValue(bug.buildsTested),
             render: bug => (
-                <Typography variant="body2" sx={{ color: STATUS_COLORS[bug.status ?? STATUS.OPEN], fontFamily: "monospace", textAlign: "center" }}>
+                <Typography variant="body2" sx={{ color: STATUS_COLORS[bug.status ?? STATUS.OPEN], fontFamily: MONO_FONT, textAlign: "center" }}>
                     {getLatestBuild(bug.buildsTested) || "—"}
                 </Typography>
             ),

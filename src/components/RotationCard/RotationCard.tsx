@@ -2,7 +2,7 @@ import type React from 'react';
 import { useState } from 'react';
 import { Card, Box, Typography, IconButton } from '@mui/material';
 import { GlassTooltip } from "@components/Glass";
-import { DeleteTwoTone, ContentCopyTwoTone } from '@mui/icons-material';
+import { DeleteTwoTone, ContentCopyTwoTone } from "@components/Icons";
 import type { RotationResult } from '../../../app/analysis/chi-ji/types';
 import SpellButton from "@components/SpellButtons/SpellButton";
 import { formatNumber, formatPercent } from "@util/stringManipulation";
@@ -11,7 +11,7 @@ import TALENTS from "@data/specs/monk/mistweaver/talents";
 import SPELLS from "@data/spells";
 import type spell from "@data/spells/spell";
 import { RAINBOW_COLORS } from '@components/Buttons/RainbowCard';
-import { FONT, HAIRLINE, HAIRLINE_SOFT, ICON, TINT, tintAlpha } from "@components/Theme/tokens";
+import { FONT, HAIRLINE, HAIRLINE_SOFT, ICON, MONO_FONT, TINT, tintAlpha } from "@components/Theme/tokens";
 
 interface RotationCardProps {
     rotation: RotationResult;
@@ -129,7 +129,7 @@ const HeaderCell: React.FC<{ children?: React.ReactNode; right?: boolean }> = ({
 );
 
 const NumberCell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <Typography sx={{ fontSize: FONT.small, fontFamily: 'monospace', color: 'text.secondary', textAlign: 'right' }}>
+    <Typography sx={{ fontSize: FONT.small, fontFamily: MONO_FONT, color: 'text.secondary', textAlign: 'right' }}>
         {children}
     </Typography>
 );
@@ -182,7 +182,7 @@ const BreakdownRows: React.FC<{ rows: Row[]; accent: string; showSources?: boole
                                 '&:hover': { filter: 'brightness(1.15)' },
                             }}
                         >
-                            <Typography sx={{ fontSize: FONT.micro, fontFamily: 'monospace', color: 'text.disabled', textAlign: 'right' }}>
+                            <Typography sx={{ fontSize: FONT.micro, fontFamily: MONO_FONT, color: 'text.disabled', textAlign: 'right' }}>
                                 {i + 1}
                             </Typography>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0 }}>

@@ -3,15 +3,16 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Box, InputBase, MenuItem, MenuList, Typography } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@components/Icons";
 import { GlassMenu } from "@components/Glass";
 import SpecDisplay from "@components/SpecializationSelect/SpecDisplay";
 import { CHIP_HEIGHT, FONT, ICON, RADIUS, TINT } from "@components/Theme/tokens";
 import { type specialization, getSpecs, getSpecializationByKey } from "@data/class";
 import { iconLocalUrl, iconFallbackUrl } from "@util/wowhead";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 const chipTitle = { fontSize: FONT.micro, fontWeight: 700, letterSpacing: 0.5, color: "text.disabled" };
-const chipValue = { fontSize: FONT.small, fontFamily: "monospace", color: "text.primary", textTransform: "lowercase" };
+const chipValue = { fontSize: FONT.small, fontFamily: MONO_FONT, color: "text.primary", textTransform: "lowercase" };
 
 const chipText = { display: "inline-flex", alignItems: "baseline", gap: 1, minWidth: 0 };
 
@@ -28,7 +29,7 @@ const filterChip = (accent: string, active: boolean) => ({
     backgroundColor: active ? accent + TINT.wash : "background.paper",
     userSelect: "none",
     whiteSpace: "nowrap",
-    transition: "border-color 0.15s ease, background-color 0.15s ease",
+    transition: "border-color 0.2s cubic-bezier(0.32,0.72,0,1), background-color 0.2s cubic-bezier(0.32,0.72,0,1)",
     "&:hover": { borderColor: accent },
 });
 
@@ -126,10 +127,10 @@ export const SelectChip: React.FC<SelectChipProps> = ({ accent, title, value, op
                     <Typography component="div" sx={chipValue}>{display ?? selected?.label ?? value}</Typography>
                 </Box>
                 <ExpandMore sx={{
-                    fontSize: 15,
+                    fontSize: 14,
                     color: "text.disabled",
                     transform: anchor ? "rotate(180deg)" : "none",
-                    transition: "transform 0.2s",
+                    transition: "transform 0.2s cubic-bezier(0.32,0.72,0,1)",
                 }} />
             </Box>
             <GlassMenu

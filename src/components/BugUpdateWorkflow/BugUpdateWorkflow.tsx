@@ -7,14 +7,15 @@ import {
     Typography,
     Alert,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { ArrowBack, BugReport, Check, HelpOutline, RemoveCircleOutline, SkipNext } from "@mui/icons-material";
+import { Close as CloseIcon } from "@components/Icons";
+import { ArrowBack, BugReport, Check, HelpOutline, RemoveCircleOutline, SkipNext } from "@components/Icons";
 import { type Bug, STATUS } from "@data/bugs";
 import { BugDetails, BUG_DIALOG_PAPER_SX } from "@components/BugDialog/BugDialog";
 import SwirlButton from "@components/Buttons/SwirlButton";
 import { SwirlIconButton } from "@components/Buttons/SwirlIconButton";
 import { GlassTooltip } from "@components/Glass";
 import { FONT, HAIRLINE } from "@components/Theme/tokens";
+import { MONO_FONT } from "@components/Theme/tokens";
 
 // served by scripts/bug-update-server.mjs (npm run bugs)
 const UPDATE_URL = "http://localhost:3111/update";
@@ -137,7 +138,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
     const currentBug = bugs[currentBugIndex];
     const progress = bugs.length > 0 ? Math.round(((currentBugIndex + 1) / bugs.length) * 100) : 0;
     const reviewing = step === WorkflowStep.BUG_REVIEW && currentBug;
-    const footerSx = { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1, px: 2, py: 0.75 };
+    const footerSx = { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1, px: 2, py: 0.5 };
 
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth PaperProps={{ sx: BUG_DIALOG_PAPER_SX }}>
@@ -153,9 +154,9 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                         }
                     />
                     <Box sx={{ height: 2, flexShrink: 0, backgroundColor: HAIRLINE }}>
-                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: "width 0.3s ease" }} />
+                        <Box sx={{ width: `${progress}%`, height: "100%", backgroundColor: "primary.main", transition: "width 0.3s cubic-bezier(0.32,0.72,0,1)" }} />
                     </Box>
-                    <Typography sx={{ px: 2.5, pt: 1.5, fontSize: FONT.small, color: "text.secondary" }}>
+                    <Typography sx={{ px: 2, pt: 1.5, fontSize: FONT.small, color: "text.secondary" }}>
                         Is this bug still broken in build {buildNumber}?
                     </Typography>
                     <Box sx={footerSx}>
@@ -170,7 +171,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                 </>
             ) : (
                 <>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 2, px: 2.5, py: 2, borderBottom: `1px solid ${HAIRLINE}` }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2, px: 2, py: 2, borderBottom: `1px solid ${HAIRLINE}` }}>
                         <Typography sx={{ flex: 1, fontSize: FONT.subhead, fontWeight: 600, lineHeight: 1.3 }}>
                             {step === WorkflowStep.BUILD_INPUT ? "Enter Build Number" : "Update Complete"}
                         </Typography>
@@ -181,7 +182,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                         </GlassTooltip>
                     </Box>
 
-                    <Box sx={{ px: 2.5, py: 2, display: "flex", flexDirection: "column", gap: 2, overflowY: "auto" }}>
+                    <Box sx={{ px: 2, py: 2, display: "flex", flexDirection: "column", gap: 2, overflowY: "auto" }}>
                         {step === WorkflowStep.BUILD_INPUT && (
                             <>
                                 <TextField
@@ -218,7 +219,7 @@ const BugUpdateWorkflow: React.FC<BugUpdateWorkflowProps> = ({
                                             Review complete! {bugUpdates.length} bug(s) updated.
                                         </Alert>
                                         {savedFiles.map(file => (
-                                            <Typography key={file} sx={{ fontFamily: "monospace", fontSize: FONT.small, color: "text.secondary" }}>
+                                            <Typography key={file} sx={{ fontFamily: MONO_FONT, fontSize: FONT.small, color: "text.secondary" }}>
                                                 {file}
                                             </Typography>
                                         ))}
