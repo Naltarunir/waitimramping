@@ -41,7 +41,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
 
     const mistweaverTalents = new Map<spell, boolean>([
         [TALENTS.CELESTIAL_HARMONY, true],
-        [TALENTS.GIFT_OF_THE_CELESTIALS, false],
+        [TALENTS.GIFT_OF_THE_CELESTIALS, true],
         [TALENTS.JADE_BOND, false],
         [TALENTS.MIST_WRAP, true],
         [TALENTS.LOTUS_INFUSION, true],
