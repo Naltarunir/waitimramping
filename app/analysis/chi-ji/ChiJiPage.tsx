@@ -14,6 +14,7 @@ import TargetCountsCard from "@components/TargetCountCard/TargetCountsCard";
 import TalentsCard from "@components/TalentsCard/TalentsCard";
 import SwirlButton from "@components/Buttons/SwirlButton";
 import { CLASSES } from "@data/class";
+import { getTalentRank } from "@data/shared/engine";
 import type spell from "@data/spells/spell";
 import SPELLS from "@data/spells";
 import TALENTS from "@data/specs/monk/mistweaver/talents";
@@ -125,6 +126,12 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
             }
         }
     };
+
+    const enabledTalents = (snapshot?: TalentSnapshot): spell[] =>
+        snapshot
+            ? [...snapshot.specTalents.keys(), ...snapshot.classTalents.keys()]
+                .filter(talent => getTalentRank(snapshot.specTalents, talent) > 0 || getTalentRank(snapshot.classTalents, talent) > 0)
+            : [];
 
     const toggleRotationExpansion = (index: number) => {
         const newExpanded = new Set(expandedRotations);
@@ -255,6 +262,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                 >
                                     <RotationCard
                                         rotation={rotation}
+                                        talents={enabledTalents(rotations[index]?.meta)}
                                         index={index}
                                         expanded={expandedRotations.has(index)}
                                         onToggleExpansion={() => toggleRotationExpansion(index)}

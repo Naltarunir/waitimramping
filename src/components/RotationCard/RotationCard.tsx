@@ -1,10 +1,11 @@
 import type React from 'react';
+import { useState } from 'react';
 import { Card, Box, Typography, IconButton, Collapse, Divider } from '@mui/material';
 import { ExpandMore, ExpandLess, DeleteTwoTone } from '@mui/icons-material';
 import type { RotationResult } from '../../../app/analysis/chi-ji/types';
 import SpellButton from "@components/SpellButtons/SpellButton";
 import SwirlChip from "@components/SwirlChip/SwirlChip";
-import { formatNumber, formatPercent } from "@util/stringManipulation";
+import { formatNumber, formatPercent, pluralize } from "@util/stringManipulation";
 import TALENTS from "@data/specs/monk/mistweaver/talents";
 import SPELLS from "@data/spells";
 import type spell from "@data/spells/spell";
@@ -13,6 +14,7 @@ import { FONT, HAIRLINE, HAIRLINE_SOFT, ICON, RADIUS, TINT, tintAlpha } from "@c
 
 interface RotationCardProps {
     rotation: RotationResult;
+    talents: spell[];
     index: number;
     expanded: boolean;
     onToggleExpansion: () => void;
@@ -79,11 +81,13 @@ const SourceChip: React.FC<{ source: Source; detail: string }> = ({ source, deta
 
 export const RotationCard: React.FC<RotationCardProps> = ({
     rotation,
+    talents,
     index,
     expanded,
     onToggleExpansion,
     onDelete,
 }) => {
+    const [talentsOpen, setTalentsOpen] = useState(false);
     const accent = RAINBOW_COLORS[index % RAINBOW_COLORS.length];
 
     const aggregateSources = toSources(key =>
@@ -131,6 +135,27 @@ export const RotationCard: React.FC<RotationCardProps> = ({
                     </IconButton>
                 </Box>
             </Box>
+
+            {talents.length > 0 && (
+                <Box sx={{ mb: 1.5 }}>
+                    <Box
+                        onClick={() => setTalentsOpen(open => !open)}
+                        sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, cursor: 'pointer', color: 'text.disabled', '&:hover': { color: 'text.primary' } }}
+                    >
+                        <Typography sx={{ fontSize: FONT.micro, fontWeight: 700, letterSpacing: 0.5, color: 'inherit' }}>
+                            {talents.length} {pluralize(talents.length, "talent")}
+                        </Typography>
+                        {talentsOpen ? <ExpandLess sx={{ fontSize: 15 }} /> : <ExpandMore sx={{ fontSize: 15 }} />}
+                    </Box>
+                    <Collapse in={talentsOpen}>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
+                            {talents.map(talent => (
+                                <SpellButton key={talent.id} selectedSpell={talent} size={ICON.xs} />
+                            ))}
+                        </Box>
+                    </Collapse>
+                </Box>
+            )}
 
             {aggregateSources.length > 0 && (
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
