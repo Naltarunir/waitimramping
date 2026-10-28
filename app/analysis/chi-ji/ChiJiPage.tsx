@@ -1,6 +1,7 @@
 ﻿"use client";
 import type React from "react";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Box, Card, Divider, Grid } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
 import PageHeader from "@components/PageHeader/PageHeader";
@@ -32,7 +33,6 @@ interface TalentSnapshot {
 
 const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
     const [rotationHPS, setRotationHPS] = useState<RotationResult[]>([]);
-    const [expandedRotations, setExpandedRotations] = useState<Set<number>>(new Set());
     const [isSimulating, setIsSimulating] = useState(false);
     const maxWidth = CONTENT_WIDTH.wide;
 
@@ -85,12 +85,8 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
         removeRotation,
         hasRotations,
         onReorderRotation,
+        setCurrentRotation,
     } = useRotationManager<TalentSnapshot>();
-
-    const addSpellToRotationCollapse = (spell: any) => {
-        addSpellToRotation(spell);
-        setExpandedRotations(new Set());
-    }
 
     // talents are locked in per rotation when it's added, stats and targets stay shared
     const simulateRotations = () => Promise.all(
@@ -132,16 +128,6 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
             ? [...snapshot.specTalents.keys(), ...snapshot.classTalents.keys()]
                 .filter(talent => getTalentRank(snapshot.specTalents, talent) > 0 || getTalentRank(snapshot.classTalents, talent) > 0)
             : [];
-
-    const toggleRotationExpansion = (index: number) => {
-        const newExpanded = new Set(expandedRotations);
-        if (newExpanded.has(index)) {
-            newExpanded.delete(index);
-        } else {
-            newExpanded.add(index);
-        }
-        setExpandedRotations(newExpanded);
-    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
@@ -217,7 +203,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                     ? CHIJI_ABILITIES.map(s => s.id === SPELLS.RISING_SUN_KICK.id ? TALENTS.RUSHING_WIND_KICK : s)
                                     : CHIJI_ABILITIES
                             }
-                            addSpellToTable={addSpellToRotationCollapse}
+                            addSpellToTable={addSpellToRotation}
                         />
                     </Box>
 
@@ -255,8 +241,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                 <Grid 
                                     size={{
                                         xs: 12,
-                                        md: rotationHPS.length === 1 ? 12 : 6,
-                                        lg: rotationHPS.length === 1 ? 12 : rotationHPS.length === 2 ? 6 : 4
+                                        md: rotationHPS.length === 1 ? 12 : 6
                                     }}
                                     key={index}
                                 >
@@ -264,8 +249,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                         rotation={rotation}
                                         talents={enabledTalents(rotations[index]?.meta)}
                                         index={index}
-                                        expanded={expandedRotations.has(index)}
-                                        onToggleExpansion={() => toggleRotationExpansion(index)}
+                                        onCopy={() => setCurrentRotation(rotations[index].steps.map(step => ({ ...step, uuid: uuidv4() })))}
                                         onDelete={() => removeRotation(rotations[index].id)}
                                     />
                                 </Grid>
