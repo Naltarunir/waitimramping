@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type Spell from '@data/spells/spell';
 
-interface Rotation {
+interface Rotation<Meta = undefined> {
     id: string;
     name: string;
     steps: Spell[];
+    meta?: Meta;
 }
 
 interface UseRotationManagerOptions {
@@ -13,9 +14,9 @@ interface UseRotationManagerOptions {
     validateSpell?: (spell: Spell) => boolean;
 }
 
-export const useRotationManager = (options: UseRotationManagerOptions = {}) => {
+export const useRotationManager = <Meta = undefined>(options: UseRotationManagerOptions = {}) => {
     const [currentRotation, setCurrentRotation] = useState<Spell[]>([]);
-    const [rotations, setRotations] = useState<Rotation[]>([]);
+    const [rotations, setRotations] = useState<Rotation<Meta>[]>([]);
 
     const {
         generateRotationName = (steps: Spell[]) => `Rotation ${rotations.length + 1}`,
@@ -43,13 +44,14 @@ export const useRotationManager = (options: UseRotationManagerOptions = {}) => {
         );
     };
 
-    const finalizeRotation = () => {
+    const finalizeRotation = (meta?: Meta) => {
         if (currentRotation.length === 0) return;
         
-        const newRotation: Rotation = {
+        const newRotation: Rotation<Meta> = {
             id: uuidv4(),
             name: generateRotationName(currentRotation),
-            steps: [...currentRotation]
+            steps: [...currentRotation],
+            meta,
         };
         
         setRotations(prev => [...prev, newRotation]);

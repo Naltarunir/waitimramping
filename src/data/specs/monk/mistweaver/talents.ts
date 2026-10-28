@@ -136,6 +136,9 @@ const talents = {
         icon: 'ability_monk_jadeserpentbreath',
         formula: (stats) => (stats.totalHp ?? 0) * 24 / 100 * (1 + stats.versatility / 100),
         targets: 5,
+        effects: {
+            giftOfTheCelestialsMultiplier: 0.5,
+        },
     },
     JADE_BOND: {
         name: "Jade Bond",

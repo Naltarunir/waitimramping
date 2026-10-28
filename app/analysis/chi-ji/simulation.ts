@@ -51,7 +51,11 @@ export const getRandomAlly = (allies: AllyState[]): AllyState => {
 };
 
 export const getRandomAllies = (allies: AllyState[], count: number): AllyState[] => {
-    const shuffled = [...allies].sort(() => 0.5 - Math.random());
+    const shuffled = [...allies];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     return shuffled.slice(0, count);
 };
 
@@ -85,7 +89,9 @@ export const applyRenewingMistToTarget = (renewingMist: spell, target: AllyState
 };
 
 export const applyRapidDiffusionRenewingMist = (allies: AllyState[], options: SimulationOptions, renewingMistHealing: number) => {
-    const target = getRandomAlly(allies);
+    const availableTargets = allies.filter(ally => ally.buffs.renewingMist.remaining <= 0);
+    if (availableTargets.length === 0) return { target: null, healing: 0 };
+    const target = getRandomAlly(availableTargets);
 
     const renewingMist = SPELLS.RENEWING_MIST;
     const rapidDiffusion = TALENTS.RAPID_DIFFUSION;
@@ -139,6 +145,8 @@ export const distributeGusts = (allies: AllyState[], gustCount: number, chiJiGus
     return totalHealing;
 };
 
+const SIMULATION_RUNS = 500;
+
 export const calculateRotationHPS = async (
     rotation: spell[],
     rotationIndex: number,
@@ -152,11 +160,6 @@ export const calculateRotationHPS = async (
         return s;
     });
     const buffedSpells = await applyBuffEffects(specData, normalizedRotation);
-    let totalTime = 0;
-    let totalHealing = 0;
-    const spellsCastInChiJi: spell[] = [];
-    let totmStacks = 0;
-
     const mergedTalents: Player["talents"] = new Map([...options.specTalents, ...options.classTalents]);
     const mwSpec = CLASSES.MONK.SPECS.MISTWEAVER;
     const player: Player = {
@@ -175,12 +178,9 @@ export const calculateRotationHPS = async (
     const jadeBond = TALENTS.JADE_BOND;
     const jadeBondOpt = isTalentEnabled(options, TALENTS.JADE_BOND);
     const chijiDuration = jadeBondOpt ? jadeBond.effects.duration : SPELLS.CHI_JI.duration;
-    let chiJiActive = false;
-    let chiJiTimeRemaining = 0;
 
     const focusedThunderOpt = isTalentEnabled(options, TALENTS.FOCUSED_THUNDER);
     const tftChargesTotal = focusedThunderOpt ? TALENTS.FOCUSED_THUNDER.effects.tftCharges : 1;
-    let tftChargesRemaining = 0;
 
     const emperorsElixirOpt = isTalentEnabled(options, TALENTS.EMPERORS_ELIXIR);
     const jfs = TALENTS.JADEFIRE_STOMP;
@@ -206,14 +206,13 @@ export const calculateRotationHPS = async (
 
     const chijiGustHealing = gustOfMistHealing * ( 1 + (jadeBondOpt ? TALENTS.JADE_BOND.effects.gustIncrease : 0));
     const celestialHarmony = TALENTS.CELESTIAL_HARMONY;
-    const celestialHarmonyChiCocoonAmount = celestialHarmony.formula!(options);
+    const giftOfTheCelestialsMultiplier = isTalentEnabled(options, TALENTS.GIFT_OF_THE_CELESTIALS) ? celestialHarmony.effects.giftOfTheCelestialsMultiplier : 1;
+    const celestialHarmonyChiCocoonAmount = celestialHarmony.formula!(options) * giftOfTheCelestialsMultiplier;
     const celestialHarmonyChiCocoonMaxTargets = celestialHarmony.targets;
 
     const rapidDiffusionOpt = isTalentEnabled(options, TALENTS.RAPID_DIFFUSION);
 
-    const allies: AllyState[] = Array.from({ length: options.allyCount }, (_, i) => createAllyState(i));
-
-    const healingBySpell: { [key: string]: { healing: number; sources: any; count: number } } = {};
+    type HealingBySpell = { [key: string]: { healing: number; sources: any; count: number } };
 
     const calculateRenewingMistHealing = (spellObj: spell): number => {
         const renewingMistBaseHealing = calculateSpellHealing(spellObj, player);
@@ -228,7 +227,6 @@ export const calculateRotationHPS = async (
             ancientTeachings: 0,
             wayOfTheCrane: 0,
             gustOfMists: 0,
-            envelopingMistAmp: 0,
             chiCocoons: 0,
             rapidDiffusion: 0,
         };
@@ -329,15 +327,9 @@ export const calculateRotationHPS = async (
                 breakdown.ancientTeachings = distributeAncientTeachings(allies, bokATHealing);
 
                 if (craneStyleOpt) {
-                    let totalBokGOMHealing = 0;
-                    for (let i = 0; i < bokHits; i++) {
-                        if (Math.random() < craneStyleGOMChance) {
-                            const bokGOMTarget = getRandomAlly(allies);
-                            const bokGOMHealing = gustOfMistHealing * craneStyleBlackoutKickGOM;
-                            totalBokGOMHealing += calculateHealingWithAmp(bokGOMHealing, bokGOMTarget);
-                        }
-                    }
-                    breakdown.gustOfMists = totalBokGOMHealing;
+                    const bokGOMTarget = getRandomAlly(allies);
+                    const bokGOMHealing = gustOfMistHealing * craneStyleBlackoutKickGOM;
+                    breakdown.gustOfMists = calculateHealingWithAmp(bokGOMHealing, bokGOMTarget) * craneStyleGOMChance * bokHits;
                 }
 
                 break;
@@ -363,15 +355,13 @@ export const calculateRotationHPS = async (
                 breakdown.wayOfTheCrane = sckAJTotalHealing;
                 
                 if (chiJiActive) {
-                    breakdown.chiJiGusts = chijiGustHealing * 6;
+                    breakdown.chiJiGusts = distributeGusts(allies, 6, chijiGustHealing);
                 }
 
                 if (craneStyleOpt) {
-                    if (Math.random() < craneStyleGOMChance) {
-                        const sckGomTarget = getRandomAlly(allies);
-                        const sckGOMHealing = gustOfMistHealing * craneStyleSpinningCraneKickGOM;
-                        breakdown.gustOfMists = calculateHealingWithAmp(sckGOMHealing, sckGomTarget);
-                    }
+                    const sckGomTarget = getRandomAlly(allies);
+                    const sckGOMHealing = gustOfMistHealing * craneStyleSpinningCraneKickGOM;
+                    breakdown.gustOfMists = calculateHealingWithAmp(sckGOMHealing, sckGomTarget) * craneStyleGOMChance;
                 }
                 
                 break;
@@ -424,53 +414,59 @@ export const calculateRotationHPS = async (
         return { breakdown, totalHealing, renewingMistHealing };
     };
 
-    for (const spell of buffedSpells) {
-        const castTime = calculateCastTime(spell, options.haste);
-        const isOffGCD = (spell.castTime === 0 || spell.castTime === undefined) && spell.gcd === false;
-        
-        if (!isOffGCD) {
-            updateAllyBuffs(allies, castTime);
-            
-            if (chiJiActive && chiJiTimeRemaining > 0) {
-                chiJiTimeRemaining -= castTime;
-                if (chiJiTimeRemaining <= 0) {
-                    chiJiActive = false;
+    const simulateOnce = () => {
+        const allies: AllyState[] = Array.from({ length: options.allyCount }, (_, i) => createAllyState(i));
+        const healingBySpell: HealingBySpell = {};
+        const spellsCast: spell[] = [];
+        let totalTime = 0;
+        let totalHealing = 0;
+        let totmStacks = 0;
+        let tftChargesRemaining = 0;
+        let chiJiEnd: number | null = null;
+
+        const recordHealing = (name: string, healing: number, sources: { [key: string]: number }) => {
+            if (!healingBySpell[name]) {
+                healingBySpell[name] = { healing: 0, sources: {}, count: 0 };
+            }
+            healingBySpell[name].healing += healing;
+            healingBySpell[name].count += 1;
+            for (const [key, value] of Object.entries(sources)) {
+                healingBySpell[name].sources[key] = (healingBySpell[name].sources[key] ?? 0) + value;
+            }
+        };
+
+        for (const spell of buffedSpells) {
+            const castTime = calculateCastTime(spell, options.haste);
+            const isOffGCD = (spell.castTime === 0 || spell.castTime === undefined) && spell.gcd === false;
+
+            if (!isOffGCD) {
+                // the rotation ends once Chi-Ji has expired, a cast only gets gusts if it starts inside the window
+                if (chiJiEnd !== null && totalTime >= chiJiEnd) {
+                    break;
                 }
-            }
+                if (spell.id === SPELLS.CHI_JI.id) {
+                    chiJiEnd = totalTime + chijiDuration;
+                }
+                const chiJiActive = chiJiEnd !== null && totalTime < chiJiEnd;
 
-            if (spell.id === SPELLS.CHI_JI.id) {
-                chiJiActive = true;
-                chiJiTimeRemaining = chijiDuration;
-            }
+                updateAllyBuffs(allies, castTime);
 
-            // Only apply duration limit after Chi-Ji has been cast
-            if (!chiJiActive || (chiJiTimeRemaining > 0) || spell.id === SPELLS.CHI_JI.id) {
                 const { breakdown, totalHealing: spellHealing, renewingMistHealing } = calculateSpellHealingBreakdown(
-                    spell, 
-                    totmStacks, 
+                    spell,
+                    totmStacks,
                     allies,
-                    chiJiActive && chiJiTimeRemaining > 0
+                    chiJiActive
                 );
-                
+
                 totalHealing += spellHealing;
 
                 if (renewingMistHealing > 0) {
-                    const renewingMistKey = SPELLS.RENEWING_MIST.name;
-                    if (!healingBySpell[renewingMistKey]) {
-                        healingBySpell[renewingMistKey] = { healing: 0, sources: {}, count: 0 };
-                    }
-                    healingBySpell[renewingMistKey].healing += renewingMistHealing;
-                    healingBySpell[renewingMistKey].count += 1;
-                    if (!healingBySpell[renewingMistKey].sources.rapidDiffusion) {
-                        healingBySpell[renewingMistKey].sources.rapidDiffusion = 0;
-                    }
-                    healingBySpell[renewingMistKey].sources.rapidDiffusion += renewingMistHealing;
-
+                    recordHealing(SPELLS.RENEWING_MIST.name, renewingMistHealing, { rapidDiffusion: renewingMistHealing });
                     totalHealing += renewingMistHealing;
                 }
-                
+
                 totalTime += castTime;
-                spellsCastInChiJi.push(spell);
+                spellsCast.push(spell);
 
                 if (spell.id === SPELLS.TIGER_PALM.id) {
                     const stacksGained = isTalentEnabled(options, TALENTS.WAY_OF_THE_CRANE) ? wayOfTheCraneTigerPalmHits : 1;
@@ -487,68 +483,52 @@ export const calculateRotationHPS = async (
                         const stompHealing = distributeAncientTeachings(allies, stompATHealing);
 
                         totalHealing += stompHealing;
-                        const stompKey = jfs.name;
-                        if (!healingBySpell[stompKey]) {
-                            healingBySpell[stompKey] = { healing: 0, sources: {}, count: 0 };
-                        }
-                        healingBySpell[stompKey].healing += stompHealing;
-                        healingBySpell[stompKey].count += 1;
-                        if (!healingBySpell[stompKey].sources.ancientTeachings) {
-                            healingBySpell[stompKey].sources.ancientTeachings = 0;
-                        }
-                        healingBySpell[stompKey].sources.ancientTeachings += stompHealing;
+                        recordHealing(jfs.name, stompHealing, { ancientTeachings: stompHealing });
                     }
                 }
 
-                const spellKey = spell.name;
-                if (!healingBySpell[spellKey]) {
-                    healingBySpell[spellKey] = { healing: 0, sources: {}, count: 0 };
-                }
-                healingBySpell[spellKey].healing += spellHealing;
-                healingBySpell[spellKey].count += 1;
-                
-                Object.keys(breakdown).forEach(key => {
-                    if (!healingBySpell[spellKey].sources[key]) {
-                        healingBySpell[spellKey].sources[key] = 0;
-                    }
-                    healingBySpell[spellKey].sources[key] += breakdown[key];
-                });
+                recordHealing(spell.name, spellHealing, breakdown);
             } else {
-                break;
-            }
-        } else {
-            // Off-GCD spells always execute
-            if (spell.id === SPELLS.THUNDER_FOCUS_TEA.id) {
-                tftChargesRemaining = tftChargesTotal;
-            }
-
-            const { breakdown, totalHealing: spellHealing } = calculateSpellHealingBreakdown(
-                spell,
-                totmStacks,
-                allies,
-                chiJiActive && chiJiTimeRemaining > 0
-            );
-
-            totalHealing += spellHealing;
-            spellsCastInChiJi.push(spell);
-
-            const spellKey = spell.name;
-            if (!healingBySpell[spellKey]) {
-                healingBySpell[spellKey] = { healing: 0, sources: {}, count: 0 };
-            }
-            healingBySpell[spellKey].healing += spellHealing;
-            healingBySpell[spellKey].count += 1;
-            
-            Object.keys(breakdown).forEach(key => {
-                if (!healingBySpell[spellKey].sources[key]) {
-                    healingBySpell[spellKey].sources[key] = 0;
+                // Off-GCD spells always execute
+                if (spell.id === SPELLS.THUNDER_FOCUS_TEA.id) {
+                    tftChargesRemaining = tftChargesTotal;
                 }
-                healingBySpell[spellKey].sources[key] += breakdown[key];
-            });
+
+                const { breakdown, totalHealing: spellHealing } = calculateSpellHealingBreakdown(
+                    spell,
+                    totmStacks,
+                    allies,
+                    chiJiEnd !== null && totalTime < chiJiEnd
+                );
+
+                totalHealing += spellHealing;
+                spellsCast.push(spell);
+                recordHealing(spell.name, spellHealing, breakdown);
+            }
+        }
+
+        return { totalTime, totalHealing, spellsCast, healingBySpell };
+    };
+
+    // targets are random, so average many runs for a stable result
+    const runs = Array.from({ length: SIMULATION_RUNS }, simulateOnce);
+    const totalTime = runs[0].totalTime;
+    const totalHealing = runs.reduce((sum, run) => sum + run.totalHealing, 0) / SIMULATION_RUNS;
+
+    const averagedHealing: HealingBySpell = {};
+    for (const run of runs) {
+        for (const [name, data] of Object.entries(run.healingBySpell)) {
+            if (!averagedHealing[name]) {
+                averagedHealing[name] = { healing: 0, sources: {}, count: data.count };
+            }
+            averagedHealing[name].healing += data.healing / SIMULATION_RUNS;
+            for (const [key, value] of Object.entries(data.sources)) {
+                averagedHealing[name].sources[key] = (averagedHealing[name].sources[key] ?? 0) + (value as number) / SIMULATION_RUNS;
+            }
         }
     }
 
-    const rotationBreakdown = Object.entries(healingBySpell)
+    const rotationBreakdown = Object.entries(averagedHealing)
     .filter(([spellName, data]) => data.healing > 0)
     .map(([spellName, data]) => ({
         spellName,
@@ -565,7 +545,7 @@ export const calculateRotationHPS = async (
         hps,
         totalHealing,
         duration: totalTime,
-        spells: spellsCastInChiJi,
+        spells: runs[0].spellsCast,
         breakdown: rotationBreakdown
     };
 };

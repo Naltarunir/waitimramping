@@ -24,6 +24,11 @@ import { pluralize } from "@util/stringManipulation";
 import { calculateRotationHPS } from './simulation';
 import type { RotationResult, SimulationOptions } from './types';
 
+interface TalentSnapshot {
+    specTalents: SimulationOptions["specTalents"];
+    classTalents: SimulationOptions["classTalents"];
+}
+
 const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
     const theme = useTheme();
     const [rotationHPS, setRotationHPS] = useState<RotationResult[]>([]);
@@ -36,6 +41,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
 
     const mistweaverTalents = new Map<spell, boolean>([
         [TALENTS.CELESTIAL_HARMONY, true],
+        [TALENTS.GIFT_OF_THE_CELESTIALS, false],
         [TALENTS.JADE_BOND, false],
         [TALENTS.MIST_WRAP, true],
         [TALENTS.LOTUS_INFUSION, true],
@@ -79,24 +85,26 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
         removeRotation,
         hasRotations,
         onReorderRotation,
-    } = useRotationManager();
+    } = useRotationManager<TalentSnapshot>();
 
     const addSpellToRotationCollapse = (spell: any) => {
         addSpellToRotation(spell);
         setExpandedRotations(new Set());
     }
 
+    // talents are locked in per rotation when it's added, stats and targets stay shared
+    const simulateRotations = () => Promise.all(
+        rotations.map((rotation, index) =>
+            calculateRotationHPS(rotation.steps, index, { ...options, ...rotation.meta }, mistweaver)
+        )
+    );
+
     useEffect(() => {
         const updateHPS = async () => {
             if (rotations.length > 0) {
                 setIsSimulating(true);
                 try {
-                    const hpsData = await Promise.all(
-                        rotations.map((rotation, index) => 
-                            calculateRotationHPS(rotation.steps, index, options, mistweaver)
-                        )
-                    );
-                    setRotationHPS(hpsData);
+                    setRotationHPS(await simulateRotations());
                 } finally {
                     setIsSimulating(false);
                 }
@@ -106,18 +114,13 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
         };
 
         updateHPS();
-    }, [rotations, options, mistweaver]);
+    }, [rotations, options.intellect, options.totalHp, options.crit, options.versatility, options.mastery, options.haste, options.enemyCount, options.allyCount, mistweaver]);
 
     const handleRefresh = async () => {
         if (rotations.length > 0) {
             setIsSimulating(true);
             try {
-                const hpsData = await Promise.all(
-                    rotations.map((rotation, index) => 
-                        calculateRotationHPS(rotation.steps, index, options, mistweaver)
-                    )
-                );
-                setRotationHPS(hpsData);
+                setRotationHPS(await simulateRotations());
             } finally {
                 setIsSimulating(false);
             }
@@ -219,7 +222,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                         <CurrentRotationControl
                             currentRotation={currentRotation}
                             onRemoveSpell={removeSpellFromRotation}
-                            onFinalizeRotation={finalizeRotation}
+                            onFinalizeRotation={() => finalizeRotation({ specTalents: options.specTalents, classTalents: options.classTalents })}
                             onClearCurrentRotation={clearCurrentRotation}
                             onClearAllRotations={clearAllRotations}
                             hasRotations={hasRotations}
