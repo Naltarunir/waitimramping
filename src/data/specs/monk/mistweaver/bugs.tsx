@@ -1052,7 +1052,7 @@ const BUGS: Bug[] = [
         description: <>Inconsistently, sometimes while taking damage, <SpellLink spell={SPELLS.SPINNING_CRANE_KICK} /> gets cancelled and does not continue the rest of its allocated ticks of damage.</>,
         logs: [
             { label: "", url: "https://www.warcraftlogs.com/reports/T4DVfmbBrXxYgRPt?fight=1&type=summary&source=8&pins=2%24Separate%24%23244F4B%24any%24-1%240.0.0.Any%240.0.0.Any%24true%240.0.0.Any%24true%24101546%7C107270%5E0%24Separate%24%23909049%24damage%241%24183748649.0.0.Monk%240.0.0.Any%24true%240.0.0.Any%24true%240&pull=5&view=events&start=932807&end=947787" },
-        ] 
+        ]
     },
     {
         spell: SPELLS.SOOTHING_MIST,
@@ -1107,9 +1107,10 @@ const BUGS: Bug[] = [
     {
         spell: TALENTS.MISTLINE,
         severity: SEVERITY.MEDIUM,
+        status: STATUS.FIXED,
         title: <>Healing increase does not change targets on lowest HP consistently</>,
         description: <>The bonus healing increase from <SpellLink spell={TALENTS.MISTLINE}/> doesn't consistently change its targeting, regardless of if players are more injured when the HoT ticks. Nearly every single encounter has one player receiving significantly more <SpellLink spell={SPELLS.RENEWING_MIST}/> healing than others, feeling almost like a sticky effect occuring to the HP check.</>,
-        buildsTested: ["67823"],
+        buildsTested: ["67823", "70575"],
         logs: [
             { label: "Skyeladew is #1 Renewing Mist healing, specifically in P3", url: "https://www.warcraftlogs.com/reports/yka4RbG9jdmCYM27?fight=22&type=healing&start=5352703&end=5454722&source=39&ability=119611&eventstart=5425486", },
             { label: "Video of above where players are lower HP, 6min mark", url: "https://warcraftrecorder.com/link/12acc83a-cf13-4093-bd0c-974710475eca" },
