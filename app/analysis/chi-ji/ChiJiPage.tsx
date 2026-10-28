@@ -50,6 +50,7 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
         [TALENTS.RAPID_DIFFUSION, true],
         [TALENTS.JADEFIRE_TEACHINGS, true],
         [TALENTS.RUSHING_WIND_KICK, false],
+        [TALENTS.MORNING_BREEZE, true],
         [TALENTS.WAY_OF_THE_CRANE, true],
         [TALENTS.FOCUSED_THUNDER, true],
         [TALENTS.EMPERORS_ELIXIR, true],
