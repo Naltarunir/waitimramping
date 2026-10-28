@@ -283,8 +283,8 @@ export const RotationCard: React.FC<RotationCardProps> = ({
                     </Box>
                     <Box sx={{ display: 'flex', gap: 0.5, alignSelf: 'flex-start' }}>
                         <GlassTooltip title="Copy to current rotation">
-                            <IconButton size="small" onClick={onCopy} sx={{ p: 0.25 }}>
-                                <ContentCopyTwoTone sx={{ fontSize: 18 }} />
+                            <IconButton size="small" onClick={onCopy} sx={{ p: 0.25, color: 'text.disabled', '&:hover': { color: 'text.secondary' } }}>
+                                <ContentCopyTwoTone sx={{ fontSize: 15 }} />
                             </IconButton>
                         </GlassTooltip>
                         <IconButton size="small" onClick={onDelete} color="error" sx={{ p: 0.25 }}>
