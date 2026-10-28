@@ -190,7 +190,9 @@ const Home = () => (
                 <Hero />
             </Reveal>
             <ToolGrid />
-            <Byline />
+            <Reveal delay={200 + tools.length * 100}>
+                <Byline />
+            </Reveal>
         </Box>
     </Container>
 );
