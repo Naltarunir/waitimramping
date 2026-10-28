@@ -1,5 +1,5 @@
 import type spell from "@data/spells/spell";
-import type { TalentMap } from "@data/shared/engine";
+import { getTalentRank, type TalentMap } from "@data/shared/engine";
 
 export interface AllyState {
     id: number;
@@ -38,14 +38,18 @@ export interface RotationResult {
     }>;
 }
 
+export function getOptionTalentRank(
+  options: SimulationOptions,
+  talent: spell
+): number {
+  return Math.max(getTalentRank(options.specTalents, talent), getTalentRank(options.classTalents, talent));
+}
+
 export function isTalentEnabled(
   options: SimulationOptions,
   talent: spell
 ): boolean {
-  return (
-    options.specTalents.get(talent) === true ||
-    !!options.classTalents.get(talent)
-  );
+  return getOptionTalentRank(options, talent) > 0;
 }
 
 export interface SimulationOptions {
@@ -57,6 +61,6 @@ export interface SimulationOptions {
     haste: number;
     enemyCount: number;
     allyCount: number;
-    specTalents: Map<spell, boolean>;
+    specTalents: TalentMap;
     classTalents: TalentMap;
 }

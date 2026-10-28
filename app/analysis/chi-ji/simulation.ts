@@ -1,4 +1,4 @@
-import { type AllyState, isTalentEnabled, type RotationResult, type SimulationOptions } from './types';
+import { type AllyState, getOptionTalentRank, isTalentEnabled, type RotationResult, type SimulationOptions } from './types';
 import { applyBuffEffects } from "@data/buffs";
 import { calculateCastTime } from "@data/spells/spell";
 import type spell from "@data/spells/spell";
@@ -202,7 +202,12 @@ export const calculateRotationHPS = async (
     const teachingsOfTheMonastery = TALENTS.TEACHINGS_OF_THE_MONASTERY;
     const totmMaxStacks = teachingsOfTheMonastery.maxStacks;
 
-    const gustOfMistHealing = calculateGustOfMists(player);
+    // expected value: a proc chance to heal for extra on every gust, Chi-Ji's included
+    const resplendentMist = TALENTS.RESPLENDENT_MIST;
+    const resplendentMistRank = getOptionTalentRank(options, resplendentMist);
+    const resplendentMistMultiplier = 1 + resplendentMist.effects.chance * resplendentMist.effects.healingIncreaseByRank[resplendentMistRank];
+
+    const gustOfMistHealing = calculateGustOfMists(player) * resplendentMistMultiplier;
 
     const chijiGustHealing = gustOfMistHealing * ( 1 + (jadeBondOpt ? TALENTS.JADE_BOND.effects.gustIncrease : 0));
     const celestialHarmony = TALENTS.CELESTIAL_HARMONY;

@@ -15,7 +15,7 @@ import TargetCountsCard from "@components/TargetCountCard/TargetCountsCard";
 import TalentsCard from "@components/TalentsCard/TalentsCard";
 import SwirlButton from "@components/Buttons/SwirlButton";
 import { CLASSES } from "@data/class";
-import { getTalentRank } from "@data/shared/engine";
+import { getTalentRank, type TalentMap } from "@data/shared/engine";
 import type spell from "@data/spells/spell";
 import SPELLS from "@data/spells";
 import TALENTS from "@data/specs/monk/mistweaver/talents";
@@ -39,10 +39,11 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
     const mistweaver = CLASSES.MONK.SPECS.MISTWEAVER;
     const { intellect, mastery, crit, versatility, haste, totalHp } = mistweaver.stats;
 
-    const mistweaverTalents = new Map<spell, boolean>([
+    const mistweaverTalents: TalentMap = new Map<spell, boolean | number>([
         [TALENTS.CELESTIAL_HARMONY, true],
         [TALENTS.GIFT_OF_THE_CELESTIALS, true],
         [TALENTS.JADE_BOND, false],
+        [TALENTS.RESPLENDENT_MIST, false],
         [TALENTS.MIST_WRAP, true],
         [TALENTS.LOTUS_INFUSION, true],
         [TALENTS.CRANE_STYLE, true],
@@ -167,6 +168,12 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                                             setOptions(prev => ({
                                                 ...prev,
                                                 specTalents: new Map(prev.specTalents).set(talent, checked)
+                                            }));
+                                        }}
+                                        onRankChange={(talent, rank) => {
+                                            setOptions(prev => ({
+                                                ...prev,
+                                                specTalents: new Map(prev.specTalents).set(talent, rank)
                                             }));
                                         }}
                                     />

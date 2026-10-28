@@ -842,6 +842,11 @@ const talents = {
         name: "Resplendent Mist",
         id: 388020,
         icon: 'spell_nature_abolishmagic',
+        maxRank: 2,
+        effects: {
+            chance: 0.3,
+            healingIncreaseByRank: [0, 0.6, 1.2],
+        },
     },
     DANCING_MISTS: {
         name: "Dancing Mists",
