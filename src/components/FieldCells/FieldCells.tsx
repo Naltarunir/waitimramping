@@ -1,6 +1,6 @@
 "use client";
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, TextField, InputAdornment, Typography } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 import { GlassTooltip } from '@components/Glass';
@@ -22,12 +22,23 @@ interface FieldCellsProps {
     label?: string;
 }
 
+// how long typing has to pause before the value is applied
+const COMMIT_DELAY_MS = 400;
+
 const inputSx = { width: 92, '& .MuiInputBase-input': { fontSize: FONT.body, fontFamily: 'monospace', py: 0 } };
 
 export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptionsChange, label }) => {
     const values = options as Record<string, number | undefined>;
     const [localValues, setLocalValues] = useState<{ [key: string]: string }>({});
     const [belowMin, setBelowMin] = useState<{ [key: string]: boolean }>({});
+    const timers = useRef<{ [key: string]: ReturnType<typeof setTimeout> }>({});
+
+    const cancelPending = (key: string) => {
+        clearTimeout(timers.current[key]);
+        delete timers.current[key];
+    };
+
+    useEffect(() => () => Object.values(timers.current).forEach(clearTimeout), []);
 
     const handleChange = (field: string, value: number) => {
         onOptionsChange((prev: any) => ({ ...prev, [field]: value }));
@@ -37,6 +48,7 @@ export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptio
     const parseNumber = (str: string): number => Number(str.replace(/,/g, ''));
 
     const step = (field: FieldDef, delta: number) => {
+        cancelPending(field.key);
         const next = Math.max((values[field.key] ?? 0) + delta, field.min ?? 0);
         handleChange(field.key, next);
         setLocalValues(prev => { const s = { ...prev }; delete s[field.key]; return s; });
@@ -74,14 +86,22 @@ export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptio
                 setLocalValues(prev => ({ ...prev, [field.key]: e.target.value }));
                 const raw = parseNumber(e.target.value);
                 if (!isNaN(raw)) {
-                    handleChange(field.key, raw);
                     setBelowMin(prev => ({ ...prev, [field.key]: raw < (field.min ?? 0) }));
+                    cancelPending(field.key);
+                    timers.current[field.key] = setTimeout(() => {
+                        delete timers.current[field.key];
+                        handleChange(field.key, raw);
+                    }, COMMIT_DELAY_MS);
                 }
             }}
             onBlur={() => {
+                // apply whatever is still waiting on the delay right away
                 const cur = values[field.key] ?? 0;
-                const min = field.min ?? 0;
-                if (cur < min) handleChange(field.key, min);
+                const pending = localValues[field.key];
+                cancelPending(field.key);
+                const typed = pending !== undefined ? parseNumber(pending) : cur;
+                const next = Math.max(isNaN(typed) ? cur : typed, field.min ?? 0);
+                if (next !== cur) handleChange(field.key, next);
                 setLocalValues(prev => { const s = { ...prev }; delete s[field.key]; return s; });
                 setBelowMin(prev => ({ ...prev, [field.key]: false }));
             }}
