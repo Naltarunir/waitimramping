@@ -25,7 +25,7 @@ import {
 import PageHeader from '@components/PageHeader/PageHeader';
 import { T } from '@util/T';
 import TALENTS from '@data/talents';
-import { CHART_ALPHA, CHART_COLORS } from "@components/Theme/tokens";
+import { CHART_ALPHA, CHART_COLORS, HAIRLINE } from "@components/Theme/tokens";
 
 const MAX_WIDTH = 1100;
 const MAX_INCREASE = TALENTS.MISTY_COALESCENCE.effects.maxIncrease;
@@ -133,7 +133,7 @@ const MistyCoalescence: React.FC<{ title: React.ReactNode; description: React.Re
                         >
                             <CartesianGrid 
                                 strokeDasharray="3 3" 
-                                stroke={'rgba(255,255,255,0.1)'}
+                                stroke={HAIRLINE}
                             />
                             <XAxis 
                                 dataKey="players"

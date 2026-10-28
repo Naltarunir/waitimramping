@@ -1,5 +1,5 @@
 import { Box, type BoxProps } from "@mui/material";
-import { BLUR } from "@components/Theme/tokens";
+import { BLUR, HAIRLINE } from "@components/Theme/tokens";
 
 interface GlassBoxProps extends BoxProps {
     children: React.ReactNode;
@@ -34,7 +34,7 @@ export const GlassBox = ({
                 px: 1,
                 py: 0.5,
                 borderRadius: 1,
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: `1px solid ${HAIRLINE}`,
                 display: getDisplay(),
                 alignItems: 'center',
                 justifyContent: 'center',

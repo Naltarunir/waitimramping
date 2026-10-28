@@ -9,7 +9,7 @@ import SpecDisplay from "@components/SpecializationSelect/SpecDisplay";
 
 import { type specialization, getSpecs, getSpecializationByKey } from '@data/class';
 import { KeyboardArrowDown } from "@components/Icons";
-import { BLUR, FIELD_HEIGHT, FONT } from "@components/Theme/tokens";
+import { BLUR, FIELD_HEIGHT, FONT, HAIRLINE } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
 
 interface SpecializationSelectProps {
@@ -135,7 +135,7 @@ const SpecializationSelect: React.FC<SpecializationSelectProps> = ({
               sx: {
                 backgroundColor: "rgba(0, 0, 0, 0.3) !important",
                 backdropFilter: BLUR.surface,
-                border: "1px solid rgba(255,255,255,0.1)",
+                border: `1px solid ${HAIRLINE}`,
                 boxShadow: "none",
                 maxHeight: 400,
                 borderRadius: 1,

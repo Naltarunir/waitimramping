@@ -163,7 +163,7 @@ const Byline = () => (
                 <Avatar
                     src={"/swirl_panda.jpg"}
                     alt="swirl"
-                    sx={{ width: 24, height: 24, borderRadius: '4px', border: '1px solid rgba(255,255,255,0.1)' }}
+                    sx={{ width: 24, height: 24, borderRadius: '4px', border: `1px solid ${HAIRLINE}` }}
                 />
                 <Typography sx={{ fontSize: FONT.body, fontWeight: 600, color: 'text.secondary', transition: motion("color") }}>
                     made by{' '}

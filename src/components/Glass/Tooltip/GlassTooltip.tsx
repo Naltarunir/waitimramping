@@ -1,5 +1,5 @@
 import { Tooltip, type TooltipProps } from "@mui/material";
-import { BLUR } from "@components/Theme/tokens";
+import { BLUR, HAIRLINE } from "@components/Theme/tokens";
 
 export const GlassTooltip = (props: TooltipProps) => {
     const { slotProps, ...otherProps } = props;
@@ -16,7 +16,7 @@ export const GlassTooltip = (props: TooltipProps) => {
                     sx: {
                         backgroundColor: "rgba(0, 0, 0, 0.3)",
                         backdropFilter: BLUR.surface,
-                        border: "1px solid rgba(255,255,255,0.1)",
+                        border: `1px solid ${HAIRLINE}`,
                         boxShadow: "none",
                         ...((slotProps?.tooltip as any)?.sx),
                     }
@@ -26,7 +26,7 @@ export const GlassTooltip = (props: TooltipProps) => {
                     sx: {
                         color: "rgba(0, 0, 0, 0.3)",
                         "&::before": {
-                            border: "1px solid rgba(255,255,255,0.1)",
+                            border: `1px solid ${HAIRLINE}`,
                         }
                     }
                 },

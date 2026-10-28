@@ -19,7 +19,7 @@ import SwirlButton from "@components/Buttons/SwirlButton";
 import { NavIconButton } from "@components/Buttons/NavIconButton";
 import { GlassBox } from "@components/Glass";
 import { RAINBOW_GRADIENT } from "@components/Buttons/RainbowCard";
-import { BLUR, HEADING_FONT, SECTIONS } from "@components/Theme/tokens";
+import { BLUR, HEADING_FONT, SECTIONS, HAIRLINE } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
 
 // the logo links home
@@ -46,7 +46,7 @@ function ResponsiveAppBar() {
                 height: "100%",
                 bgcolor: "#171717",
                 borderLeft: "1px solid",
-                borderColor: "rgba(255, 255, 255, 0.1)",
+                borderColor: HAIRLINE,
                 boxShadow: "-4px 0 16px rgba(0, 0, 0, 0.3)",
             }}
             role="presentation"
@@ -57,7 +57,7 @@ function ResponsiveAppBar() {
                 display: "flex",
                 justifyContent: "flex-end",
                 borderBottom: "1px solid",
-                borderColor: "rgba(255,255,255,0.1)"
+                borderColor: HAIRLINE
             }}>
                 <NavIconButton
                     onClick={handleDrawerToggle}

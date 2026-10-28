@@ -11,7 +11,7 @@ import { GlassTooltip } from "@components/Glass";
 
 import { analysisPages, type AnalysisPage } from "../AnalysisPages";
 import { extractTextFromReactNode } from "@util/extractTextFromReactNode";
-import { FONT } from "@components/Theme/tokens";
+import { FONT, HAIRLINE } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
 
@@ -88,7 +88,7 @@ const AnalysisCard: React.FC<{ tool: AnalysisPage; isOutdated: boolean }> = ({ t
                                 fontSize: FONT.body, fontWeight: 600, letterSpacing: "0.05em",
                                 textTransform: getCapsMode() ? "none" : "lowercase",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                                border: "2px solid rgba(255,255,255,0.1)", zIndex: 2, cursor: "help",
+                                border: `2px solid ${HAIRLINE}`, zIndex: 2, cursor: "help",
                             }}>
                                 Outdated
                             </Box>

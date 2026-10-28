@@ -9,7 +9,7 @@ import {
 import EmpowerLevelButtons from "./EmpowerLevel";
 import SpellButton from "@components/SpellButtons/SpellButton";
 import type spell from "@data/spells/spell";
-import { BLUR } from "@components/Theme/tokens";
+import { BLUR, HAIRLINE } from "@components/Theme/tokens";
 
 interface EmpowerLevelDialogProps {
     open: boolean;
@@ -44,7 +44,7 @@ const EmpowerLevelDialog: React.FC<EmpowerLevelDialogProps> = ({
                     borderRadius: 1,
                     width: 'auto',
                     backgroundColor: "rgba(26, 26, 26, 0.2)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    border: `1px solid ${HAIRLINE}`,
                     boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
                     overflow: "hidden",
                 },
