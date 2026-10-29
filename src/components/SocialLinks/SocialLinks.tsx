@@ -13,7 +13,7 @@ const SocialLinks = ({ omit = [] }: SocialLinksProps) => (
         {Object.entries(SOCIAL_LINKS)
             .filter(([key]) => !omit.includes(key as keyof typeof SOCIAL_LINKS))
             .map(([key, { label, href, icon, color }]) => (
-                <GlassTooltip key={key} title={label} placement="top">
+                <GlassTooltip key={key} title={label} placement="bottom">
                     <NavIconButton
                         color="inherit"
                         href={href}

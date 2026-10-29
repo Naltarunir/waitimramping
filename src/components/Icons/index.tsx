@@ -17,6 +17,7 @@ import {
     IconChevronDown,
     IconChevronUp,
     IconCircleMinus,
+    IconCrown,
     IconCopy,
     IconDownload,
     IconHelp,
@@ -85,6 +86,7 @@ export const Calculate = make(IconCalculator);
 export const Check = make(IconCheck);
 export const Close = make(IconX);
 export const ContentCopyTwoTone = make(IconCopy);
+export const Crown = make(IconCrown);
 export const Delete = make(IconTrash);
 export const DeleteForever = make(IconTrash);
 export const DeleteTwoTone = make(IconTrash);
