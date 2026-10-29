@@ -42,7 +42,9 @@ const About = () => {
                 <Typography align="left" sx={{ fontSize: FONT.body, color: "text.disabled", mb: 1.5 }}>
                   mistweaver monk, software engineer
                 </Typography>
-                <SocialLinks omit={["GITHUB"]} />
+                <Box sx={{ ml: -1 }}>
+                  <SocialLinks omit={["GITHUB"]} />
+                </Box>
               </Box>
             </Stack>
 
