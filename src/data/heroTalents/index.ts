@@ -42,6 +42,48 @@ export const HERO_TREES = {
         color: "#2546d4",
         icon: "farseer", // ph
     },
+    ORACLE: {
+        name: "Oracle",
+        shortName: "Oracle",
+        color: "#e0c068",
+        icon: "oracle", // ph
+    },
+    ARCHON: {
+        name: "Archon",
+        shortName: "Archon",
+        color: "#f3e5ab",
+        icon: "archon", // ph
+    },
+    VOIDWEAVER: {
+        name: "Voidweaver",
+        shortName: "Voidweaver",
+        color: "#8a4fff",
+        icon: "voidweaver", // ph
+    },
+    CHRONOWARDEN: {
+        name: "Chronowarden",
+        shortName: "Chrono",
+        color: "#d4a84b",
+        icon: "chronowarden", // ph
+    },
+    FLAMESHAPER: {
+        name: "Flameshaper",
+        shortName: "Flameshaper",
+        color: "#ff6a3d",
+        icon: "flameshaper", // ph
+    },
+    KEEPER_OF_THE_GROVE: {
+        name: "Keeper of the Grove",
+        shortName: "Keeper",
+        color: "#7fc35a",
+        icon: "keeper_of_the_grove", // ph
+    },
+    WILDSTALKER: {
+        name: "Wildstalker",
+        shortName: "Wildstalker",
+        color: "#3fa64a",
+        icon: "wildstalker", // ph
+    },
 } satisfies Record<string, HeroTreeInfo>;
 
 export type HeroTree = typeof HERO_TREES[keyof typeof HERO_TREES];
