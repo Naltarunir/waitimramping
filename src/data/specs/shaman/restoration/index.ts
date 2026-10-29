@@ -1,11 +1,14 @@
 import type { specialization } from "@data/class";
+import SHAMAN_SPELLS from "@data/specs/shaman/spells";
 import RESTORATION_SHAMAN_SPELLS from "@data/specs/shaman/restoration/spells";
+import RESTORATION_SHAMAN_TALENTS from "@data/specs/shaman/restoration/talents";
 import RESTORATION_SHAMAN_ROTATIONS from "@data/specs/shaman/restoration/rotations";
 import RESTORATION_SHAMAN_BUGS from "@data/specs/shaman/restoration/bugs";
 
 const RESTORATION_SHAMAN = ({
   key: "shaman_restoration",
-  spells: RESTORATION_SHAMAN_SPELLS,
+  spells: { ...SHAMAN_SPELLS, ...RESTORATION_SHAMAN_SPELLS },
+  talents: RESTORATION_SHAMAN_TALENTS,
   rotations: RESTORATION_SHAMAN_ROTATIONS,
   bugs: RESTORATION_SHAMAN_BUGS,
   icon: "spell_nature_magicimmunity",

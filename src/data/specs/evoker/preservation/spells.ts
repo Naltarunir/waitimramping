@@ -1,5 +1,6 @@
 import type spell from '@data/spells/spell';
 import { CATEGORY } from '@data/spells/spell';
+import talents from '@data/specs/evoker/preservation/talents';
 
 const spells = {
   TEMPORAL_ANOMALY: {
@@ -59,6 +60,42 @@ const spells = {
     castTime: 0,
     category: CATEGORY.UTILITY,
   },
+  FIRE_BREATH: {
+    name: 'Fire Breath',
+    id: 357208,
+    icon: 'ability_evoker_firebreath',
+    castTime: 0,
+    cooldown: 30,
+    duration: 2.5,
+    category: CATEGORY.DAMAGE,
+  },
+  NATURALIZE: {
+    name: 'Naturalize',
+    id: 360823,
+    icon: 'ability_evoker_fontofmagic_green',
+    castTime: 0,
+    cooldown: 8,
+    category: CATEGORY.UTILITY,
+  },
+  MASS_RETURN: {
+    name: 'Mass Return',
+    id: 361178,
+    icon: 'ability_evoker_return2',
+    castTime: 10,
+    category: CATEGORY.UTILITY,
+  },
+  AZURE_STRIKE: {
+    name: 'Azure Strike',
+    id: 362969,
+    icon: 'ability_evoker_azurestrike',
+    castTime: 0,
+    coeff: 1.63185,
+    category: CATEGORY.DAMAGE,
+  },
+  TIME_DILATION: talents.TIME_DILATION,
+  DREAM_FLIGHT: talents.DREAM_FLIGHT,
+  REWIND: talents.REWIND,
+  TEMPORAL_BARRIER: talents.TEMPORAL_BARRIER,
 } satisfies Record<string, spell>;
 
 export default spells;

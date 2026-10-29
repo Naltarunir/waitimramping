@@ -1,5 +1,6 @@
 import type spell from "@data/spells/spell";
 import { CATEGORY } from "@data/spells/spell";
+import talents from "@data/specs/shaman/restoration/talents";
 
 const spells = {
     RIPTIDE: {
@@ -122,6 +123,23 @@ const spells = {
         castTime: 0,
         category: CATEGORY.HEALING,
     },
+    PURIFY_SPIRIT: {
+        name: "Purify Spirit",
+        id: 77130,
+        icon: 'ability_shaman_cleansespirit',
+        castTime: 0,
+        cooldown: 8,
+        category: CATEGORY.UTILITY,
+    },
+    ANCESTRAL_VISION: {
+        name: "Ancestral Vision",
+        id: 212048,
+        icon: 'spell_shaman_elementaloath',
+        castTime: 10,
+        category: CATEGORY.UTILITY,
+    },
+    ANCESTRAL_SWIFTNESS: talents.ANCESTRAL_SWIFTNESS,
+    EARTHLIVING_WEAPON: talents.EARTHLIVING_WEAPON,
 } satisfies Record<string, spell>;
 
 export default spells;

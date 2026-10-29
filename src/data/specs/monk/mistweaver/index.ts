@@ -1,6 +1,7 @@
 import '@data/specs/monk/mistweaver/calcs';
 import type { specialization } from '@data/class';
 import MISTWEAVER_KEY from '@data/specs/monk/mistweaver/key';
+import MONK_SPELLS from '@data/specs/monk/spells';
 import MISTWEAVER_MONK_SPELLS from '@data/specs/monk/mistweaver/spells';
 import MISTWEAVER_MONK_TALENTS from '@data/specs/monk/mistweaver/talents';
 import MISTWEAVER_MONK_ROTATIONS from '@data/specs/monk/mistweaver/rotations';
@@ -24,7 +25,7 @@ export const MASTERY_COEFFICIENT = 31.185;
 
 const MISTWEAVER_MONK = ({
   key: MISTWEAVER_KEY,
-  spells: MISTWEAVER_MONK_SPELLS,
+  spells: { ...MONK_SPELLS, ...MISTWEAVER_MONK_SPELLS },
   talents: MISTWEAVER_MONK_TALENTS,
   rotations: MISTWEAVER_MONK_ROTATIONS,
   buffs: MISTWEAVER_MONK_BUFFS,

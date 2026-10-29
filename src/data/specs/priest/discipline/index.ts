@@ -1,10 +1,13 @@
 import type { specialization } from '@data/class';
+import PRIEST_SPELLS from '@data/specs/priest/spells';
 import DISCIPLINE_PRIEST_SPELLS from '@data/specs/priest/discipline/spells';
+import DISCIPLINE_PRIEST_TALENTS from '@data/specs/priest/discipline/talents';
 import DISCIPLINE_PRIEST_ROTATIONS from '@data/specs/priest/discipline/rotations';
 
 const DISCIPLINE_PRIEST = ({
   key: "priest_discipline",
-  spells: DISCIPLINE_PRIEST_SPELLS,
+  spells: { ...PRIEST_SPELLS, ...DISCIPLINE_PRIEST_SPELLS },
+  talents: DISCIPLINE_PRIEST_TALENTS,
   rotations: DISCIPLINE_PRIEST_ROTATIONS,
   icon: 'spell_holy_powerwordshield',
   name: 'Discipline',

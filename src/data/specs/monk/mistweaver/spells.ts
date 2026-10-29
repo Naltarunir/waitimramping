@@ -2,6 +2,8 @@ import type spell from '@data/spells/spell';
 import { CATEGORY } from '@data/spells/spell';
 import { SCHOOLS } from '@data/shared/schools';
 import { HERO_TREES } from '@data/heroTalents';
+import talents from '@data/specs/monk/mistweaver/talents';
+
 const COTC = HERO_TREES.CONDUIT_OF_THE_CELESTIALS;
 
 const spells = {
@@ -162,7 +164,7 @@ const spells = {
         cooldown: 120,
         gcd: false,
         formula: (stats) => (stats.totalHp ?? 0) * 48 / 100 * (1 + stats.versatility / 100),
-        category: CATEGORY.COOLDOWN,
+        category: CATEGORY.DEFENSIVE,
     },
     CELESTIAL_CONDUIT: {
         name: 'Celestial Conduit',
@@ -181,7 +183,25 @@ const spells = {
         },
         category: CATEGORY.COOLDOWN,
     },
-
+    REAWAKEN: {
+        name: 'Reawaken',
+        id: 212051,
+        icon: 'ability_monk_chiswirl',
+        castTime: 10,
+        category: CATEGORY.UTILITY,
+    },
+    DETOX: {
+        name: 'Detox',
+        id: 115450,
+        icon: 'ability_rogue_imrovedrecuperate',
+        castTime: 0,
+        cooldown: 8,
+        category: CATEGORY.UTILITY,
+    },
+    RESTORAL: talents.RESTORAL,
+    RUSHING_WIND_KICK: talents.RUSHING_WIND_KICK,
+    JADE_SERPENT_STATUE: talents.JADE_SERPENT_STATUE,
+    JADEFIRE_STOMP: talents.JADEFIRE_STOMP,
 } satisfies Record<string, spell>;
 
 const CHIJI_ABILITIES = [

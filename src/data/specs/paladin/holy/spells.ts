@@ -1,5 +1,6 @@
 import type spell from "@data/spells/spell";
 import { CATEGORY } from "@data/spells/spell";
+import talents from "@data/specs/paladin/holy/talents";
 
 const spells = {
     HOLY_SHOCK: {
@@ -85,7 +86,7 @@ const spells = {
         icon: "spell_holy_sealofsacrifice",
         castTime: 0,
         gcd: false,
-        category: CATEGORY.COOLDOWN,
+        category: CATEGORY.DEFENSIVE,
     },
     BLESSING_OF_PROTECTION: {
         name: "Blessing of Protection",
@@ -93,7 +94,7 @@ const spells = {
         icon: "spell_holy_sealofprotection",
         castTime: 0,
         gcd: false,
-        category: CATEGORY.COOLDOWN,
+        category: CATEGORY.DEFENSIVE,
     },
     LAY_ON_HANDS: {
         name: "Lay on Hands",
@@ -137,7 +138,7 @@ const spells = {
         id: 642,
         icon: "spell_holy_divineshield",
         castTime: 0,
-        category: CATEGORY.COOLDOWN,
+        category: CATEGORY.DEFENSIVE,
     },
     HOLY_BULWARK: {
         name: "Holy Bulwark",
@@ -151,6 +152,43 @@ const spells = {
         icon: 'inv_ability_lightsmithpaladin_sacredweapon',
         category: CATEGORY.COOLDOWN,
     },
+    DIVINE_PROTECTION: {
+        name: "Divine Protection",
+        id: 498,
+        icon: 'spell_holy_divineprotection',
+        castTime: 0,
+        cooldown: 60,
+        duration: 8,
+        category: CATEGORY.DEFENSIVE,
+    },
+    CLEANSE: {
+        name: "Cleanse",
+        id: 4987,
+        icon: 'spell_holy_purify',
+        castTime: 0,
+        cooldown: 8,
+        category: CATEGORY.UTILITY,
+    },
+    ABSOLUTION: {
+        name: "Absolution",
+        id: 212056,
+        icon: 'ability_paladin_savedbythelight',
+        castTime: 10,
+        category: CATEGORY.UTILITY,
+    },
+    SHIELD_OF_THE_RIGHTEOUS: {
+        name: "Shield of the Righteous",
+        id: 415091,
+        icon: 'ability_paladin_shieldofvengeance',
+        castTime: 0,
+        cooldown: 1,
+        coeff: 1.98,
+        category: CATEGORY.DAMAGE,
+    },
+    BEACON_OF_FAITH: talents.BEACON_OF_FAITH,
+    AVENGING_CRUSADER: talents.AVENGING_CRUSADER,
+    RITE_OF_SANCTIFICATION: talents.RITE_OF_SANCTIFICATION,
+    RITE_OF_ADJURATION: talents.RITE_OF_ADJURATION,
 } satisfies Record<string, spell>;
 
 export default spells;

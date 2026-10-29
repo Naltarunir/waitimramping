@@ -202,6 +202,10 @@ const talents = {
         name: "Restoral",
         id: 388615,
         icon: 'ability_monk_tigerstyle',
+        castTime: 0,
+        cooldown: 180,
+        coeff: 59.8828,
+        category: CATEGORY.HEALING,
     },
     SECRET_INFUSION: {
         name: "Secret Infusion",
@@ -263,6 +267,10 @@ const talents = {
         name: "Jade Serpent Statue",
         id: 115313,
         icon: 'ability_monk_summonserpentstatue',
+        castTime: 0,
+        cooldown: 10,
+        duration: 900,
+        category: CATEGORY.UTILITY,
     },
     JADE_SERPENT_STATUE_SOOTHING_MIST: {
         name: "Soothing Mist",
@@ -436,7 +444,7 @@ const talents = {
         castTime: 0,
         coeff: 1.04,
         targets: 5,
-        category: CATEGORY.DAMAGE,
+        category: CATEGORY.PASSIVE,
     },
     OVERFLOWING_MISTS: {
         name: "Overflowing Mists",
@@ -485,6 +493,9 @@ const talents = {
         name: "Chi Burst",
         id: 123986,
         icon: 'spell_arcane_arcanetorrent',
+        castTime: 1,
+        cooldown: 30,
+        duration: 1,
     },
     REFRESHMENT: {
         name: "Refreshment",
@@ -872,6 +883,20 @@ const talents = {
         name: "Burst of Life",
         id: 399226,
         icon: 'ability_rogue_imrovedrecuperate',
+    },
+    TIGERS_VIGOR: {
+        name: "Tiger's Vigor",
+        id: 451041,
+        icon: 'monk_stance_whitetiger',
+        heroTalent: HERO_TREES.MASTER_OF_HARMONY,
+        exclusive: [451043],
+    },
+    ROAR_FROM_THE_HEAVENS: {
+        name: "Roar from the Heavens",
+        id: 451043,
+        icon: 'inv_celestialserpentmount',
+        heroTalent: HERO_TREES.MASTER_OF_HARMONY,
+        exclusive: [451041],
     },
 } satisfies Record<string, spell>;
 

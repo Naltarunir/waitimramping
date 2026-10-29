@@ -78,13 +78,22 @@ const spells = {
     icon: 'spell_druid_ironbark',
     castTime: 0,
     gcd: false,
-    category: CATEGORY.COOLDOWN,
+    category: CATEGORY.DEFENSIVE,
   },
-  MARK_OF_THE_WILD: {
-    name: 'Mark of the Wild',
-    id: 1126,
-    icon: 'spell_nature_regeneration',
-    category: CATEGORY.OTHER,
+  NATURES_CURE: {
+    name: 'Nature\'s Cure',
+    id: 88423,
+    icon: 'ability_shaman_cleansespirit',
+    castTime: 0,
+    cooldown: 8,
+    category: CATEGORY.UTILITY,
+  },
+  REVITALIZE: {
+    name: 'Revitalize',
+    id: 212040,
+    icon: 'ability_druid_empoweredtouch',
+    castTime: 10,
+    category: CATEGORY.UTILITY,
   },
 } satisfies Record<string, spell>;
 

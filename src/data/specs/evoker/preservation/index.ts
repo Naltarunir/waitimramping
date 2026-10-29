@@ -1,10 +1,13 @@
 import type { specialization } from '@data/class';
+import EVOKER_SPELLS from '@data/specs/evoker/spells';
 import PRESERVATION_EVOKER_SPELLS from '@data/specs/evoker/preservation/spells';
+import PRESERVATION_EVOKER_TALENTS from '@data/specs/evoker/preservation/talents';
 import PRESERVATION_EVOKER_ROTATIONS from '@data/specs/evoker/preservation/rotations';
 
 const PRESERVATION_EVOKER = ({
   key: "evoker_preservation",
-  spells: PRESERVATION_EVOKER_SPELLS,
+  spells: { ...EVOKER_SPELLS, ...PRESERVATION_EVOKER_SPELLS },
+  talents: PRESERVATION_EVOKER_TALENTS,
   icon: 'classicon_evoker_preservation',
   name: 'Preservation',
   class: 'Evoker',

@@ -1,11 +1,14 @@
 import type { specialization } from '@data/class';
+import PALADIN_SPELLS from '@data/specs/paladin/spells';
 import HOLY_PALADIN_SPELLS from '@data/specs/paladin/holy/spells';
+import HOLY_PALADIN_TALENTS from '@data/specs/paladin/holy/talents';
 import HOLY_PALADIN_ROTATIONS from '@data/specs/paladin/holy/rotations';
 import HOLY_PALADIN_BUGS from '@data/specs/paladin/holy/bugs';
 
 const HOLY_PALADIN = ({
   key: "paladin_holy",
-  spells: HOLY_PALADIN_SPELLS,
+  spells: { ...PALADIN_SPELLS, ...HOLY_PALADIN_SPELLS },
+  talents: HOLY_PALADIN_TALENTS,
   icon: 'spell_holy_holybolt',
   name: 'Holy',
   class: 'Paladin',

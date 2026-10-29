@@ -1,5 +1,6 @@
 import type spell from '@data/spells/spell';
 import { CATEGORY } from '@data/spells/spell';
+import talents from '@data/specs/priest/discipline/talents';
 
 const spells = {
   POWER_WORD_SHIELD: {
@@ -99,7 +100,7 @@ const spells = {
     icon: 'spell_holy_painsupression',
     castTime: 0,
     gcd: false,
-    category: CATEGORY.COOLDOWN,
+    category: CATEGORY.DEFENSIVE,
   },
   ULTIMATE_PENITENCE: {
     name: 'Ultimate Penitence',
@@ -108,6 +109,15 @@ const spells = {
     castTime: 0,
     category: CATEGORY.COOLDOWN,
   },
+  PURIFY: {
+    name: 'Purify',
+    id: 527,
+    icon: 'spell_holy_dispelmagic',
+    castTime: 0,
+    cooldown: 8,
+    category: CATEGORY.UTILITY,
+  },
+  POWER_WORD_BARRIER: talents.POWER_WORD_BARRIER,
 } satisfies Record<string, spell>;
 
 export default spells;
