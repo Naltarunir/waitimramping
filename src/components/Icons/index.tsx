@@ -29,6 +29,7 @@ import {
     IconPlayerSkipForward,
     IconPlus,
     IconRefresh,
+    IconRotate,
     IconSearchOff,
     IconTool,
     IconTrash,
@@ -102,6 +103,7 @@ export const Link = make(IconLink);
 export const Menu = make(IconMenu2);
 export const Patreon = make(IconBrandPatreonFilled);
 export const Refresh = make(IconRefresh);
+export const RestartAlt = make(IconRotate);
 export const Remove = make(IconMinus);
 export const RemoveCircleOutline = make(IconCircleMinus);
 export const SearchOff = make(IconSearchOff);

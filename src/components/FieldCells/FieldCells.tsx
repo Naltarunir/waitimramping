@@ -20,6 +20,7 @@ interface FieldCellsProps {
     options: object;
     onOptionsChange: (newOptions: any) => void;
     label?: string;
+    trailing?: React.ReactNode;
 }
 
 // how long typing has to pause before the value is applied
@@ -27,7 +28,7 @@ const COMMIT_DELAY_MS = 400;
 
 const inputSx = { width: 92, '& .MuiInputBase-input': { fontSize: FONT.body, fontFamily: MONO_FONT, py: 0 } };
 
-export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptionsChange, label }) => {
+export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptionsChange, label, trailing }) => {
     const values = options as Record<string, number | undefined>;
     const [localValues, setLocalValues] = useState<{ [key: string]: string }>({});
     const [belowMin, setBelowMin] = useState<{ [key: string]: boolean }>({});
@@ -161,6 +162,7 @@ export const FieldCells: React.FC<FieldCellsProps> = ({ fields, options, onOptio
             )}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {fields.map(renderCell)}
+                {trailing}
             </div>
         </div>
     );

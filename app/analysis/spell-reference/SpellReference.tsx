@@ -28,6 +28,7 @@ import TalentsCard from "@components/TalentsCard/TalentsCard";
 import HeroTalentsCard from "@components/TalentsCard/HeroTalentsCard";
 
 import SpellButton from "@components/SpellButtons/SpellButton";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 
 type SpellRow = {
@@ -180,6 +181,7 @@ const SpellReference: React.FC<{ title: React.ReactNode; description: React.Reac
 
   const { spec, setSpec } = useSpec();
   const [stats, setStats] = useState<StatsCardOptions>({ ...spec.stats });
+  const statsReady = useStoredStats(spec, undefined, restored => setStats(prev => ({ ...prev, ...restored })));
   const [specTalents, setSpecTalents] = useState<TalentMap>(spec.defaultTalents?.spec ?? new Map());
   const [heroTalents, setHeroTalents] = useState(spec.defaultTalents?.hero ?? new Map<spell, boolean>());
   const [classTalents, setClassTalents] = useState<TalentMap>(spec.defaultTalents?.class ?? new Map());
@@ -360,8 +362,8 @@ const SpellReference: React.FC<{ title: React.ReactNode; description: React.Reac
           {
             key: "stats",
             title: "stats",
-            summary: statsSummary(stats),
-            content: <StatsCard options={stats} onOptionsChange={setStats} spec={spec} />,
+            summary: statsReady ? statsSummary(stats) : "",
+            content: <StatsCard loading={!statsReady} options={stats} onOptionsChange={setStats} spec={spec} />,
           },
           ...(specTalents.size > 0 || heroTalents.size > 0 || classTalents.size > 0 || tierSet.size > 0 ? [{
             key: "talents",
