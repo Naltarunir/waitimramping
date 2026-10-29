@@ -14,7 +14,7 @@ export const wowheadItemUrl = (id: number): string => {
 };
 
 export const iconLocalUrl = (icon: string): string => {
-    return icon ? `/icons/${icon}.png` : "";
+    return icon ? `/icons/${icon}.webp` : "";
 };
 
 export const iconFallbackUrl = (icon: string): string => {
