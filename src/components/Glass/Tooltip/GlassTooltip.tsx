@@ -1,6 +1,9 @@
 import { Tooltip, type TooltipProps } from "@mui/material";
 import { BLUR, HAIRLINE } from "@components/Theme/tokens";
 
+// solid so it covers the box border where the arrow joins it
+const ARROW_FILL = "#0d0d0d";
+
 export const GlassTooltip = (props: TooltipProps) => {
     const { slotProps, ...otherProps } = props;
     
@@ -24,7 +27,7 @@ export const GlassTooltip = (props: TooltipProps) => {
                 arrow: {
                     ...slotProps?.arrow,
                     sx: {
-                        color: "rgba(0, 0, 0, 0.3)",
+                        color: ARROW_FILL,
                         "&::before": {
                             border: `1px solid ${HAIRLINE}`,
                         }
