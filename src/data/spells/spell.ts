@@ -6,8 +6,10 @@ export const CATEGORY = {
     DAMAGE: "Damage",
     HEALING: "Healing",
     COOLDOWN: "Cooldown",
-    OTHER: "Other",
     UTILITY: "Utility",
+    DEFENSIVE: "Defensive",
+    OTHER: "Other",
+    PASSIVE: "Passive",
 } as const;
 
 export type SpellCategory = typeof CATEGORY[keyof typeof CATEGORY];

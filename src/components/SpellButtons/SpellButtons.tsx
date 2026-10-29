@@ -46,6 +46,7 @@ const SpellButtons: React.FC<SpellButtonsProps> = ({
     if (spellList.length === 0) return null;
 
     const groups = Object.values(CATEGORY)
+        .filter((key) => key !== CATEGORY.PASSIVE)
         .map((key) => ({
             label: key.charAt(0).toUpperCase() + key.slice(1),
             spells: spellList.filter((s) => categorize(s) === key),
