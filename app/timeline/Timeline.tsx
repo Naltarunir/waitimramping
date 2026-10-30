@@ -21,11 +21,13 @@ import { getSpellById } from '@data/spells';
 
 import { useRotationManager } from '@hooks/useRotationManager';
 import { encodeShare, decodeShare } from '@util/rotationShare';
+import { useStoredStats } from "@hooks/useStoredStats";
 
 const Timeline: React.FC<{ title: React.ReactNode; description: React.ReactNode }> = ({ title, description }) => {
     const { spec, setSpec } = useSpec();
     const [spellList, setSpellList] = useState<spell[]>([]);
     const [haste, setHaste] = useState<number | "">(0);
+    const statsReady = useStoredStats(undefined, ["haste"], restored => restored.haste !== undefined && setHaste(restored.haste));
     const skipUrlSync = useRef(false);
 
     const theme = useTheme();
@@ -120,10 +122,12 @@ const Timeline: React.FC<{ title: React.ReactNode; description: React.ReactNode 
                         {
                             key: "stats",
                             title: "stats",
-                            summary: `${haste === "" ? 0 : haste}% haste`,
+                            summary: statsReady ? `${haste === "" ? 0 : haste}% haste` : "",
                             content: (
                                 <StatsCard
+                                    loading={!statsReady}
                                     fields={["haste"]}
+                                    defaults={{ haste: 0 }}
                                     options={{ intellect: 0, mastery: 0, crit: 0, versatility: 0, haste: haste === "" ? 0 : haste }}
                                     onOptionsChange={(updater: any) => {
                                         const prev = { intellect: 0, mastery: 0, crit: 0, versatility: 0, haste: haste === "" ? 0 : haste };

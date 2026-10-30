@@ -27,6 +27,7 @@ import StatsCard, { Group, statsSummary, type StatsCardOptions } from "@componen
 import ConfigPanel from "@components/ConfigPanel/ConfigPanel";
 import { CHART_ALPHA, CHART_COLORS, CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -56,6 +57,7 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
 
   const [talents, setTalents] = useState(allTalents);
   const [stats, setStats] = useState<StatsCardOptions>(mistweaver.stats);
+  const statsReady = useStoredStats(mistweaver, ["intellect", "mastery"], restored => setStats(prev => ({ ...prev, ...restored })));
   const player: Player = { stats, talents, corePassives: mistweaver.corePassives };
 
   const rsk = SPELLS.RISING_SUN_KICK;
@@ -212,8 +214,8 @@ const RushingWindKickComparison: React.FC<{ title: React.ReactNode; description:
           {
             key: "stats",
             title: "stats",
-            summary: statsSummary(stats, ["intellect", "mastery"]),
-            content: <StatsCard options={stats} onOptionsChange={setStats} fields={["intellect", "mastery"]} spec={mistweaver} />,
+            summary: statsReady ? statsSummary(stats, ["intellect", "mastery"]) : "",
+            content: <StatsCard loading={!statsReady} options={stats} onOptionsChange={setStats} fields={["intellect", "mastery"]} spec={mistweaver} />,
           },
           {
             key: "mode",

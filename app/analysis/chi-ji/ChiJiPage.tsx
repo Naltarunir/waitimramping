@@ -25,6 +25,7 @@ import { useRotationManager } from "@hooks/useRotationManager";
 import { pluralize } from "@util/stringManipulation";
 import { calculateRotationHPS } from './simulation';
 import type { RotationResult, SimulationOptions } from './types';
+import { useStoredStats } from "@hooks/useStoredStats";
 
 interface TalentSnapshot {
     specTalents: SimulationOptions["specTalents"];
@@ -75,6 +76,8 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
         specTalents: mistweaverTalents,
         classTalents: sharedTalents,
     });
+
+    const statsReady = useStoredStats(mistweaver, undefined, restored => setOptions(prev => ({ ...prev, ...restored })));
 
     const {
         currentRotation,
@@ -145,8 +148,8 @@ const ChiJiPage: React.FC<{ title: React.ReactNode; description: React.ReactNode
                         {
                             key: "stats",
                             title: "stats",
-                            summary: statsSummary(options),
-                            content: <StatsCard options={options} onOptionsChange={setOptions} spec={mistweaver} />,
+                            summary: statsReady ? statsSummary(options) : "",
+                            content: <StatsCard loading={!statsReady} options={options} onOptionsChange={setOptions} spec={mistweaver} />,
                         },
                         {
                             key: "targets",

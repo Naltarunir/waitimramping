@@ -1,5 +1,5 @@
 import type React from "react";
-import { Discord as DiscordIcon, GitHub as GitHubIcon, Patreon as PatreonIcon, Twitch as TwitchIcon, YouTube as YouTubeIcon } from "@components/Icons";
+import { Crown as CrownIcon, Discord as DiscordIcon, GitHub as GitHubIcon, Patreon as PatreonIcon, Twitch as TwitchIcon, YouTube as YouTubeIcon } from "@components/Icons";
 
 export const WarcraftSVG = (props: React.SVGProps<SVGSVGElement>) => (
     <svg width={24} height={24} viewBox="-4 -5 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -45,6 +45,12 @@ export const SOCIAL_LINKS = {
         href: "https://www.youtube.com/@swirlstreams",
         icon: <YouTubeIcon />,
         color: "#d02424",
+    },
+    METAFY: {
+        label: "Metafy",
+        href: "https://metafy.gg/@swirl",
+        icon: <CrownIcon />,
+        color: "#f4dcb1",
     },
     WARCRAFT: {
         label: "World of Warcraft",

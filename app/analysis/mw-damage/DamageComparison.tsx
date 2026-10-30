@@ -32,6 +32,7 @@ import { buildRotationConfigs, getBackgroundColor, getBorderColor, getCardBg } f
 import BreakdownCard from "./BreakdownCard";
 import HeatmapCard from "./HeatmapCard";
 import ComboRankCard from "./ComboRankCard";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -84,6 +85,7 @@ const DamageComparison: React.FC<{ title: React.ReactNode; description: React.Re
   const [tierSet, setTierSet] = useState<Map<spell, boolean>>(mistweaver.tierSet ?? new Map<spell, boolean>());
 
   const [stats, setStats] = useState<StatsCardOptions>({ ...mistweaver.stats });
+  const statsReady = useStoredStats(mistweaver, undefined, restored => setStats(prev => ({ ...prev, ...restored })));
 
   const talents = useMemo((): TalentMap => new Map([...specTalents, ...classTalents, ...heroTalents, ...tierSet]), [specTalents, classTalents, heroTalents, tierSet]);
 
@@ -236,10 +238,10 @@ const DamageComparison: React.FC<{ title: React.ReactNode; description: React.Re
             {
               key: "stats",
               title: "stats",
-              summary: statsSummary(stats),
+              summary: statsReady ? statsSummary(stats) : "",
               content: (
                 <Group>
-                  <StatsCard options={stats} onOptionsChange={setStats} spec={mistweaver} />
+                  <StatsCard loading={!statsReady} options={stats} onOptionsChange={setStats} spec={mistweaver} />
                 </Group>
               ),
             },

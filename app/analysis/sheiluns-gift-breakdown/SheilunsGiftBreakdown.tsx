@@ -20,6 +20,7 @@ import type { TalentMap } from "@data/shared/engine";
 
 import { T } from "@util/T";
 import { pluralize } from "@util/stringManipulation";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -50,6 +51,8 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
     ...mistweaver.stats,
     totalHp: 99690,
   });
+
+  const statsReady = useStoredStats(mistweaver, undefined, restored => setOptions(prev => ({ ...prev, ...restored })));
 
   const healingData = useMemo(() => {
     return calculateSheilunsGiftBreakdown({
@@ -226,8 +229,8 @@ const SheilunsGiftBreakdown: React.FC<{ title: React.ReactNode; description: Rea
           {
             key: "stats",
             title: "stats",
-            summary: statsSummary(options),
-            content: <StatsCard options={options} onOptionsChange={setOptions} spec={mistweaver} />,
+            summary: statsReady ? statsSummary(options) : "",
+            content: <StatsCard loading={!statsReady} options={options} onOptionsChange={setOptions} spec={mistweaver} defaults={{ totalHp: 99690 }} />,
           },
           {
             key: "talents",

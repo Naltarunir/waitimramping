@@ -17,6 +17,7 @@ import {
     IconChevronDown,
     IconChevronUp,
     IconCircleMinus,
+    IconCrown,
     IconCopy,
     IconDownload,
     IconHelp,
@@ -29,6 +30,7 @@ import {
     IconPlayerSkipForward,
     IconPlus,
     IconRefresh,
+    IconRotate,
     IconSearchOff,
     IconTool,
     IconTrash,
@@ -84,6 +86,7 @@ export const Calculate = make(IconCalculator);
 export const Check = make(IconCheck);
 export const Close = make(IconX);
 export const ContentCopyTwoTone = make(IconCopy);
+export const Crown = make(IconCrown);
 export const Delete = make(IconTrash);
 export const DeleteForever = make(IconTrash);
 export const DeleteTwoTone = make(IconTrash);
@@ -102,6 +105,7 @@ export const Link = make(IconLink);
 export const Menu = make(IconMenu2);
 export const Patreon = make(IconBrandPatreonFilled);
 export const Refresh = make(IconRefresh);
+export const RestartAlt = make(IconRotate);
 export const Remove = make(IconMinus);
 export const RemoveCircleOutline = make(IconCircleMinus);
 export const SearchOff = make(IconSearchOff);

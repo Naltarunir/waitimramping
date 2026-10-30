@@ -2,24 +2,13 @@
 import { Typography, Card, CardContent, Divider, Stack, Box } from "@mui/material";
 import { PageMetadata } from "@components/PageMetadata/PageMetadata";
 import { RAINBOW_COLORS } from "@components/Buttons/RainbowCard";
-import { CONTENT_WIDTH, FONT } from "@components/Theme/tokens";
+import SocialLinks from "@components/SocialLinks/SocialLinks";
+import SwirlLink from "@components/SwirlLink/SwirlLink";
+import { CONTENT_WIDTH, FONT, HAIRLINE } from "@components/Theme/tokens";
 
 const title = "About";
 const description = "Learn more about Swirl, the creator of Wait, I'm Ramping!";
 export const metadata = PageMetadata(title, description);
-
-const swirlImg = "/swirl_panda.jpg";
-const mistweaverLogo = "/mistweaver-bad.png";
-
-const imageStyle = {
-  width: 128,
-  height: 128,
-  borderRadius: 1,
-  objectFit: "cover",
-  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-  border: "1px solid #575757",
-  backgroundColor: "transparent",
-};
 
 const About = () => {
   return (
@@ -39,58 +28,49 @@ const About = () => {
       >
         <CardContent>
           <Stack spacing={2}>
-            <Typography variant="h4" gutterBottom align="left" sx={{ mt: 1 }}>
-              about me
-            </Typography>
-            <Stack direction="row" alignItems="center" spacing={2}>
+            <Stack direction={{ xs: "column", sm: "row" }} alignItems="center" spacing={3} sx={{ mt: 1 }}>
               <Box
                 component="img"
-                src={swirlImg}
+                src="/swirl_panda.jpg"
                 alt="swirl"
-                sx={imageStyle}
+                sx={{ width: 120, height: 120, borderRadius: 2, objectFit: "cover", border: `1px solid ${HAIRLINE}`, flexShrink: 0 }}
               />
-              <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
-                hi, i'm swirl :) i'm a gamer and software engineer who enjoys the mathematical side of the world, which translates directly into digging into how healing works across different games, mostly aligned with world of warcraft. i've been playing wow since cataclysm, and started maining mistweaver monk in mists of pandaria.
-              </Typography>
+              <Box sx={{ minWidth: 0 }}>
+                <Typography variant="h4" align="left" sx={{ fontWeight: 700 }}>
+                  swirl
+                </Typography>
+                <Typography align="left" sx={{ fontSize: FONT.body, color: "text.disabled", mb: 1.5 }}>
+                  mistweaver monk, software engineer
+                </Typography>
+                <Box sx={{ ml: -1 }}>
+                  <SocialLinks omit={["GITHUB"]} />
+                </Box>
+              </Box>
             </Stack>
 
-            <Box
-              sx={{
-                backgroundColor: "rgba(126, 229, 255, 0.08)",
-                border: "1px solid rgba(126, 229, 255, 0.2)",
-                borderRadius: 1,
-                p: 2,
-              }}
-            >
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
-                  ever since, competitive healing has been a major focus in my gameplay. i've reached{" "}
-                  <Box component="span" sx={{ color: RAINBOW_COLORS[2], fontWeight: "bold" }}>
-                    world rank 20 in raid
-                  </Box>
-                  , earned multiple{" "}
-                  <Box component="span" sx={{ color: RAINBOW_COLORS[3], fontWeight: "bold" }}>
-                    0.1% titles in mythic+
-                  </Box>{" "}
-                  season to season. on another note, i am the{" "}
-                  <Box component="span" sx={{ color: RAINBOW_COLORS[1], fontWeight: "bold" }}>
-                    mistweaver guide writer for wowhead
-                  </Box>{" "}
-                  and i'm currently a{" "}
-                  <Box component="span" sx={{ color: RAINBOW_COLORS[0], fontWeight: "bold" }}>
-                    veteran and moderator in peak of serenity
-                  </Box>
-                  .{" "}
-                  i love helping other healers improve and enjoy the role more!
-                </Typography>
-                <Box
-                  component="img"
-                  src={mistweaverLogo}
-                  alt="mistweaver"
-                  sx={imageStyle}
-                />
-              </Stack>
-            </Box>
+            <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
+              hi, i'm swirl :) i'm a gamer and software engineer who enjoys the mathematical side of the world, which translates directly into digging into how healing works across different games, mostly aligned with world of warcraft. i've been playing wow since cataclysm, and started maining mistweaver monk in mists of pandaria.
+            </Typography>
+            <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
+              ever since, competitive healing has been a major focus in my gameplay. i've reached{" "}
+              <Box component="span" sx={{ color: RAINBOW_COLORS[2], fontWeight: "bold" }}>
+                world rank 20 in raid
+              </Box>
+              , earned multiple{" "}
+              <Box component="span" sx={{ color: RAINBOW_COLORS[3], fontWeight: "bold" }}>
+                0.1% titles in mythic+
+              </Box>{" "}
+              season to season. on another note, i am the{" "}
+              <Box component="span" sx={{ color: RAINBOW_COLORS[1], fontWeight: "bold" }}>
+                mistweaver guide writer for wowhead
+              </Box>{" "}
+              and i'm currently a{" "}
+              <Box component="span" sx={{ color: RAINBOW_COLORS[0], fontWeight: "bold" }}>
+                veteran and moderator in peak of serenity
+              </Box>
+              .{" "}
+              i love helping other healers improve and enjoy the role more!
+            </Typography>
 
             <Divider
               sx={{
@@ -128,8 +108,15 @@ const About = () => {
               honestly, i started this website as a way to learn react which turned into much more: a method to share useful info for planning and optimizing healing - whether you're trying to clean up your sequencing, or satiate the desire to understand your spells a bit better.
             </Typography>
             <Typography variant="body2" paragraph align="left">
-              this site is <Box component="span" sx={{ fontWeight: "bold" }}>free and open source</Box>. 
-              if you're interested in contributing or just want to chat about theorycrafting, feel free to reach out through any of the social links in the footer below!
+              this site is <Box component="span" sx={{ fontWeight: "bold" }}>free and open source</Box>.
+              if you're interested in contributing or just want to chat about theorycrafting, feel free to reach out through any of the social links above or on github in the footer below!
+            </Typography>
+            <Typography variant="body2" paragraph align="left" sx={{ mb: 0 }}>
+              want the longer story? read more about the project on my{" "}
+              <SwirlLink href="https://rshevchenko.com/projects/waitimramping" target="_blank" rel="noopener noreferrer" sx={{ fontSize: "inherit" }}>
+                personal portfolio
+              </SwirlLink>
+              .
             </Typography>
           </Stack>
         </CardContent>

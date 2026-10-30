@@ -1,5 +1,8 @@
 "use client";
 import type React from 'react';
+import { IconButton } from '@mui/material';
+import { GlassTooltip } from '@components/Glass';
+import { RestartAlt } from '@components/Icons';
 import { FieldCells, type FieldDef } from '@components/FieldCells/FieldCells';
 import type { Stats } from '@data/shared/stats';
 import type { specialization } from '@data/class';
@@ -15,6 +18,8 @@ interface StatsCardProps {
     label?: string;
     fields?: (keyof StatsCardOptions)[];
     spec?: specialization;
+    defaults?: Partial<StatsCardOptions>;
+    loading?: boolean;
 }
 
 export const rowLabel: React.CSSProperties = { fontSize: FONT.micro, fontWeight: 600, opacity: 0.45, textAlign: "right", whiteSpace: "nowrap" };
@@ -66,19 +71,76 @@ export const statsSummary = (options: StatsCardOptions, fields?: (keyof StatsCar
     return [...separate, ...(compact ? [compact] : [])].join(", ");
 };
 
-const StatsCard: React.FC<StatsCardProps> = ({ options, onOptionsChange, label, fields, spec }) => {
+const readStored = (storageKey: string): Record<string, unknown> => {
+    try {
+        return JSON.parse(localStorage.getItem(storageKey) ?? '{}');
+    } catch {
+        return {};
+    }
+};
+
+const shownFields = (spec?: specialization, fields?: (keyof StatsCardOptions)[]) => {
     const masteryMin = spec ? spec.masteryCoefficient * 8 : 0;
-    const visibleFields = [...baseFields, ...secondaryFields]
+    return [...baseFields, ...secondaryFields]
         .map(field => field.key === 'mastery' ? { ...field, min: masteryMin } : field)
         .filter(field => !fields || fields.includes(field.key as keyof StatsCardOptions));
+};
+
+const storageKeyFor = (spec?: specialization) => `stats:${spec?.key ?? 'default'}`;
+
+export const loadStoredStats = (spec?: specialization, fields?: (keyof StatsCardOptions)[]): Partial<StatsCardOptions> => {
+    const stored = readStored(storageKeyFor(spec));
+    return Object.fromEntries(
+        shownFields(spec, fields)
+            .filter(field => typeof stored[field.key] === 'number' && Number.isFinite(stored[field.key]) && (stored[field.key] as number) >= (field.min ?? 0))
+            .map(field => [field.key, stored[field.key]]),
+    );
+};
+
+const StatsCard: React.FC<StatsCardProps> = ({ options, onOptionsChange, label, fields, spec, defaults, loading }) => {
+    const visibleFields = shownFields(spec, fields);
+    const storageKey = storageKeyFor(spec);
+
+    const handleChange = (updater: unknown) => {
+        const next = typeof updater === 'function' ? updater(options) : updater;
+        const stored = readStored(storageKey);
+        for (const field of visibleFields) {
+            const value = next[field.key];
+            if (typeof value === 'number') stored[field.key] = value;
+        }
+        localStorage.setItem(storageKey, JSON.stringify(stored));
+        onOptionsChange(updater);
+    };
+
+    const defaultOf = (key: string): number =>
+        (defaults as Record<string, number | undefined> | undefined)?.[key] ?? (spec?.stats as Record<string, number | undefined> | undefined)?.[key] ?? 0;
+    const atDefaults = visibleFields.every(field => (options as unknown as Record<string, unknown>)[field.key] === defaultOf(field.key));
+
+    const handleReset = () => {
+        const stored = readStored(storageKey);
+        for (const field of visibleFields) delete stored[field.key];
+        localStorage.setItem(storageKey, JSON.stringify(stored));
+        onOptionsChange((prev: StatsCardOptions) => ({ ...prev, ...Object.fromEntries(visibleFields.map(field => [field.key, defaultOf(field.key)])) }));
+    };
 
     return (
-        <FieldCells
-            fields={visibleFields}
-            options={options}
-            onOptionsChange={onOptionsChange}
-            label={label}
-        />
+        <div style={{ visibility: loading ? 'hidden' : undefined }}>
+            <FieldCells
+                fields={visibleFields}
+                options={options}
+                onOptionsChange={handleChange}
+                label={label}
+                trailing={
+                    <GlassTooltip title="reset stats">
+                        <span style={{ alignSelf: 'center' }}>
+                            <IconButton size="small" onClick={handleReset} disabled={atDefaults} sx={{ p: 0.5, color: 'text.disabled', '&:hover': { color: 'text.secondary' } }}>
+                                <RestartAlt sx={{ fontSize: 16 }} />
+                            </IconButton>
+                        </span>
+                    </GlassTooltip>
+                }
+            />
+        </div>
     );
 };
 

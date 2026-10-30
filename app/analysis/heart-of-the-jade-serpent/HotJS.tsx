@@ -28,6 +28,7 @@ import { CLASSES } from '@data/class';
 import { CONTENT_WIDTH, FONT, HAIRLINE, ICON } from "@components/Theme/tokens";
 import { MONO_FONT } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 const YULONS_AVATAR_RPPM = 1.5;
 const TIMELINE_HEIGHT = 500;
@@ -656,6 +657,7 @@ const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> 
     const [timeRange, setTimeRange] = useState<number>(300);
     const [cdrEnabled, setCdrEnabled] = useState<boolean>(true);
     const [stats, setStats] = useState<StatsCardOptions>(mistweaver.stats);
+    const statsReady = useStoredStats(mistweaver, ["haste"], restored => setStats(prev => ({ ...prev, ...restored })));
 
     const allTalents = new Map<spell, boolean>([
         [TALENTS.YULONS_AVATAR, true],
@@ -725,8 +727,8 @@ const HotJS: React.FC<{ title: React.ReactNode; description: React.ReactNode }> 
                     {
                         key: "stats",
                         title: "stats",
-                        summary: `${stats.haste}% haste`,
-                        content: <StatsCard options={stats} onOptionsChange={setStats} fields={["haste"]} spec={mistweaver} />,
+                        summary: statsReady ? `${stats.haste}% haste` : "",
+                        content: <StatsCard loading={!statsReady} options={stats} onOptionsChange={setStats} fields={["haste"]} spec={mistweaver} />,
                     },
                     {
                         key: "talents",

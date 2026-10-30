@@ -20,6 +20,7 @@ import { useSpec } from '@context/SpecContext';
 import { encodeShare, decodeShare } from '@util/rotationShare';
 import { MONO_FONT } from "@components/Theme/tokens";
 import { motion } from "@components/Theme/motion";
+import { useStoredStats } from "@hooks/useStoredStats";
 
 const RampAnswer: React.FC<{ seconds: number; accent: string }> = ({ seconds, accent }) => {
     const hasAnswer = seconds > 0;
@@ -61,6 +62,7 @@ const WhenDoIRamp: React.FC<{ title: React.ReactNode; description: React.ReactNo
     const [lockedSpecName, setLockedSpecName] = useState<string | null>(null);
     const [spellList, setSpellList] = useState<spell[]>([]);
     const [haste, setHaste] = useState<number | "">(30);
+    const statsReady = useStoredStats(undefined, ["haste"], restored => restored.haste !== undefined && setHaste(restored.haste));
     const [totalCastTime, setTotalCastTime] = useState(0);
     const skipUrlSync = useRef(false);
 
@@ -145,10 +147,12 @@ const WhenDoIRamp: React.FC<{ title: React.ReactNode; description: React.ReactNo
                         {
                             key: "stats",
                             title: "stats",
-                            summary: `${haste === "" ? 0 : haste}% haste`,
+                            summary: statsReady ? `${haste === "" ? 0 : haste}% haste` : "",
                             content: (
                                 <StatsCard
+                                    loading={!statsReady}
                                     fields={["haste"]}
+                                    defaults={{ haste: 30 }}
                                     options={{ intellect: 0, mastery: 0, crit: 0, versatility: 0, haste: haste === "" ? 0 : haste }}
                                     onOptionsChange={(updater: any) => {
                                         const prev = { intellect: 0, mastery: 0, crit: 0, versatility: 0, haste: haste === "" ? 0 : haste };

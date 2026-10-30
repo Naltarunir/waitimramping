@@ -7,6 +7,7 @@ import { BLUR, FONT } from "@components/Theme/tokens";
 
 const FooterBar = () => {
     const currentYear = new Date().getFullYear();
+    const { label, href, icon, color } = SOCIAL_LINKS.GITHUB;
 
     return (
         <AppBar
@@ -58,25 +59,19 @@ const FooterBar = () => {
                 </Typography>
 
                 <Box sx={{ display: "flex", gap: 0.5, justifySelf: { xs: "center", md: "end" } }}>
-                    {Object.values(SOCIAL_LINKS).map(({ label, href, icon, color }) => (
-                        <GlassTooltip
-                            key={label}
-                            title={label}
-                            placement="top"
+                    <GlassTooltip title={label} placement="top">
+                        <NavIconButton
+                            color="inherit"
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            hoverColor={color}
+                            enableLift={true}
+                            initialColor="rgba(255, 255, 255, 0.5)"
                         >
-                            <NavIconButton
-                                color="inherit"
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                hoverColor={color}
-                                enableLift={true}
-                                initialColor="rgba(255, 255, 255, 0.5)"
-                            >
-                                {icon}
-                            </NavIconButton>
-                        </GlassTooltip>
-                    ))}
+                            {icon}
+                        </NavIconButton>
+                    </GlassTooltip>
                 </Box>
             </Toolbar>
         </AppBar>
