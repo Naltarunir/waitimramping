@@ -1,0 +1,395 @@
+{
+  "source": "SimulationCraft 1210-01 for World of Warcraft 12.1.5.70575 Live (hotfix 2026-10-28/70575)",
+  "nodes": [
+    382732,
+    377933,
+    108271,
+    192058,
+    1064,
+    188443,
+    1253090,
+    1253093,
+    974,
+    1271104,
+    443441,
+    382020,
+    443418,
+    462762,
+    382886,
+    462440,
+    188389,
+    382039,
+    196840,
+    192088,
+    73920,
+    108280,
+    77472,
+    51514,
+    1270350,
+    51505,
+    188196,
+    192106,
+    443447,
+    378081,
+    381647,
+    462443,
+    462454,
+    61295,
+    1252874,
+    98008,
+    79206,
+    279504,
+    265046,
+    1217622,
+    200072,
+    1260644,
+    73685,
+    204268,
+    52127,
+    381946,
+    1270447
+  ],
+  "heroNodes": [
+    443441,
+    443418,
+    443447,
+    1260644,
+    1270447
+  ],
+  "extraNodes": [],
+  "links": [
+    {
+      "from": 73685,
+      "to": 1064,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 73685,
+      "to": 77472,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 192088,
+      "to": 79206,
+      "kinds": [
+        "Spell Cooldown",
+        "Spell Effect 2"
+      ]
+    },
+    {
+      "from": 200072,
+      "to": 61295,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 204268,
+      "to": 51514,
+      "kinds": [
+        "Spell Cooldown"
+      ]
+    },
+    {
+      "from": 265046,
+      "to": 192058,
+      "kinds": [
+        "Spell Cooldown"
+      ]
+    },
+    {
+      "from": 279504,
+      "to": 98008,
+      "kinds": [
+        "Spell Radius"
+      ]
+    },
+    {
+      "from": 377933,
+      "to": 108271,
+      "kinds": [
+        "Spell Effect 1"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 1064,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1",
+        "Spell Resource Cost 2",
+        "Spell Resource Cost 3"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 73920,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 77472,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 188196,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 188443,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 378081,
+      "to": 51514,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 381647,
+      "to": 108271,
+      "kinds": [
+        "Spell Cooldown"
+      ]
+    },
+    {
+      "from": 381946,
+      "to": 61295,
+      "kinds": [
+        "Spell Duration",
+        "Spell Periodic Amount"
+      ]
+    },
+    {
+      "from": 382020,
+      "to": 974,
+      "kinds": [
+        "Spell Effect 3"
+      ]
+    },
+    {
+      "from": 382039,
+      "to": 1064,
+      "kinds": [
+        "Spell Chain Targets"
+      ]
+    },
+    {
+      "from": 382732,
+      "to": 1064,
+      "kinds": [
+        "Spell Chain Targets",
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 382886,
+      "to": 51505,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 382886,
+      "to": 188389,
+      "kinds": [
+        "Spell Direct Amount",
+        "Spell Periodic Amount"
+      ]
+    },
+    {
+      "from": 382886,
+      "to": 196840,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 443418,
+      "to": 51505,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 443418,
+      "to": 61295,
+      "kinds": [
+        "Spell Direct Amount",
+        "Spell Periodic Amount"
+      ]
+    },
+    {
+      "from": 443441,
+      "to": 974,
+      "kinds": [
+        "Spell Doses",
+        "Spell Max Stacks"
+      ]
+    },
+    {
+      "from": 443447,
+      "to": 1064,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 443447,
+      "to": 77472,
+      "kinds": [
+        "Spell Direct Amount"
+      ]
+    },
+    {
+      "from": 462440,
+      "to": 108280,
+      "kinds": [
+        "Spell Cooldown"
+      ]
+    },
+    {
+      "from": 462443,
+      "to": 108280,
+      "kinds": [
+        "Spell Duration",
+        "Spell Effect 4"
+      ]
+    },
+    {
+      "from": 462454,
+      "to": 974,
+      "kinds": [
+        "Spell Proc Cooldown"
+      ]
+    },
+    {
+      "from": 462454,
+      "to": 52127,
+      "kinds": [
+        "Spell Proc Cooldown"
+      ]
+    },
+    {
+      "from": 462762,
+      "to": 196840,
+      "kinds": [
+        "Spell Cooldown"
+      ]
+    },
+    {
+      "from": 1217622,
+      "to": 974,
+      "kinds": [
+        "Spell Doses",
+        "Spell Max Stacks"
+      ]
+    },
+    {
+      "from": 1217622,
+      "to": 52127,
+      "kinds": [
+        "Spell Doses",
+        "Spell Effect 1",
+        "Spell Effect 2",
+        "Spell Max Stacks"
+      ]
+    },
+    {
+      "from": 1252874,
+      "to": 73920,
+      "kinds": [
+        "Spell Cast Time"
+      ]
+    },
+    {
+      "from": 1253090,
+      "to": 77472,
+      "kinds": [
+        "Spell Critical Chance"
+      ]
+    },
+    {
+      "from": 1253093,
+      "to": 77472,
+      "kinds": [
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 1253093,
+      "to": 1064,
+      "kinds": [
+        "Spell Resource Cost 1"
+      ]
+    },
+    {
+      "from": 1270350,
+      "to": 192106,
+      "kinds": [
+        "Spell Effect 4"
+      ]
+    },
+    {
+      "from": 1270350,
+      "to": 52127,
+      "kinds": [
+        "Spell Effect 3"
+      ]
+    },
+    {
+      "from": 1270447,
+      "to": 1064,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Global Cooldown"
+      ]
+    },
+    {
+      "from": 1270447,
+      "to": 51505,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Global Cooldown"
+      ]
+    },
+    {
+      "from": 1270447,
+      "to": 77472,
+      "kinds": [
+        "Spell Cast Time",
+        "Spell Global Cooldown"
+      ]
+    },
+    {
+      "from": 1271104,
+      "to": 73685,
+      "kinds": [
+        "Spell Direct Amount",
+        "Spell Effect 2"
+      ]
+    }
+  ]
+}

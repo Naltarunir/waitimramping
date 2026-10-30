@@ -1,5 +1,6 @@
 import type spell from '@data/spells/spell';
 import { CATEGORY } from '@data/spells/spell';
+import { SCHOOLS } from '@data/shared/schools';
 
 const talents = {
     PURGE: {
@@ -48,7 +49,7 @@ const talents = {
         id: 57994,
         icon: 'spell_nature_cyclone',
         castTime: 0,
-        cooldown: 12,
+        cooldown: 30, //rShaman kick is longer than DPS specs. Error in simc export
         duration: 4,
         category: CATEGORY.UTILITY,
     },
@@ -61,15 +62,6 @@ const talents = {
         duration: 8,
         exclusive: [192063],
         category: CATEGORY.UTILITY,
-    },
-    LAVA_LASH: {
-        name: "Lava Lash",
-        id: 60103,
-        icon: 'ability_shaman_lavalash',
-        castTime: 0,
-        cooldown: 18,
-        coeff: 3.22268,
-        category: CATEGORY.DAMAGE,
     },
     SPIRITWALKERS_GRACE: {
         name: "Spiritwalker's Grace",
@@ -161,46 +153,55 @@ const talents = {
         name: "Voodoo Mastery",
         id: 204268,
         icon: 'spell_shaman_hex',
+        category: CATEGORY.UTILITY,
     },
     SPIRIT_WOLF: {
         name: "Spirit Wolf",
         id: 260878,
         icon: 'spell_hunter_lonewolf',
         exclusive: [378075],
+        category: CATEGORY.UTILITY,
     },
     STATIC_CHARGE: {
         name: "Static Charge",
         id: 265046,
         icon: 'spell_nature_brilliance',
         maxRank: 2,
+        category: CATEGORY.UTILITY,
     },
     WINDVEIL: {
         name: "Windveil",
         id: 355630,
         icon: 'inv_elemental_primal_air',
+        category: CATEGORY.DEFENSIVE,
     },
     ASTRAL_BULWARK: {
         name: "Astral Bulwark",
         id: 377933,
         icon: 'spell_shaman_ancestralawakening',
         exclusive: [381647],
+        category: CATEGORY.DEFENSIVE,
     },
     THUNDEROUS_PAWS: {
         name: "Thunderous Paws",
         id: 378075,
         icon: 'ability_hunter_longevity',
         exclusive: [260878],
+        cooldown: 20, //for the snare removal and speed boost
+        category: CATEGORY.UTILITY,
     },
     SPIRITWALKERS_AEGIS: {
         name: "Spiritwalker's Aegis",
         id: 378077,
         icon: 'ability_racial_forceshield',
         exclusive: [192088],
+        category: CATEGORY.UTILITY,
     },
     REFRESHING_WATERS: {
         name: "Refreshing Waters",
         id: 378211,
         icon: 'ability_shaman_fortifyingwaters',
+        category: CATEGORY.HEALING,
     },
     GREATER_PURGE: {
         name: "Greater Purge",
@@ -216,38 +217,45 @@ const talents = {
         id: 381647,
         icon: 'spell_shaman_astralshift',
         exclusive: [377933],
+        category: CATEGORY.DEFENSIVE,
     },
     ELEMENTAL_WARDING: {
         name: "Elemental Warding",
         id: 381650,
         icon: 'inv_10_elementalcombinedfoozles_primordial',
+        category: CATEGORY.DEFENSIVE,
     },
     NATURES_FURY: {
         name: "Nature's Fury",
         id: 381655,
         icon: 'spell_nature_spiritarmor',
         maxRank: 2,
+        category: CATEGORY.DAMAGE,
     },
     BRIMMING_WITH_LIFE: {
         name: "Brimming with Life",
         id: 381689,
         icon: 'inv_jewelry_talisman_06',
         maxRank: 2,
+        category: CATEGORY.PASSIVE,
     },
     TOTEMIC_SURGE: {
         name: "Totemic Surge",
         id: 381867,
         icon: 'spell_nature_agitatingtotem',
+        category: CATEGORY.UTILITY,
     },
     MANA_SPRING: {
         name: "Mana Spring",
         id: 381930,
         icon: 'spell_nature_manaregentotem',
+        category: CATEGORY.PASSIVE,
     },
     ANCESTRAL_WOLF_AFFINITY: {
         name: "Ancestral Wolf Affinity",
         id: 382197,
         icon: 'spell_beastmaster_wolf',
+        category: CATEGORY.UTILITY,
     },
     TOTEMIC_FOCUS: {
         name: "Totemic Focus",
@@ -259,16 +267,19 @@ const talents = {
         id: 382215,
         icon: 'ability_druid_galewinds',
         maxRank: 2,
+        category: CATEGORY.UTILITY,
     },
     FIRE_AND_ICE: {
         name: "Fire and Ice",
         id: 382886,
         icon: 'spell_firefrost-orb',
+        category: CATEGORY.DAMAGE,
     },
     ELEMENTAL_ORBIT: {
         name: "Elemental Orbit",
         id: 383010,
         icon: 'ability_mage_shattershield',
+        category: CATEGORY.HEALING,
     },
     POISON_CLEANSING_TOTEM: {
         name: "Poison Cleansing Totem",
@@ -278,29 +289,33 @@ const talents = {
         cooldown: 120,
         duration: 6,
         exclusive: [8143],
-        category: CATEGORY.UTILITY,
+        category: CATEGORY.HEALING,
     },
     IMPROVED_PURIFY_SPIRIT: {
         name: "Improved Purify Spirit",
         id: 383016,
         icon: 'ability_shaman_cleansespirit',
+        category: CATEGORY.HEALING,
     },
     ELEMENTAL_RESISTANCE: {
         name: "Elemental Resistance",
         id: 462368,
         icon: 'spell_fireresistancetotem_01',
+        category: CATEGORY.HEALING,
     },
     ENCASING_COLD: {
         name: "Encasing Cold",
         id: 462762,
         icon: 'ability_mage_coldasice',
         exclusive: [462764],
+        category: CATEGORY.UTILITY,
     },
     ARCTIC_SNOWSTORM: {
         name: "Arctic Snowstorm",
         id: 462764,
         icon: 'spell_frost_glacier',
         exclusive: [462762],
+        category: CATEGORY.UTILITY,
     },
     ASCENDING_AIR: {
         name: "Ascending Air",
@@ -312,28 +327,34 @@ const talents = {
         name: "Enhanced Imbues",
         id: 462796,
         icon: 'spell_nature_rockbiter',
+        category: CATEGORY.PASSIVE,
     },
     JET_STREAM: {
         name: "Jet Stream",
         id: 462817,
         icon: 'inv_elemental_primal_air',
         exclusive: [462791],
+        category: CATEGORY.UTILITY,
     },
     INSTINCTIVE_IMBUEMENTS: {
         name: "Instinctive Imbuements",
         id: 1270350,
         icon: 'ability_shaman_ascendance',
+        category: CATEGORY.UTILITY,
     },
     SPIRITUAL_AWAKENING: {
         name: "Spiritual Awakening",
         id: 1270375,
         icon: 'spell_shaman_blessingoftheeternals',
+        category: CATEGORY.UTILITY,
     },
     PRIMORDIAL_BOND: {
         name: "Primordial Bond",
         id: 1279819,
         icon: 'inv_elemental_primal_earth',
+        category: CATEGORY.DEFENSIVE,
     },
 } satisfies Record<string, spell>;
 
 export default talents;
+export { talents as SHARED_SHAMAN_TALENTS };

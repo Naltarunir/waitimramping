@@ -1,5 +1,6 @@
 import type spell from '@data/spells/spell';
 import { CATEGORY } from '@data/spells/spell';
+import { SCHOOLS } from '@data/shared/schools';
 import talents from '@data/specs/shaman/talents';
 
 const spells = {
@@ -79,3 +80,4 @@ const spells = {
 } satisfies Record<string, spell>;
 
 export default spells;
+export { spells as SHARED_SHAMAN_SPELLS };
