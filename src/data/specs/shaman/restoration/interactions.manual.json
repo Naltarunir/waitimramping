@@ -2,7 +2,16 @@
     "exclude": [
         "Far Sight",
         "Lightning Shield",
-        "Ancestral Vision"
+        "Ancestral Vision",
+        "Purify Spirit",
+        "Improved Purify Spirit",
+        "Nature's Fury"
+    ],
+    "removeLinks": [
+        [
+            "Nature's Swiftness",
+            "Hex"
+        ]
     ],
     "extraNodes": [
         {
@@ -23,6 +32,11 @@
             ]
         },
         {
+            "id": -4,
+            "name": "Intellect",
+            "iconUrl": "/icons/attribute_intellect.svg"
+        },
+        {
             "id": -5,
             "name": "Haste",
             "iconUrl": "/icons/attribute_haste.svg"
@@ -31,15 +45,47 @@
             "id": -6,
             "name": "Versatility",
             "iconUrl": "/icons/attribute_versatility.svg"
+        },
+        {
+            "id": -7,
+            "name": "Mana",
+            "iconUrl": "/icons/attribute_mana.svg"
+        },
+        {
+            "id": -9,
+            "name": "Downpour",
+            "spellIds": [
+                207778
+            ]
+        },
+        {
+            "id": -10,
+            "name": "Hydrobubble",
+            "spellIds": [
+                444490
+            ]
+        },
+        {
+            "id": -8,
+            "name": "Stamina",
+            "iconUrl": "/icons/attribute_stamina.svg" 
         }
     ],
     "links": [
         [
-            "Ghost Wolf",
-            "Spirit Wolf"
+            "Spirit Wolf",
+            "Ghost Wolf"
         ],
         [
             "Skyfury",
+            "Mastery"
+        ],
+        [
+            "Spiritual Awakening",
+            "Mastery"
+        ],
+        [
+            "Elemental Attunement",
             "Mastery"
         ],
         [
@@ -47,12 +93,336 @@
             "Deep Healing"
         ],
         [
-            "Nature's Fury",
-            "Lightning Bolt"
+            "Elemental Orbit",
+            "Earth Shield"
+        ],
+        [
+            "Elemental Orbit",
+            "Water Shield"
+        ],
+        [
+            "Deep Healing",
+            "Improved Earthliving Weapon"
+        ],
+        [
+            "Improved Earthliving Weapon",
+            "Earthliving Weapon"
         ],
         [
             "Mastery",
             "Deep Healing"
+        ],
+        [
+            "Unleash Life",
+            "Riptide"
+        ],
+        [
+            "Riptide",
+            "Flow of the Tides"
+        ],
+        [
+            "Ascendance",
+            "Chain Heal"
+        ],
+        [
+            "First Ascendant",
+            "Ascendance"
+        ],
+        [
+            "Critical Strike",
+            "White Water"
+        ],
+        [
+            "Crashing Waves",
+            "Critical Strike"
+        ],
+        [
+            "Improved Earthliving Weapon",
+            "Healing Wave"
+        ],
+        [
+            "Riptide",
+            "Undercurrent"
+        ],
+        [
+            "Riptide",
+            "Primal Tide Core"
+        ],
+        [
+            "Riptide",
+            "Earthliving Weapon"
+        ],
+        [
+            "Healing Wave",
+            "Earthliving Weapon"
+        ],
+        [
+            "Chain Heal",
+            "Earthliving Weapon"
+        ],
+        [
+            "Primal Catalyst",
+            "Healing Tide Totem"
+        ],
+        [
+            "Primal Catalyst",
+            "Healing Stream Totem"
+        ],
+        [
+            "Primal Catalyst",
+            "Earthliving Weapon"
+        ],
+        [
+            "Totemic Rebound",
+            "Healing Stream Totem"
+        ],
+        [
+            "Chain Heal",
+            "Totemic Rebound"
+        ],
+        [
+            "Totemic Rebound",
+            "Spirit Link Totem"
+        ],
+        [
+            "Totemic Rebound",
+            "Healing Tide Totem"
+        ],
+        [
+            "Totemic Rebound",
+            "Stormstream Totem"
+        ],
+        [
+            "Riptide",
+            "Stormstream Totem"
+        ],
+        [
+            "Riptide",
+            "Deeply Rooted Elements"
+        ],
+        [
+            "Deeply Rooted Elements",
+            "Ascendance"
+        ],
+        [
+            "Stormstream Totem",
+            "Stormswell"
+        ],
+        [
+            "Critical Strike",
+            "Resurgence"
+        ],
+        [
+            "Tidal Waves",
+            "Healing Wave"
+        ],
+        [
+            "Tidal Waves",
+            "Chain Heal"
+        ],
+        [
+            "Riptide",
+            "Tidal Waves"
+        ],
+        [
+            "Riptide",
+            "Deluge"
+        ],
+        [
+            "Healing Rain",
+            "Deluge"
+        ],
+        [
+            "Surging Totem",
+            "Deluge"
+        ],
+        [
+            "Deluge",
+            "Chain Heal"
+        ],
+        [
+            "Deluge",
+            "Healing Wave"
+        ],
+        [
+            "Healing Wave",
+            "Ancestral Vigor"
+        ],
+        [
+            "Chain Heal",
+            "Ancestral Vigor"
+        ],
+        [
+            "Riptide",
+            "Ancestral Vigor"
+        ],
+        [
+            "Healing Stream Totem",
+            "Swelling Tides"
+        ],
+        [
+            "Stormstream Totem",
+            "Swelling Tides"
+        ],
+        [
+            "Swelling Tides",
+            "Riptide"
+        ],
+        [
+            "Earthweaver",
+            "Earth Shield"
+        ],
+        [
+            "Quickstream",
+            "Healing Stream Totem"
+        ],
+        [
+            "Living Stream",
+            "Healing Stream Totem"
+        ],
+        [
+            "Water Totem Mastery",
+            "Healing Stream Totem"
+        ],
+        [
+            "Acid Rain",
+            "Healing Rain"
+        ],
+        [
+            "Acid Rain",
+            "Surging Totem"
+        ],
+        [
+            "Overflowing Shores",
+            "Healing Rain"
+        ],
+        [
+            "Overflowing Shores",
+            "Surging Totem"
+        ],
+        [
+            "Soothing Rain",
+            "Surging Totem"
+        ],
+        [
+            "Coalescing Water",
+            "Riptide"
+        ],
+        [
+            "Healing Wave",
+            "Coalescing Water"
+        ],
+        [
+            "Chain Heal",
+            "Coalescing Water"
+        ],
+        [
+            "Tidewaters",
+            "Healing Rain"
+        ],
+        [
+            "Tidewaters",
+            "Surging Totem"
+        ],
+        [
+            "Echo of the Elements",
+            "Riptide"
+        ],
+        [
+            "Echo of the Elements",
+            "Lava Burst"
+        ],
+        [
+            "Rip Current",
+            "Riptide"
+        ],
+        [
+            "Healing Rain",
+            "Downpour"
+        ],
+        [
+            "Surging Totem",
+            "Downpour"
+        ],
+        [
+            "Water Expulsion",
+            "Downpour"
+        ],
+        [
+            "Double Dip",
+            "Downpour"
+        ],
+        [
+            "Riptide",
+            "Ancestral Awakening"
+        ],
+        [
+            "Healing Wave",
+            "Ancestral Awakening"
+        ],
+        [
+            "Critical Strike",
+            "Ancestral Awakening"
+        ],
+        [
+            "Ascendance",
+            "Healing Wave"
+        ],
+        [
+            "Spiritwalker's Momentum",
+            "Spiritwalker's Grace"
+        ],
+        [
+            "Unleash Life",
+            "Call of the Ancestors"
+        ],
+        [
+            "Ancestral Swiftness",
+            "Call of the Ancestors"
+        ],
+        [
+            "Routine Communication",
+            "Call of the Ancestors"
+        ],
+        [
+            "Riptide",
+            "Routine Communication"
+        ],
+        [
+            "Ancestral Swiftness",
+            "Mystic Knowledge"
+        ],
+        [
+            "Nature's Swiftness",
+            "Mystic Knowledge"
+        ],
+        [
+            "Mystic Knowledge",
+            "Riptide"
+        ],
+        [
+            "Mystic Knowledge",
+            "Lava Surge"
+        ],
+        [
+            "Offering from Beyond",
+            "Riptide"
+        ],
+        [
+            "Natural Harmony",
+            "Nature's Guardian"
+        ],
+        [
+            "Maelstrom Supremacy",
+            "Downpour"
+        ],
+        [
+            "Final Calling",
+            "Hydrobubble"
+        ],
+        [
+            "Preeminence",
+            "Ascendance"
         ]
     ]
 }

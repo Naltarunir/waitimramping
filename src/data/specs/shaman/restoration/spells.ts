@@ -58,6 +58,7 @@ const spells = {
         school: SCHOOLS.PHYSICAL,
         category: CATEGORY.PASSIVE,
     },
+    IMPROVED_PURIFY_SPIRIT: talents.IMPROVED_PURIFY_SPIRIT,
     UNLEASH_LIFE: talents.UNLEASH_LIFE,
     HEALING_STREAM_TOTEM: talents.HEALING_STREAM_TOTEM,
     SPIRIT_LINK_TOTEM: talents.SPIRIT_LINK_TOTEM,
@@ -70,6 +71,14 @@ const spells = {
     STORMSTREAM_TOTEM: talents.STORMSTREAM_TOTEM,
     //Farseer
     ANCESTRAL_SWIFTNESS: talents.ANCESTRAL_SWIFTNESS,
+    HYDROBUBBLE: {
+        name: "Hydrobubble",
+        id: 444490,
+        castTime: 0,
+        icon: 'spell_winston_bubble',
+        school: SCHOOLS.NATURE,
+        category: CATEGORY.PASSIVE,
+    },
     //Totemic
     SURGING_TOTEM: talents.SURGING_TOTEM,
     TIDECALLERS_GUARD: talents.TIDECALLERS_GUARD,

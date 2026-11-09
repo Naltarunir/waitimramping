@@ -31,7 +31,7 @@ const talents = {
     },
     DOWNPOUR: {
         name: "Downpour",
-        id: 207778, //This is the actuall spell ID, the crawler only graps the talentID
+        id: 462486, // 207778 is the actuall spell ID, the crawler only graps the talentID
         icon: "ability_mage_waterjet",
         castTime: 0,
         school: SCHOOLS.NATURE,
@@ -90,6 +90,12 @@ const talents = {
         icon: 'misc_legionfall_shaman',
         school: SCHOOLS.PHYSICAL,
         category: CATEGORY.PASSIVE,
+    },
+    IMPROVED_PURIFY_SPIRIT: {
+        name: "Improved Purify Spirit",
+        id: 383016,
+        icon: 'ability_shaman_cleansespirit',
+        category: CATEGORY.HEALING,
     },
     SPOUTING_SPIRITS: {
         name: "Spouting Spirits",
@@ -367,6 +373,13 @@ const talents = {
         castTime: 0,
         school: SCHOOLS.NATURE,
         category: CATEGORY.HEALING,
+    },
+    ECHO_OF_THE_ELEMENTS: {
+        name: "Echo of the Elements",
+        id: 333919,
+        icon: 'ability_shaman_echooftheelements',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
     },
 // Farseer
     ANCESTRAL_SWIFTNESS: {

@@ -291,12 +291,6 @@ const talents = {
         exclusive: [8143],
         category: CATEGORY.HEALING,
     },
-    IMPROVED_PURIFY_SPIRIT: {
-        name: "Improved Purify Spirit",
-        id: 383016,
-        icon: 'ability_shaman_cleansespirit',
-        category: CATEGORY.HEALING,
-    },
     ELEMENTAL_RESISTANCE: {
         name: "Elemental Resistance",
         id: 462368,

@@ -66,7 +66,6 @@ const spells = {
         school: SCHOOLS.PHYSICAL,
         category: CATEGORY.PASSIVE,
     },
-    IMPROVED_PURIFY_SPIRIT: talents.IMPROVED_PURIFY_SPIRIT,
     LAVA_BURST: talents.LAVA_BURST,
     EARTH_SHIELD: talents.EARTH_SHIELD,
     CHAIN_HEAL: talents.CHAIN_HEAL,
