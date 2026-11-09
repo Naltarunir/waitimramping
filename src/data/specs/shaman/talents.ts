@@ -354,6 +354,57 @@ const talents = {
         icon: 'inv_elemental_primal_earth',
         category: CATEGORY.DEFENSIVE,
     },
+    LAVA_BURST: {
+        name: "Lava Burst",
+        id: 51505,
+        icon: "spell_shaman_lavaburst",
+        castTime: 0,
+        cooldown: 8,
+        //school: SCHOOLS.FIRE, Is not covered yet!
+        category: CATEGORY.DAMAGE,
+    },
+    EARTH_SHIELD: {
+        name: "Earth Shield",
+        id: 974,
+        icon: "spell_nature_skinofearth",
+        castTime: 0,
+        duration: 1000,
+        school: SCHOOLS.NATURE,
+        category: CATEGORY.HEALING,
+    },
+    CHAIN_HEAL: {
+        name: "Chain Heal",
+        id: 1064,
+        icon: "inv_1115_shaman_chainheal",
+        castTime: 2.5,
+        school: SCHOOLS.NATURE,
+        targets: 4,
+        category: CATEGORY.HEALING,
+    },
+    NATURES_SWIFTNESS: {
+        name: "Nature's Swiftness",
+        id: 378081,
+        icon: "spell_nature_ravenform",
+        castTime: 0,
+        gcd: false,
+        cooldown: 99,
+        school: SCHOOLS.NATURE,
+        category: CATEGORY.COOLDOWN,
+    },
+    REACTIVE_WARDING: {
+        name: "Reactive Warding",
+        id: 462454,
+        icon: 'inv_10_elementalcombinedfoozles_water',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
+    },
+    THERAZANES_RESILIENCE: {
+        name: "Therazane's Resilience",
+        id: 1217622,
+        icon: 'shaman_pvp_rockshield',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
+    },
 } satisfies Record<string, spell>;
 
 export default talents;
