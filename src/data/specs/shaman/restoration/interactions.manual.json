@@ -1,0 +1,58 @@
+{
+    "exclude": [
+        "Far Sight",
+        "Lightning Shield",
+        "Ancestral Vision"
+    ],
+    "extraNodes": [
+        {
+            "id": -1,
+            "name": "Critical Strike",
+            "iconUrl": "/icons/attribute_criticalstrike.svg"
+        },
+        {
+            "id": -2,
+            "name": "Mastery",
+            "iconUrl": "/icons/attribute_mastery.svg"
+        },
+        {
+            "id": -3,
+            "name": "Deep Healing",
+            "spellIds": [
+                77226
+            ]
+        },
+        {
+            "id": -5,
+            "name": "Haste",
+            "iconUrl": "/icons/attribute_haste.svg"
+        },
+        {
+            "id": -6,
+            "name": "Versatility",
+            "iconUrl": "/icons/attribute_versatility.svg"
+        }
+    ],
+    "links": [
+        [
+            "Ghost Wolf",
+            "Spirit Wolf"
+        ],
+        [
+            "Skyfury",
+            "Mastery"
+        ],
+        [
+            "Mastery",
+            "Deep Healing"
+        ],
+        [
+            "Nature's Fury",
+            "Lightning Bolt"
+        ],
+        [
+            "Mastery",
+            "Deep Healing"
+        ]
+    ]
+}

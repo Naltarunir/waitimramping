@@ -5,6 +5,7 @@ import RESTORATION_SHAMAN_SPELLS from "@data/specs/shaman/restoration/spells";
 import RESTORATION_SHAMAN_TALENTS from "@data/specs/shaman/restoration/talents";
 import RESTORATION_SHAMAN_ROTATIONS from "@data/specs/shaman/restoration/rotations";
 import RESTORATION_SHAMAN_BUGS from "@data/specs/shaman/restoration/bugs";
+import type { StoredInteractions } from '@data/interactions/types';
 import RESTORATION_SHAMAN_INTERACTIONS from '@data/specs/shaman/restoration/interactions.json';
 
 const RESTORATION_SHAMAN = ({
@@ -13,7 +14,7 @@ const RESTORATION_SHAMAN = ({
   talents: { ...SHARED_SHAMAN_TALENTS, ...RESTORATION_SHAMAN_TALENTS },
   rotations: RESTORATION_SHAMAN_ROTATIONS,
   bugs: RESTORATION_SHAMAN_BUGS,
-  interactions: RESTORATION_SHAMAN_INTERACTIONS,
+  interactions: RESTORATION_SHAMAN_INTERACTIONS as StoredInteractions,
   icon: "spell_nature_magicimmunity",
   name: "Restoration",
   class: "Shaman",
