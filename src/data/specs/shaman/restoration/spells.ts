@@ -82,6 +82,30 @@ const spells = {
     //Totemic
     SURGING_TOTEM: talents.SURGING_TOTEM,
     TIDECALLERS_GUARD: talents.TIDECALLERS_GUARD,
+    WHIRLING_AIR: {
+        name: "Whirling Air",
+        id: 453409,
+        castTime: 0,
+        icon: 'inv_10_elementalcombinedfoozles_air',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
+    },
+    WHIRLING_EARTH: {
+        name: "Whirling Earth",
+        id: 453406,
+        castTime: 0,
+        icon: ' inv_10_elementalcombinedfoozles_earth',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
+    },
+    WHIRLING_WATER: {
+        name: "Whirling Water",
+        id: 453407,
+        castTime: 0,
+        icon: 'inv_10_elementalcombinedfoozles_water',
+        school: SCHOOLS.PHYSICAL,
+        category: CATEGORY.PASSIVE,
+    },
 
 } satisfies Record<string, spell>;
 

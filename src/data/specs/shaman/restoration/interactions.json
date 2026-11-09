@@ -6,7 +6,9 @@
     382732,
     443454,
     207401,
+    382197,
     114049,
+    462791,
     377933,
     108271,
     443450,
@@ -19,17 +21,23 @@
     378270,
     200076,
     1252882,
+    198103,
     974,
+    2484,
     1271104,
     443441,
     382020,
+    51485,
     382021,
+    455590,
     1254210,
     333919,
     1263288,
     383010,
+    462368,
     443418,
     462762,
+    462796,
     443446,
     382886,
     462440,
@@ -38,30 +46,45 @@
     196840,
     2645,
     192088,
+    378773,
     73920,
     5394,
     108280,
     77472,
     51514,
+    445028,
     382315,
+    383016,
     1270350,
+    462817,
     51505,
     77756,
     188196,
+    445034,
     382482,
     443447,
+    381930,
     1270450,
     443442,
     30884,
     378081,
     443451,
     383222,
+    445026,
+    445030,
     381647,
+    383013,
     462443,
     1260874,
     382045,
+    1279819,
+    443448,
+    445032,
+    370,
+    77130,
     1253099,
     462454,
+    378211,
     16196,
     1254251,
     61295,
@@ -71,19 +94,29 @@
     98008,
     260878,
     1270375,
+    378077,
     79206,
     443425,
+    445035,
     279504,
     265046,
     1267068,
     1268684,
     444995,
     1312843,
+    445027,
     1217622,
+    378075,
     51564,
+    457493,
     462424,
     200072,
+    445036,
+    382201,
+    1260644,
     445025,
+    381867,
+    8143,
     382194,
     73685,
     204268,
@@ -91,26 +124,46 @@
     52127,
     382030,
     381946,
+    445024,
     462587,
-    1270447
+    445031,
+    192077,
+    57994,
+    382215,
+    1270447,
+    355630
   ],
   "heroNodes": [
     443454,
     443450,
     443441,
+    455590,
     1263288,
     443418,
     443446,
     73920,
+    445028,
+    445034,
     443447,
     1270450,
     443442,
     443451,
+    445026,
+    445030,
     1260874,
+    443448,
+    445032,
     443445,
     443425,
+    445035,
     444995,
+    445027,
+    457493,
+    445036,
+    1260644,
     445025,
+    445024,
+    445031,
     1270447
   ],
   "extraNodes": [
@@ -132,11 +185,18 @@
       "iconUrl": "/icons/attribute_criticalstrike.svg"
     },
     {
+      "id": -7,
+      "name": "Mana",
+      "iconUrl": "/icons/attribute_mana.svg"
+    },
+    {
       "id": -9,
       "name": "Downpour",
       "spellIds": [
-        207778
-      ]
+        207778,
+        462486
+      ],
+      "iconUrl": "/icons/ability_mage_waterjet.webp"
     },
     {
       "id": -10,
@@ -144,6 +204,45 @@
       "spellIds": [
         444490
       ]
+    },
+    {
+      "id": -11,
+      "name": "Whirling Air",
+      "spellIds": [
+        453409
+      ],
+      "iconUrl": "/icons/"
+    },
+    {
+      "id": -12,
+      "name": "Whirling Earth",
+      "spellIds": [
+        453406
+      ],
+      "iconUrl": "/icons/"
+    },
+    {
+      "id": -13,
+      "name": "Whirling Water",
+      "spellIds": [
+        453407
+      ],
+      "iconUrl": "/icons/inv_10_elementalcombinedfoozles_water.webp"
+    },
+    {
+      "id": -14,
+      "name": "Ancestor",
+      "iconUrl": "/icons/ability_racial_ancestralcall.webp"
+    },
+    {
+      "id": -16,
+      "name": "Ancestor Healing Surge",
+      "iconUrl": "/icons/spell_nature_healingway.webp"
+    },
+    {
+      "id": -15,
+      "name": "Ancestor Chain Heal",
+      "iconUrl": "/icons/spell_nature_healingwavegreater.webp"
     }
   ],
   "links": [
@@ -334,6 +433,7 @@
       "from": 443447,
       "to": 1064,
       "kinds": [
+        "Manual",
         "Spell Direct Amount"
       ]
     },
@@ -341,6 +441,7 @@
       "from": 443447,
       "to": 77472,
       "kinds": [
+        "Manual",
         "Spell Direct Amount"
       ]
     },
@@ -466,8 +567,8 @@
       ]
     },
     {
-      "from": 260878,
-      "to": 2645,
+      "from": 2645,
+      "to": 260878,
       "kinds": [
         "Manual"
       ]
@@ -699,6 +800,13 @@
     {
       "from": -1,
       "to": 16196,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 16196,
+      "to": -7,
       "kinds": [
         "Manual"
       ]
@@ -1063,6 +1171,657 @@
     {
       "from": 443446,
       "to": -10,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 61295,
+      "to": 381930,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 381930,
+      "to": -7,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 51505,
+      "to": 381930,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 77756,
+      "to": 51505,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 188389,
+      "to": 77756,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 378077,
+      "to": 79206,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 381867,
+      "to": 8143,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 381867,
+      "to": 192058,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 381867,
+      "to": 5394,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 57994,
+      "to": 355630,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 2645,
+      "to": 378075,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 2645,
+      "to": 382197,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 370,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 57994,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 77130,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 192077,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 192058,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 77130,
+      "to": 383016,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 2484,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 2484,
+      "to": 51485,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 5394,
+      "to": 462368,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 77472,
+      "to": 378211,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382197,
+      "to": 378773,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 192077,
+      "to": 462791,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 192077,
+      "to": 462817,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 198103,
+      "to": 1279819,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 462796,
+      "to": 382021,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 462796,
+      "to": 457493,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 108280,
+      "to": 445030,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 114049,
+      "to": 445030,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445030,
+      "to": 444995,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 2645,
+      "to": 382215,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 5394,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 51485,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 2484,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 192058,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 8143,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 383013,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 382201,
+      "to": 192077,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 5394,
+      "to": 445031,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 108280,
+      "to": 445034,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 1267068,
+      "to": 445034,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 98008,
+      "to": 445034,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445034,
+      "to": 1064,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 1260644,
+      "to": 5394,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445028,
+      "to": 382021,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 192077,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 383013,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 8143,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 1267068,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 98008,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 51485,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 2484,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445026,
+      "to": 192058,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445027,
+      "to": 192058,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445027,
+      "to": 2484,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445027,
+      "to": 51485,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445027,
+      "to": 383013,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445035,
+      "to": 5394,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445035,
+      "to": 108280,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 455590,
+      "to": 382021,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445032,
+      "to": 444995,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445034,
+      "to": 445036,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445025,
+      "to": 445036,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 444995,
+      "to": 445024,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445024,
+      "to": -11,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445024,
+      "to": -12,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 445024,
+      "to": -13,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -11,
+      "to": 77472,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -11,
+      "to": 1064,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -12,
+      "to": 1064,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -13,
+      "to": 77472,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 443448,
+      "to": 51564,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 443448,
+      "to": -7,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 1253093,
+      "to": -7,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 443450,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -14,
+      "to": -16,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -14,
+      "to": -15,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -14,
+      "to": 51505,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -14,
+      "to": 188443,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": -14,
+      "to": 77472,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 188443,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 51505,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 188196,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 188389,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 108280,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 73920,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 5394,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 1267068,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 1064,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 73685,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 77472,
+      "to": -14,
+      "kinds": [
+        "Manual"
+      ]
+    },
+    {
+      "from": 61295,
+      "to": -14,
       "kinds": [
         "Manual"
       ]

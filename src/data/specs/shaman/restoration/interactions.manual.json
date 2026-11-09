@@ -3,13 +3,15 @@
         "Far Sight",
         "Lightning Shield",
         "Ancestral Vision",
-        "Purify Spirit",
-        "Improved Purify Spirit",
         "Nature's Fury"
     ],
     "removeLinks": [
         [
             "Nature's Swiftness",
+            "Hex"
+        ],
+        [
+            "Ancestral Swiftness",
             "Hex"
         ]
     ],
@@ -55,8 +57,49 @@
             "id": -9,
             "name": "Downpour",
             "spellIds": [
-                207778
-            ]
+                207778,
+                462486
+            ],
+            "iconUrl": "/icons/ability_mage_waterjet.webp"
+        },
+        {
+            "id": -11,
+            "name": "Whirling Air",
+            "spellIds": [
+                453409
+            ],
+            "iconUrl": "/icons/"
+        },
+        {
+            "id": -12,
+            "name": "Whirling Earth",
+            "spellIds": [
+                453406
+            ],
+            "iconUrl": "/icons/"
+        },
+        {
+            "id": -13,
+            "name": "Whirling Water",
+            "spellIds": [
+                453407
+            ],
+            "iconUrl": "/icons/inv_10_elementalcombinedfoozles_water.webp"
+        },
+        {
+            "id": -14,
+            "name": "Ancestor",
+            "iconUrl": "/icons/ability_racial_ancestralcall.webp"
+        },
+        {
+            "id": -15,
+            "name": "Ancestor Chain Heal",
+            "iconUrl": "/icons/spell_nature_healingwavegreater.webp"
+        },
+        {
+            "id": -16,
+            "name": "Ancestor Healing Surge",
+            "iconUrl": "/icons/spell_nature_healingway.webp"
         },
         {
             "id": -10,
@@ -73,8 +116,8 @@
     ],
     "links": [
         [
-            "Spirit Wolf",
-            "Ghost Wolf"
+            "Ghost Wolf",
+            "Spirit Wolf"
         ],
         [
             "Skyfury",
@@ -211,6 +254,10 @@
         [
             "Critical Strike",
             "Resurgence"
+        ],
+        [
+            "Resurgence",
+            "Mana"
         ],
         [
             "Tidal Waves",
@@ -417,8 +464,392 @@
             "Downpour"
         ],
         [
+            "Maelstrom Supremacy",
+            "Healing Wave"
+        ],
+        [
+            "Maelstrom Supremacy",
+            "Chain Heal"
+        ],
+        [
             "Final Calling",
             "Hydrobubble"
+        ],
+        [
+            "Riptide",
+            "Mana Spring"
+        ],
+        [
+            "Mana Spring",
+            "Mana"
+        ],
+        [
+            "Lava Burst",
+            "Mana Spring"
+        ],
+        [
+            "Lava Surge",
+            "Lava Burst"
+        ],
+        [
+            "Flame Shock",
+            "Lava Surge"
+        ],
+        [
+            "Spiritwalker's Aegis",
+            "Spiritwalker's Grace"
+        ],
+        [
+            "Totemic Surge",
+            "Tremor Totem"
+        ],
+        [
+            "Totemic Surge",
+            "Capacitor Totem"
+        ],
+        [
+            "Totemic Surge",
+            "Healing Stream Totem"
+        ],
+        [
+            "Wind Shear",
+            "Windveil"
+        ],
+        [
+            "Ghost Wolf",
+            "Thunderous Paws"
+        ],
+        [
+            "Ghost Wolf",
+            "Ancestral Wolf Affinity"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Purge"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Wind Shear"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Purify Spirit"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Wind Rush Totem"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Capacitor Totem"
+        ],
+        [
+            "Purify Spirit",
+            "Improved Purify Spirit"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Earthbind Totem"
+        ],
+        [
+            "Earthbind Totem",
+            "Earthgrab Totem"
+        ],
+        [
+            "Healing Stream Totem",
+            "Elemental Resistance"
+        ],
+        [
+            "Healing Wave",
+            "Refreshing Waters"
+        ],
+        [
+            "Ancestral Wolf Affinity",
+            "Greater Purge"
+        ],
+        [
+            "Wind Rush Totem",
+            "Ascending Air"
+        ],
+        [
+            "Wind Rush Totem",
+            "Jet Stream"
+        ],
+        [
+            "Earth Elemental",
+            "Primordial Bond"
+        ],
+        [
+            "Enhanced Imbues",
+            "Earthliving Weapon"
+        ],
+        [
+            "Enhanced Imbues",
+            "Tidecaller's Guard"
+        ],
+        [
+            "Healing Tide Totem",
+            "Oversurge"
+        ],
+        [
+            "Ascendance",
+            "Oversurge"
+        ],
+        [
+            "Oversurge",
+            "Surging Totem"
+        ],
+        [
+            "Ghost Wolf",
+            "Winds of Al'Akir"
+        ],
+        [
+            "Totemic Focus",
+            "Healing Stream Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Earthgrab Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Earthbind Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Capacitor Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Tremor Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Poison Cleansing Totem"
+        ],
+        [
+            "Totemic Focus",
+            "Wind Rush Totem"
+        ],
+        [
+            "Healing Stream Totem",
+            "Wind Barrier"
+        ],
+        [
+            "Healing Tide Totem",
+            "Lively Totems"
+        ],
+        [
+            "Stormstream Totem",
+            "Lively Totems"
+        ],
+        [
+            "Spirit Link Totem",
+            "Lively Totems"
+        ],
+        [
+            "Healing Tide Totem",
+            "Lively Totems"
+        ],
+        [
+            "Lively Totems",
+            "Chain Heal"
+        ],
+        [
+            "Totemic Momentum",
+            "Healing Stream Totem"
+        ],
+        [
+            "Imbuement Mastery",
+            "Earthliving Weapon"
+        ],
+        [
+            "Oversized Totems",
+            "Wind Rush Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Poison Cleansing Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Tremor Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Stormstream Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Spirit Link Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Earthgrab Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Earthbind Totem"
+        ],
+        [
+            "Oversized Totems",
+            "Capacitor Totem"
+        ],
+        [
+            "Swift Recall",
+            "Capacitor Totem"
+        ],
+        [
+            "Swift Recall",
+            "Earthbind Totem"
+        ],
+        [
+            "Swift Recall",
+            "Earthgrab Totem"
+        ],
+        [
+            "Swift Recall",
+            "Poison Cleansing Totem"
+        ],
+        [
+            "Splitstream",
+            "Healing Stream Totem"
+        ],
+        [
+            "Splitstream",
+            "Healing Tide Totem"
+        ],
+        [
+            "Earthsurge",
+            "Earthliving Weapon"
+        ],
+        [
+            "Pulse Capacitor",
+            "Surging Totem"
+        ],
+        [
+            "Lively Totems",
+            "Totemic Coordination"
+        ],
+        [
+            "Totemic Rebound",
+            "Totemic Coordination"
+        ],
+        [
+            "Surging Totem",
+            "Whirling Elements"
+        ],
+        [
+            "Whirling Elements",
+            "Whirling Air"
+        ],
+        [
+            "Whirling Elements",
+            "Whirling Earth"
+        ],
+        [
+            "Whirling Elements",
+            "Whirling Water"
+        ],
+        [
+            "Whirling Air",
+            "Healing Wave"
+        ],
+        [
+            "Whirling Air",
+            "Chain Heal"
+        ],
+        [
+            "Whirling Earth",
+            "Chain Heal"
+        ],
+        [
+            "Whirling Water",
+            "Healing Wave"
+        ],
+        [
+            "Primordial Capacity",
+            "Tidal Waves"
+        ],
+        [
+            "Primordial Capacity",
+            "Mana"
+        ],
+        [
+            "Current Control",
+            "Mana"
+        ],
+        [
+            "Call of the Ancestors",
+            "Ancestor"
+        ],
+        [
+            "Ancestor",
+            "Ancestor Healing Surge"
+        ],
+        [
+            "Ancestor",
+            "Ancestor Chain Heal"
+        ],
+        [
+            "Ancestor",
+            "Lava Burst"
+        ],
+        [
+            "Ancestor",
+            "Chain Lightning"
+        ],
+        [
+            "Ancestor",
+            "Healing Wave"
+        ],
+        [
+            "Chain Lightning",
+            "Ancestor"
+        ],
+        [
+            "Lava Burst",
+            "Ancestor"
+        ],
+        [
+            "Lightning Bolt",
+            "Ancestor"
+        ],
+        [
+            "Flame Shock",
+            "Ancestor"
+        ],
+        [
+            "Healing Tide Totem",
+            "Ancestor"
+        ],
+        [
+            "Healing Rain",
+            "Ancestor"
+        ],
+        [
+            "Healing Stream Totem",
+            "Ancestor"
+        ],
+        [
+            "Stormstream Totem",
+            "Ancestor"
+        ],
+        [
+            "Chain Heal",
+            "Ancestor"
+        ],
+        [
+            "Unleash Life",
+            "Ancestor"
+        ],
+        [
+            "Healing Wave",
+            "Ancestor"
+        ],
+        [
+            "Riptide",
+            "Ancestor"
         ],
         [
             "Preeminence",
